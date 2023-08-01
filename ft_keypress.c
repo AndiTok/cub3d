@@ -30,6 +30,9 @@ void	draw_dot(t_game *game)
 	mlx_do_sync(game->mlx); // Ensure smooth window management
 }
 
+/*
+keycode vary depending on LINUX/MACOS
+*/
 int	keypress(int keycode, t_game *game)
 {
 	if (keycode == 119)

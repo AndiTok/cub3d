@@ -207,6 +207,12 @@ void	find_mid_store_map(t_game *game)
 		// }
 }
 
+/*
+store map
+check element: floor and ceiling color info format
+check element: (north south west east) texture
+parse element to struct t_element
+*/
 void	ft_split_store_file_info(t_game *game)
 {
 	find_mid_store_map(game);

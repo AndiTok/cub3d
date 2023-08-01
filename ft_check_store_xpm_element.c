@@ -12,6 +12,12 @@
 
 #include "cub3d.h"
 
+/*
+KIV: 
+typo yet to change: "extention" -> "extension"
+suggestion: rename to check_xpm
+			error msg: ERROR: file must be .xpm
+*/
 char	*check_texture_path_extention(char *str)
 {
 	int	i;

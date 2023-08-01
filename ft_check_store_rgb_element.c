@@ -12,6 +12,7 @@
 
 #include "cub3d.h"
 
+/*i = color code in decimal*/
 int	check_rgb_value(int r, int g, int b)
 {
 	int	i;
@@ -27,6 +28,7 @@ int	check_rgb_value(int r, int g, int b)
 	return (i);
 }
 
+/*ft_atoi rgb info*/
 int	convert_check_store_rgb(char *str)
 {
 	int	r;
