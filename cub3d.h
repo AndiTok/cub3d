@@ -33,9 +33,9 @@ typedef struct s_player
 typedef struct s_map
 {
 	char	**xymap;
-	char	*map;
-	int		floor;
-	int		ceiling;
+	char	*map;//
+	int		floor; // final
+	int		ceiling; // final
 }t_map;
 
 typedef struct s_element
