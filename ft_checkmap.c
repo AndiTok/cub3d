@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_checkmap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atok <atok@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: wyap <wyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:23:01 by atok              #+#    #+#             */
-/*   Updated: 2023/08/01 16:30:02 by atok             ###   ########.fr       */
+/*   Updated: 2023/08/01 17:27:54 by wyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-ft_check_map(t_game *game)
+void ft_check_map(t_game *game)
 {
 	
 }
