@@ -2,9 +2,9 @@ NAME = cub3d
 # BONUS = cub3d_bonus
 
 SRC = ft_atoi.c ft_check_input.c ft_check_store_rgb_element.c ft_check_store_xpm_element.c\
-	ft_check_map.c ft_exit_error.c ft_init_mlx.c ft_initialize_vars.c ft_itoa.c ft_joinfree.c\
+	ft_exit_error.c ft_init_mlx.c ft_initialize_vars.c ft_itoa.c ft_joinfree.c\
 	ft_keypress.c ft_load_file.c ft_split_store_file_info.c ft_split.c ft_strncmp.c ft_strnstr.c\
-	get_next_line_utils.c get_next_line.c
+	get_next_line_utils.c get_next_line.c #ft_checkmap.c
 OBJ = $(SRC:.c=.o)
 
 MLX_PATH = minilibx/minilibx-linux/

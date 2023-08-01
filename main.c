@@ -27,7 +27,7 @@ int main(int c, char **v)
 	ft_load_file(&game, v);
 	ft_split_store_file_info(&game);
 	ft_check_store_rgb_element(&game);
-	ft_check_store_xmp_element(&game);
+	ft_check_store_xpm_element(&game);
 	ft_check_map(&game);
 
 	ft_init_mlx(&game);

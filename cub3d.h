@@ -87,7 +87,7 @@ void	ft_initialize_vars(t_game *game);
 void	ft_load_file(t_game *game, char **v);
 void	ft_split_store_file_info(t_game *game);
 void	ft_check_store_rgb_element(t_game *game);
-void	ft_check_store_xmp_element(t_game *game);
+void	ft_check_store_xpm_element(t_game *game);
 void	ft_check_map(t_game *game);
 void	ft_init_mlx(t_game *game);
 void	draw_dot(t_game *game);
