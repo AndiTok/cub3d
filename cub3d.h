@@ -21,7 +21,21 @@
 # include <stdio.h>
 # include <math.h>
 # include "minilibx/minilibx-linux/mlx.h"
-#include <string.h>//
+# include <string.h>//
+
+//LINUX keycode: https://www.cl.cam.ac.uk/~mgk25/ucs/keysymdef.h
+# define ESC 65307 //0xff1b
+# define W 119 //0x0077
+# define S 115 //0x0073
+# define A 97 //0x0061
+# define D 100 //0x0064
+
+//MACOS keycode: to test in MAC
+// # define ESC 0x35
+// # define W 0x0D
+// # define S 0x01
+// # define A 0x00
+// # define D 0x02
 
 typedef struct s_player
 {

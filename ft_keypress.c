@@ -35,15 +35,15 @@ keycode vary depending on LINUX/MACOS
 */
 int	keypress(int keycode, t_game *game)
 {
-	if (keycode == 119)
+	if (keycode == W)
 		game->player.y -= 4;
-	else if (keycode == 115)
+	else if (keycode == S)
 		game->player.y += 4;
-	else if (keycode == 97)
+	else if (keycode == A)
 		game->player.x -= 4;
-	else if (keycode == 100)
+	else if (keycode == D)
 		game->player.x += 4;
-	else if (keycode == 65307)
+	else if (keycode == ESC)
 		exit(1);
 	draw_dot(game);
 	return (0);
