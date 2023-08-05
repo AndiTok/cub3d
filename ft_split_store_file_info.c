@@ -83,8 +83,8 @@ void check_Other_element(t_game *game)
 			game->file.EA++;
 		i++;
 	}
-	if(game->file.NO == 0 || game->file.SO == 0 || 
-		game->file.WE == 0 || game->file.EA == 0)
+	if(game->file.NO != 1 || game->file.SO != 1 || 
+		game->file.WE != 1 || game->file.EA != 1)
 		ft_exit_error("Other element format ERROR or duplicate\n");
 	//to make sure there is NO ./,SO ./,WE ./,EA ./
  	//& "next" to it is not space
@@ -106,7 +106,7 @@ void check_FC_element(t_game *game)
 			game->file.C++;
 		i++;
 	}
-	if(game->file.F == 0 || game->file.C == 0)
+	if(game->file.F != 1 || game->file.C != 1)
 		ft_exit_error("FC element format ERROR or duplicate\n");
 	// to make sure there is C ,F ,
 	// & "next" to it is not space
@@ -171,7 +171,8 @@ void	find_mid_store_map(t_game *game)
 	i = 0;
 	while(game->file.xyfile[i] != 0x00)
 	{
-		if(game->file.xyfile[i][0] == ' ' || game->file.xyfile[i][0] == '1')
+		if(game->file.xyfile[i][0] == ' ' || game->file.xyfile[i][0] == '1' ||
+			game->file.xyfile[i][0] == '\t')
 		{
 			//map beignning is either alwasy == to ' ' or 1
 			game->file.mid = i; // mid section saperator aka 1st line of map
@@ -179,8 +180,8 @@ void	find_mid_store_map(t_game *game)
 		}
 		i++;
 	}
-	if(i != 6) // make sure there ar only 6 elements at the top
-		ft_exit_error("extra or missing color/texture map element line\n");
+	// if(i != 6) // make sure there ar only 6 elements at the top
+	// 	ft_exit_error("extra or missing color/texture map element line\n");
 		// printf("%s\n",game->file.xyfile[i]); // check where "i" is pointing
 		//printf("%d\n",i); // check number 
 		// k = 0; // check file

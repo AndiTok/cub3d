@@ -20,8 +20,9 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
-# include "minilibx/minilibx-linux/mlx.h"
+//# include "minilibx/minilibx-linux/mlx.h"
 #include <string.h>//
+#include <mlx.h>
 
 typedef struct s_player
 {

@@ -41,3 +41,5 @@ int main(int c, char **v)
 //gcc *.c -L minilibx/minilibx-linux -lmlx -lXext -lX11 -lm -lz && ./a.out maps/map.ber
 // gcc *.c -L minilibx/minilibx-linux -lmlx -lXext -lX11 -lm -lz -fsanitize=address -g3  && ./a.out minimalist.cub 
 // gcc *.c -L minilibx/minilibx-linux/ -lmlx -lXext -lX11 -fsanitize=address -g3 && ./a.out minimalist.cub 
+// gcc -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit *.c  && ./a.out minimalist.cub
+// gcc -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit *.c  -fsanitize=address -g3 && ./a.out minimalist.cub

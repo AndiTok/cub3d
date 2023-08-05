@@ -6,7 +6,7 @@
 /*   By: atok <atok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 07:43:06 by atok              #+#    #+#             */
-/*   Updated: 2023/08/01 23:02:10 by atok             ###   ########.fr       */
+/*   Updated: 2023/08/02 21:33:35 by atok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*word_dup(const char *s, char c)
 	len = 0;
 	while (s[len] != 0x00 && s[len] != c)
 		len++;
-	if (s[len + 1] == 0x00)
+	if (s[len] == 0x00)
 		len++;
 	word = (char *) malloc(sizeof(char) * (len));
 	if (word == NULL)

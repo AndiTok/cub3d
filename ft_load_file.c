@@ -27,11 +27,13 @@ void	ft_load_file(t_game *game, char **v)
 		tmp = get_next_line(fd);
 		if (tmp == 0x00)
 			break ;
-		if(tmp[1] != '\n') // parse in file with no blank row
-		{
-			file = ft_joinfree(file, tmp);
-			game->file.lines += 1;
-		}
+		// if(tmp[1] != '\n') // parse in file with no blank row
+		// {
+		// 	file = ft_joinfree(file, tmp);
+		// 	game->file.lines += 1;
+		// }
+		file = ft_joinfree(file, tmp);
+		game->file.lines += 1;
 	}
 	close(fd);
 	game->file.file = file;
