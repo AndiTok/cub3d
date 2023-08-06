@@ -1,93 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_map_wall.c                                :+:      :+:    :+:   */
+/*   ft_replace_ffmap_wall.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atok <atok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/06 02:17:52 by atok              #+#    #+#             */
-/*   Updated: 2023/08/06 02:17:52 by atok             ###   ########.fr       */
+/*   Created: 2023/08/06 10:00:05 by atok              #+#    #+#             */
+/*   Updated: 2023/08/06 10:00:05 by atok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	check_top_wall(t_game *game)
+void	ff_outer_map(t_game *game, char **ffmap, int x, int y)
 {
-	int	i;
-	int	j;
-
-	j = 0;
-	while (j < game->map.n_col)
+	if ((y < 0 || y >= game->map.n_row + 2) || \
+		(x < 0 || x >= game->map.n_col + 2))
+		return ;
+	if (ffmap[y][x] == '0')
 	{
-		i = 0;
-		while (game->map.xymap[i][j] == ' ')
-			i++;
-		if (game->map.xymap[i][j] == '1')
-			j++;
-		else 
-			ft_exit_error("Error\nmissing /\\ wall\n");
+		ft_exit_error("Error\n map not enclosed/surounded by '1'\n");
+		return ;
 	}
-}
-
-void	check_bottum_wall(t_game *game)
-{
-	int	i;
-	int	j;
-
-	j = 0;
-	while (j < game->map.n_col)
+	if (ffmap[y][x] == ' ')
 	{
-		i = game->map.n_row - 1;
-		while (game->map.xymap[i][j] == ' ')
-			i--;
-		if (game->map.xymap[i][j] == '1')
-			j++;
-		else 
-			ft_exit_error("Error\nmissing \\/ wall\n");
+		ffmap[y][x] = 'F';
+		ff_outer_map(game, ffmap, x + 1, y);
+		ff_outer_map(game, ffmap, x - 1, y);
+		ff_outer_map(game, ffmap, x, y + 1);
+		ff_outer_map(game, ffmap, x, y - 1);
 	}
-}
-
-void	check_left_wall(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (game->map.xymap[i] != 0x00)
-	{
-		j = 0;
-		while (game->map.xymap[i][j] == ' ')
-			j++;
-		if (game->map.xymap[i][j] == '1')
-			i++;
-		else 
-			ft_exit_error("Error\nmissing < wall\n");
-	}
-}
-
-void	check_right_wall(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (game->map.xymap[i] != 0x00)
-	{
-		j = ft_strlen(game->map.xymap[i]) - 1;
-		while (game->map.xymap[i][j] == ' ')
-			j--;
-		if (game->map.xymap[i][j] == '1')
-			i++;
-		else 
-			ft_exit_error("Error\nmissing > wall\n");
-	}
+	else
+		return ;
 }
 
 void	ft_check_map_wall(t_game *game)
 {
-	check_left_wall(game);
-	check_right_wall(game);
-	check_top_wall(game);
-	check_bottum_wall(game);
+	ff_outer_map(game, game->map.ffomap, 0, 0);
+	// int	i = 0;
+	// while(game->map.ffomap[i] != 0x00)
+	// 	printf("%s\n",game->map.ffomap[i++]);
 }
+
+// make map surounded by ' ' to ff outside;

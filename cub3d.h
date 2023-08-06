@@ -33,7 +33,9 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	char	**ffmap;
+	//char	**ffmap;
+	char	**ffomap;
+	char	**ffimap;
 	char	**xymap;
 	char	*map;//
 	int		floor; // final
@@ -94,9 +96,11 @@ void	ft_check_store_rgb_element(t_game *game);
 void	ft_check_store_xpm_element(t_game *game);
 void	ft_get_map(t_game *game);
 void	ft_check_map_char(t_game *game);
+void	ft_dup_ffmap(t_game *game);
 void	ft_check_stray_map(t_game *game);
-void	ft_check_player(t_game *game);
 void	ft_check_map_wall(t_game *game);
+void	ft_check_map_hole(t_game *game);
+void	ft_check_store_player(t_game *game);
 void	ft_init_mlx(t_game *game);
 void	draw_dot(t_game *game);
 void	ft_keypress(t_game *game);

@@ -30,9 +30,11 @@ int main(int c, char **v)
 	ft_check_store_xpm_element(&game);
 	ft_get_map(&game);
 	ft_check_map_char(&game);
+	ft_dup_ffmap(&game);
 	ft_check_stray_map(&game);
-	ft_check_player(&game);
 	ft_check_map_wall(&game);
+	ft_check_map_hole(&game);
+	ft_check_store_player(&game);
 
 	ft_init_mlx(&game);
 	draw_dot(&game);

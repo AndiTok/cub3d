@@ -47,7 +47,7 @@ void	get_player_pos(t_game *game)
 	}
 }
 
-void	ft_check_player(t_game *game)
+void	ft_check_store_player(t_game *game)
 {
 		// int i = 0;
 		// while (game->map.xymap[i] != 0x00)
