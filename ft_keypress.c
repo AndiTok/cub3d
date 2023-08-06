@@ -19,48 +19,48 @@ void	draw_dot(t_game *game)
 	int x = game->player.x - 2; // 5 x 5 dot
     while (x <= game->player.x + 2) 
 	{
-        int y = game->player.y - 2;
-        while (y <= game->player.y + 2) 
+		int y = game->player.y - 2;
+		while (y <= game->player.y + 2) 
 		{
-            mlx_pixel_put(game->mlx, game->win, x, y, game->player.color);
-            y++;
-        }
-        x++;
+			mlx_pixel_put(game->mlx, game->win, x, y, game->player.color);
+			y++;
+		}
+		x++;
 	}
 	mlx_do_sync(game->mlx); // Ensure smooth window management
 }
 
-// int	keypress(int keycode, t_game *game)
-// {
-// 	if (keycode == 119)
-// 		game->player.y -= 4;
-// 	else if (keycode == 115)
-// 		game->player.y += 4;
-// 	else if (keycode == 97)
-// 		game->player.x -= 4;
-// 	else if (keycode == 100)
-// 		game->player.x += 4;
-// 	else if (keycode == 65307)
-// 		exit(1);
-// 	draw_dot(game);
-// 	return (0);
-// }
-
 int	keypress(int keycode, t_game *game)
 {
-	if (keycode == 13)
+	if (keycode == 119)
 		game->player.y -= 4;
-	else if (keycode == 1)
+	else if (keycode == 115)
 		game->player.y += 4;
-	else if (keycode == 0)
+	else if (keycode == 97)
 		game->player.x -= 4;
-	else if (keycode == 2)
+	else if (keycode == 100)
 		game->player.x += 4;
-	else if (keycode == 53)
+	else if (keycode == 65307)
 		exit(1);
 	draw_dot(game);
 	return (0);
 }
+
+// int	keypress(int keycode, t_game *game)
+// {
+// 	if (keycode == 13)
+// 		game->player.y -= 4;
+// 	else if (keycode == 1)
+// 		game->player.y += 4;
+// 	else if (keycode == 0)
+// 		game->player.x -= 4;
+// 	else if (keycode == 2)
+// 		game->player.x += 4;
+// 	else if (keycode == 53)
+// 		exit(1);
+// 	draw_dot(game);
+// 	return (0);
+// }
 
 int	ft_end(t_game *game)
 {

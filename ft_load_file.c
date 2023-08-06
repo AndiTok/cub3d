@@ -38,7 +38,7 @@ void	ft_load_file(t_game *game, char **v)
 	close(fd);
 	game->file.file = file;
 	game->file.xyfile = ft_split(file, '\n');
-	// printf("%d\n",game->file.lines);
+		//printf("%d\n",game->file.lines);
 
 	// int i = 0;
 	// while (game->file.file[i] != 0x00)
@@ -46,7 +46,6 @@ void	ft_load_file(t_game *game, char **v)
 	// 	printf("%c",game->file.file[i]);
 	// 	i++;
 	// }
-	
 	// int i = 0;
 	// while (game->file.xyfile[i] != 0x00)
 	// {

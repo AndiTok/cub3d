@@ -20,9 +20,9 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
-//# include "minilibx/minilibx-linux/mlx.h"
+# include "minilibx/minilibx-linux/mlx.h"
 #include <string.h>//
-#include <mlx.h>
+//#include <mlx.h>
 
 typedef struct s_player
 {
@@ -33,20 +33,23 @@ typedef struct s_player
 
 typedef struct s_map
 {
+	char	**ffmap;
 	char	**xymap;
 	char	*map;//
 	int		floor; // final
 	int		ceiling; // final
+	int		n_row;
+	int 	n_col;
 }t_map;
 
 typedef struct s_element
 {
 	char 	*F;
 	char	*C;
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
+	char	*NO; // final
+	char	*SO; // final
+	char	*WE; // final
+	char	*EA; // final
 }t_element;
 
 typedef struct s_file
@@ -86,10 +89,14 @@ void	ft_exit_error(char *str);
 void	ft_check_input(int c, char **v);
 void	ft_initialize_vars(t_game *game);
 void	ft_load_file(t_game *game, char **v);
-void	ft_split_store_file_info(t_game *game);
+void	ft_split_store_file_element(t_game *game);
 void	ft_check_store_rgb_element(t_game *game);
-void	ft_check_store_xmp_element(t_game *game);
-void	ft_check_map(t_game *game);
+void	ft_check_store_xpm_element(t_game *game);
+void	ft_get_map(t_game *game);
+void	ft_check_map_char(t_game *game);
+void	ft_check_stray_map(t_game *game);
+void	ft_check_player(t_game *game);
+void	ft_check_map_wall(t_game *game);
 void	ft_init_mlx(t_game *game);
 void	draw_dot(t_game *game);
 void	ft_keypress(t_game *game);

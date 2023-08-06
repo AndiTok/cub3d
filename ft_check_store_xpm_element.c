@@ -24,7 +24,7 @@ char	*check_texture_path_extention(char *str)
 	j = 5;
 	while (str[j] != 0x00)
 	{
-		if(str[j] == ' ')
+		if (str[j] == ' ')
 			ft_exit_error("ERROR file path has sapce\n");
 		str[i] = str[j];
 		i++;
@@ -34,7 +34,7 @@ char	*check_texture_path_extention(char *str)
 	return (str);
 }
 
-void	ft_check_store_xmp_element(t_game *game)
+void	ft_check_store_xpm_element(t_game *game)
 {
 	game->element.NO = check_texture_path_extention(game->element.NO);
 	game->element.SO = check_texture_path_extention(game->element.SO);

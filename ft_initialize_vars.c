@@ -24,4 +24,6 @@ void	ft_initialize_vars(t_game *game)
 	game->file.SO = 0;
 	game->file.WE = 0;
 	game->file.EA = 0;
+	game->map.n_row = 0;
+	game->map.n_col = 0;
 }

@@ -25,10 +25,14 @@ int main(int c, char **v)
 	ft_check_input(c, v);
 	ft_initialize_vars(&game);
 	ft_load_file(&game, v);
-	ft_split_store_file_info(&game);
+	ft_split_store_file_element(&game);
 	ft_check_store_rgb_element(&game);
-	ft_check_store_xmp_element(&game);
-	ft_check_map(&game);
+	ft_check_store_xpm_element(&game);
+	ft_get_map(&game);
+	ft_check_map_char(&game);
+	ft_check_stray_map(&game);
+	ft_check_player(&game);
+	ft_check_map_wall(&game);
 
 	ft_init_mlx(&game);
 	draw_dot(&game);

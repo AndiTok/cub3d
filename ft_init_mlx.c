@@ -16,7 +16,6 @@ void	ft_init_mlx(t_game *game)
 {
 	//int	screen_width;
 	//int	screen_height;
-
 	game->mlx = mlx_init();
 	//mlx_get_screen_size(game->mlx, &screen_width, &screen_height);
 	game->win_width = 400; //screen_width * 0.5;

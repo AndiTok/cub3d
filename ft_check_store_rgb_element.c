@@ -17,11 +17,11 @@ int	check_rgb_value(int r, int g, int b)
 	int	i;
 
 	if (r < 0 || r > 255)
-		ft_exit_error("RGB R,-,- not within 0 & 255 \n");
+		ft_exit_error("Error\nRGB R,-,- not within 0 & 255 \n");
 	if (g < 0 || g > 255)
-		ft_exit_error("RGB -,G- not within 0 & 255 \n");
+		ft_exit_error("Error\nRGB -,G- not within 0 & 255 \n");
 	if (b < 0 || b > 255)
-		ft_exit_error("RGB -,-,B not within 0 & 255 \n");
+		ft_exit_error("Error\nRGB -,-,B not within 0 & 255 \n");
 	i = (r << 16) | (g << 8) | b; // formula
 		//printf("%d\n", i);
 	return (i);
@@ -61,23 +61,23 @@ void	check_rgbformat(char *str)
 	counter = 0;
 	j = ft_strlen(str) - 1;
 	if (str[j] < '0' || str[j] > '9') // check for 0-9 at end
-		ft_exit_error("wrong RGB format at END, must only be 0-9\n");
+		ft_exit_error("Error\nwrong RGB format at END, must only be 0-9\n");
 	i = 2;
 	if (str[i] < '0' || str[i] > '9') // check for 0-9 at beginning
-		ft_exit_error("wrong RGB format at START, must only be 0-9\n");
+		ft_exit_error("Error\nwrong RGB format at START, must only be 0-9\n");
 	i = 3;
 	while (i < j) // check inbetween
 	{
 		if (str[i] == ',')
 		{
 			if (str[i + 1] == ',') // cannot be netx ot each other
-				ft_exit_error("wrong format, ',' next to each other\n");
+				ft_exit_error("Error\n ',' next to each other\n");
 			counter++;
 		}
 		i++;
 	}
 	if (counter != 2) // can only have 2 ','
-		ft_exit_error("wrong format, extra/missing ','\n");
+		ft_exit_error("Errorn\n wrong format, extra/missing ','\n");
 }
 
 void	ft_check_store_rgb_element(t_game *game)

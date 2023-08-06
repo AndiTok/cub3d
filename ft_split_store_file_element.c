@@ -62,64 +62,63 @@
 // 	//& "next" to it is not space
 // }
 
-void check_Other_element(t_game *game)
+void	check_other_element(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(i < game->file.mid)
+	while (i < game->file.mid)
 	{
-		if (ft_strnstr(game->file.xyfile[i],"NO ./",5) && 
-				game->file.xyfile[i][5] != ' ')
+		if (ft_strnstr(game->file.xyfile[i], "NO ./", 5) && 
+			game->file.xyfile[i][5] != ' ')
 			game->file.NO++;
-		else if (ft_strnstr(game->file.xyfile[i],"SO ./",5) && 
-				game->file.xyfile[i][5] != ' ')
+		else if (ft_strnstr(game->file.xyfile[i], "SO ./", 5) && 
+			game->file.xyfile[i][5] != ' ')
 			game->file.SO++;
-		else if (ft_strnstr(game->file.xyfile[i],"WE ./",5) && 
-				game->file.xyfile[i][5] != ' ')
+		else if (ft_strnstr(game->file.xyfile[i], "WE ./", 5) && 
+			game->file.xyfile[i][5] != ' ')
 			game->file.WE++;
-		else if (ft_strnstr(game->file.xyfile[i],"EA ./",5) && 
-				game->file.xyfile[i][5] != ' ')
+		else if (ft_strnstr(game->file.xyfile[i], "EA ./", 5) && 
+			game->file.xyfile[i][5] != ' ')
 			game->file.EA++;
 		i++;
 	}
-	if(game->file.NO != 1 || game->file.SO != 1 || 
+	if (game->file.NO != 1 || game->file.SO != 1 || 
 		game->file.WE != 1 || game->file.EA != 1)
-		ft_exit_error("Other element format ERROR or duplicate\n");
+		ft_exit_error("Error\nOther element not found or duplicate\n");
 	//to make sure there is NO ./,SO ./,WE ./,EA ./
- 	//& "next" to it is not space
+	//& "next" to it is not space
 }
 
-void check_FC_element(t_game *game)
+void	check_fc_element(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(i < game->file.mid)
+	while (i < game->file.mid)
 	{
-
-		if (!ft_strncmp(game->file.xyfile[i],"F ") && 
+		if (!ft_strncmp(game->file.xyfile[i], "F ") && 
 			game->file.xyfile[i][2] != ' ')
 			game->file.F++;
-		else if (!ft_strncmp(game->file.xyfile[i],"C ") && 
+		else if (!ft_strncmp(game->file.xyfile[i], "C ") && 
 			game->file.xyfile[i][2] != ' ')
 			game->file.C++;
 		i++;
 	}
-	if(game->file.F != 1 || game->file.C != 1)
-		ft_exit_error("FC element format ERROR or duplicate\n");
+	if (game->file.F != 1 || game->file.C != 1)
+		ft_exit_error("Error\nFC element not found or duplicate\n");
 	// to make sure there is C ,F ,
 	// & "next" to it is not space
 }
 
-void store_element(t_game *game)
+void	store_element(t_game *game)
 {
-	int i;
-	int counter;
+	int	i;
+	int	counter;
 
 	i = 0;
 	counter = 0;
-	while(i < game->file.mid)
+	while (i < game->file.mid)
 	{
 		if (game->file.xyfile[i][0] == 'F')
 			game->element.F = ft_strdup(game->file.xyfile[i]);
@@ -163,23 +162,25 @@ void store_element(t_game *game)
 // 	// }
 // }
 
-void	find_mid_store_map(t_game *game)
+void	find_mid(t_game *game)
 {
-	int i;
-	int k;
-	
+	int	i;
+
 	i = 0;
-	while(game->file.xyfile[i] != 0x00)
+	while (game->file.xyfile[i] != 0x00)
 	{
-		if(game->file.xyfile[i][0] == ' ' || game->file.xyfile[i][0] == '1' ||
-			game->file.xyfile[i][0] == '\t')
+		if (game->file.xyfile[i][0] != 'F' && game->file.xyfile[i][0] != 'C' &&
+			game->file.xyfile[i][0] != 'N' && game->file.xyfile[i][0] != 'S' &&
+			game->file.xyfile[i][0] != 'W' && game->file.xyfile[i][0] != 'E' &&
+			game->file.xyfile[i][0] != '\0')
 		{
-			//map beignning is either alwasy == to ' ' or 1
-			game->file.mid = i; // mid section saperator aka 1st line of map
-			break;
+			game->file.mid = i;
+			break ;
 		}
 		i++;
 	}
+		//printf("mid - %s\n",game->file.xyfile[i]);
+		//printf("mid - %d\n",i);
 	// if(i != 6) // make sure there ar only 6 elements at the top
 	// 	ft_exit_error("extra or missing color/texture map element line\n");
 		// printf("%s\n",game->file.xyfile[i]); // check where "i" is pointing
@@ -190,16 +191,18 @@ void	find_mid_store_map(t_game *game)
 		// 	printf("%s\n",game->file.xyfile[k]);
 		// 	k++;
 		// }
-	char **tmp = (char**)malloc(sizeof (char *) * game->file.lines - i + 1);
+/* 	char **tmp = (char**)malloc(sizeof (char *) * game->file.lines - i + 1);
 	k = 0;
 	while(game->file.xyfile[i] != 0x00)
 	{
 		tmp[k] = ft_strdup(game->file.xyfile[i]);
+		game->map.n_row++;
 		k++;
 		i++;
 	}
 	tmp[k] = 0x00;
 	game->map.xymap = tmp;
+	game->map.ffmap = tmp; */
 		// i = 0; // check map
 		// while(game->map.xymap[i] != 0x00)
 		// {
@@ -208,12 +211,12 @@ void	find_mid_store_map(t_game *game)
 		// }
 }
 
-void	ft_split_store_file_info(t_game *game)
+void	ft_split_store_file_element(t_game *game)
 {
-	find_mid_store_map(game);
+	find_mid(game);
 	// check_6_element(game);
-	check_FC_element(game);
-	check_Other_element(game);
+	check_fc_element(game);
+	check_other_element(game);
 	//check_duplicate_element(game); // handeled in check
 	store_element(game);
 	//store_map(game);
