@@ -12,8 +12,46 @@
 
 #include "cub3d.h"
 
-int	trim_map(t_game *game)
+/* int	first_map_line(t_game *game) // replace the mid line for trim
 {
+	int	i;
+	int	j;
+
+	i = 0;
+	while (game->file.xyfile[i] != 0x00)
+	{
+		j = 0;
+		while (game->file.xyfile[i][j] != 0x00)
+		{
+			if (game->file.xyfile[i][j] == '1')
+				return (i);
+			j++;
+		}
+		i++;
+	}
+}
+
+int	last_map_line(t_game *game) // err.. replace eom? end of map
+{
+	int	i;
+	int	j;
+
+	i = game->file.lines;
+	while (i > 0) //(game->file.xyfile[i] != 0x00)
+	{
+		j = 0;
+		while (game->file.xyfile[i][j] != 0x00)
+		{
+			if (game->file.xyfile[i][j] == '1')
+				return (i);
+			j++;
+		}
+		i--;
+	}
+} */
+
+int	trim_map(t_game *game) //what if top & bottum has 1 howle row of blanl ' '
+{							// should trim
 	int	i;
 	int	eom;
 
