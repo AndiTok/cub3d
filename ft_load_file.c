@@ -33,6 +33,7 @@ void	ft_load_file(t_game *game, char **v)
 		// 	game->file.lines += 1;
 		// }
 		file = ft_joinfree(file, tmp);
+		free(tmp); // need to free
 		game->file.lines += 1;
 	}
 	close(fd);
