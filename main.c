@@ -33,7 +33,7 @@ int main(int c, char **v)
 	ft_dup_ffmap(&game); // rmb to free after use
 	ft_check_stray_map(&game); // may not need
 	ft_check_map_wall(&game);
-	ft_check_map_hole(&game);
+	// ft_check_map_hole(&game);
 	ft_check_store_player(&game);
 
 	ft_init_mlx(&game);

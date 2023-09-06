@@ -37,8 +37,8 @@ void	ft_load_file(t_game *game, char **v)
 		game->file.lines += 1;
 	}
 	close(fd);
-	game->file.file = file;
-	game->file.xyfile = ft_split(file, '\n');
+	game->file.file = file; //raw .cub file (no split)
+	game->file.xyfile = ft_split(file, '\n'); //split .cub file
 		//printf("%d\n",game->file.lines);
 
 	// int i = 0;

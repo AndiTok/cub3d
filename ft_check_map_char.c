@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map_char.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atok <atok@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: wyap <wyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:23:01 by atok              #+#    #+#             */
-/*   Updated: 2023/08/06 08:46:25 by atok             ###   ########.fr       */
+/*   Updated: 2023/09/02 16:19:44 by wyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void validate_wall(t_game *game)
 void	check_shape(t_game *game)
 {
 	int	i;
-	int	j;
+	// int	j;
 	int	k;
 	int	l;
 

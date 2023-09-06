@@ -32,35 +32,19 @@ void	draw_dot(t_game *game)
 
 int	keypress(int keycode, t_game *game)
 {
-	if (keycode == 119)
+	if (keycode == W)
 		game->player.y -= 4;
-	else if (keycode == 115)
+	else if (keycode == S)
 		game->player.y += 4;
-	else if (keycode == 97)
+	else if (keycode == A)
 		game->player.x -= 4;
-	else if (keycode == 100)
+	else if (keycode == D)
 		game->player.x += 4;
-	else if (keycode == 65307)
+	else if (keycode == ESC)
 		exit(1);
 	draw_dot(game);
 	return (0);
 }
-
-// int	keypress(int keycode, t_game *game)
-// {
-// 	if (keycode == 13)
-// 		game->player.y -= 4;
-// 	else if (keycode == 1)
-// 		game->player.y += 4;
-// 	else if (keycode == 0)
-// 		game->player.x -= 4;
-// 	else if (keycode == 2)
-// 		game->player.x += 4;
-// 	else if (keycode == 53)
-// 		exit(1);
-// 	draw_dot(game);
-// 	return (0);
-// }
 
 int	ft_end(t_game *game)
 {

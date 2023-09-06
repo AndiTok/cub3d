@@ -18,8 +18,8 @@ void	ft_init_mlx(t_game *game)
 	//int	screen_height;
 	game->mlx = mlx_init();
 	//mlx_get_screen_size(game->mlx, &screen_width, &screen_height);
-	game->win_width = 400; //screen_width * 0.5;
-	game->win_height = 400; //screen_height * 0.5;
+	game->win_width = 1280; //screen_width * 0.5;
+	game->win_height = 720; //screen_height * 0.5;
 	game->win = mlx_new_window(game->mlx, game->win_width, game->win_height,
 			"cub3D");
 }

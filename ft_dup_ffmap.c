@@ -14,7 +14,7 @@
 
 char	*bstrdup(t_game *game)
 {
-	char	*str;
+	// char	*str;
 	char	*dup;
 	int		i;
 	int		len;

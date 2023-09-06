@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdio.h>
 
 void	check_hole(t_game *game)
 {
@@ -24,7 +25,10 @@ void	check_hole(t_game *game)
 		while (game->map.ffomap[i][j] != 0x00)
 		{
 			if (game->map.ffomap[i][j] == ' ')
+			{
+				printf("[%d][%d]\n", i, j);
 				ft_exit_error("Error\nhole in map\n");
+			}
 			j++;
 		}
 		i++;
