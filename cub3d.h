@@ -28,7 +28,9 @@
 #define TILESCALE 16
 
 //math
-#define PI 3.142
+#define PI 3.141592
+#define PI_HALF PI/2
+#define PI3 3*PI/2
 
 //keycode mac
 #define W 13

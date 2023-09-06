@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+// #include "cub3d.h"
+#include "raycaster/raycaster.h"
 
 int main(int c, char **v)
 {
