@@ -58,6 +58,8 @@ void	ft_check_store_player(t_game *game)
 	get_player_pos(game);
 	// printf("x - %f y - %f\n", game->player.x , game->player.y);
 
-	// check_player_pos(game->map.xymap,game->player.x,game->player.y);
-	// /\ commented out becase SCALING missmatch wiht array pos and mlx pixle 
+	check_player_pos(game->map.xymap,game->player.x/TILESCALE
+		,game->player.y/TILESCALE);
+	// /\ may not need to check 
+	// REASON-can modify ff wall check to check,not required,saves alot time & problem
 }
