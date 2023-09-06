@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycast.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wyap <wyap@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/06 14:29:52 by wyap              #+#    #+#             */
+/*   Updated: 2023/09/06 15:53:40 by wyap             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "raycaster.h"
 
 void	ray_init(t_raycast ray, t_player player)
@@ -19,6 +31,7 @@ void	ray_init(t_raycast ray, t_player player)
 	ray.step_y = 0;
 }
 
+//set next x and y points
 void	set_delta(t_raycast ray)
 {
 	if (ray.ray_dir_x != 0 && ray.ray_dir_y != 0)
@@ -30,6 +43,7 @@ void	set_delta(t_raycast ray)
 	printf("ray direction is 0\nrayDirX: %lf\nrayDirY: %lf\n", ray.ray_dir_x, ray.ray_dir_y);
 }
 
+//calculate ray movement in 2D array, 
 void	calc_step(t_raycast ray)
 {
 	if (ray.ray_dir_x < 0)
@@ -40,20 +54,21 @@ void	calc_step(t_raycast ray)
 	else
 	{
 		ray.step_x = 1;
-		ray.side_x = (ray.px + 1.0 - ray.map_x) * ray.delta_x;		
+		ray.side_x = (ray.map_x + 1.0 - ray.px) * ray.delta_x;		
 	}
-	if (ray.ray_dir_x < 0)
+	if (ray.ray_dir_y < 0)
 	{
-		ray.step_x = -1;
-		ray.side_x = (ray.px - ray.map_x) * ray.delta_x;
+		ray.step_y = -1;
+		ray.side_y = (ray.py - ray.map_y) * ray.delta_y;
 	}
 	else
 	{
-		ray.step_x = 1;
-		ray.side_x = (ray.px + 1.0 - ray.map_x) * ray.delta_x;		
+		ray.step_y = 1;
+		ray.side_y = (ray.map_y + 1.0 - ray.py) * ray.delta_y;		
 	}
 }
-
+//DDA Algorithm: Digital Differential Analyzer
+//generates a line segment from start to the next grid intersection
 void	dda(t_map map, t_raycast ray)
 {
 	int	wall_hit;
@@ -74,7 +89,7 @@ void	dda(t_map map, t_raycast ray)
 			ray.map_y += ray.step_y;
 			ray.side = 1;	
 		}
-		//to confirm map name to use
+		//check if ray hits a wall
 		if (map.xymap[ray.map_x][ray.map_y] == '1')
 			wall_hit = 1;
 	}
@@ -104,7 +119,7 @@ int	raycast(t_map map, t_player player){
 
 	int x;
 	x = 0;
-	int w = 400; //win width
+	int w = 1280; //win width
 	while (x < w)
 	{
 		ray.cam_x = 2 * x / (double)w - 1;
