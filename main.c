@@ -18,7 +18,7 @@ int main(int c, char **v)
 
  	game.player.x = 100; // X-coordinate of the dot
 	game.player.y = 50;  // Y-coordinate of the dot
-    game.player.color = 0x00FFFF; // 0x-Hex 00-R 00-G 00-B
+    game.player.color = 0xFF00FF; // 0x-Hex 00-R 00-G 00-B
     // game.player.color = 65535; // 
     //game.player.color = (0 << 16) | (255 << 8) | 255; 
 	

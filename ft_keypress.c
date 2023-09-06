@@ -14,7 +14,7 @@
 
 void	draw_dot(t_game *game)
 {
-	mlx_clear_window(game->mlx, game->win);
+	// mlx_clear_window(game->mlx, game->win);
 	//mlx_pixel_put(game.mlx, game.win, game.player.y, game.player.y, game.player.color); // 1 pixle dot
 	int x = game->player.x - 2; // 5 x 5 dot
     while (x <= game->player.x + 2) 
@@ -27,7 +27,53 @@ void	draw_dot(t_game *game)
 		}
 		x++;
 	}
-	mlx_do_sync(game->mlx); // Ensure smooth window management
+	// mlx_do_sync(game->mlx); // Ensure smooth window management
+}
+
+void	draw_cell(t_game *game, int x, int y, int color)
+{
+	int x_start;
+	int y_start;
+	int x_end;
+	int y_end;
+	int	tmp;
+
+	x_start = x * TILESCALE + 1;
+	y_start = y * TILESCALE + 1;
+	x_end = (x + 1) * TILESCALE - 1;
+	y_end = (y + 1) * TILESCALE - 1;
+
+	while (y_start < y_end)
+	{
+		tmp = x_start;
+		while (tmp < x_end)
+		{
+			mlx_pixel_put(game->mlx, game->win, tmp, y_start, color);
+			tmp++;
+		}
+		y_start++;
+	}
+}
+
+void	draw_2dmap(t_game *game)
+{
+	int	i;
+	int	j;
+	
+	i = 0;
+	while (game->map.xymap[i] != 0x00)
+	{
+		j = 0;
+		while (game->map.xymap[i][j] != 0x00)
+		{
+			if (game->map.xymap[i][j] == '1')
+				draw_cell(game, j, i, 0x0000FF);
+			else if (game->map.xymap[i][j] == '0')
+				draw_cell(game, j, i, 0xFFFFFF);
+			j++;
+		}
+		i++;
+	}
 }
 
 int	keypress(int keycode, t_game *game)
@@ -42,7 +88,10 @@ int	keypress(int keycode, t_game *game)
 		game->player.x += 4;
 	else if (keycode == ESC)
 		exit(1);
+	mlx_clear_window(game->mlx, game->win);
+	draw_2dmap(game);
 	draw_dot(game);
+	mlx_do_sync(game->mlx);
 	return (0);
 }
 
