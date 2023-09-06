@@ -79,13 +79,26 @@ void	draw_2dmap(t_game *game)
 int	keypress(int keycode, t_game *game)
 {
 	if (keycode == W)
+	{
 		game->player.y -= 4;
+		printf("W pressed\n");
+	}
 	else if (keycode == S)
 		game->player.y += 4;
 	else if (keycode == A)
 		game->player.x -= 4;
 	else if (keycode == D)
 		game->player.x += 4;
+	else if (keycode == LEFT)
+	{
+		rotation(LEFT, game->ray);
+		printf("<- pressed\n");
+	}
+	else if (keycode == RIGHT)
+	{
+		rotation(RIGHT, game->ray);
+		printf("-> pressed\n");
+	}
 	else if (keycode == ESC)
 		exit(1);
 	mlx_clear_window(game->mlx, game->win);

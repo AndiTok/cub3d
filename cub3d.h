@@ -33,24 +33,49 @@
 #define PI3 3*PI/2
 
 //keycode mac
-// #define W 13
-// #define A 0
-// #define S 1
-// #define D 2
-// #define ESC 53
-// #define LEFT
-// #define RIGHT
+#define W 13
+#define A 0
+#define S 1
+#define D 2
+#define ESC 53
+#define LEFT 123
+#define RIGHT 124
 
 //keycode x11
-#define W 119
-#define A 97
-#define S 115
-#define D 100
-#define ESC 65307
-// #define LEFT
-// #define RIGHT
+// #define W 119
+// #define A 97
+// #define S 115
+// #define D 100
+// #define ESC 65307
+// #define LEFT 0xff51
+// #define RIGHT 0xff53
 
+typedef struct s_raycast
+{
+	double	px;
+	double	py;
+	int		map_x;
+	int		map_y;
+	double	dir_x; //direction vector, value may change on each keypress
+	double	dir_y;	//direction vector, value may change on each keypress
+	double	plane_x;
+	double	plane_y;
+	double	cam_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	delta_x; //delta distance
+	double	delta_y; //delta distance
+	double	side_x; //side distance
+	double	side_y; //side distance
+	double	wall_dist; //distance from position to wall hit
+	double	p_angle; //player angle
 
+	//DDA: calculate step (amount of steps to hit a grid)
+	int		step_x;
+	int		step_y;
+	int		side; //to check NS or EW wall hit
+
+}t_raycast;
 
 typedef struct s_player
 {
@@ -106,6 +131,7 @@ typedef struct s_game
 	t_file		file;
 	t_map		map;
 	t_element 	element;
+	t_raycast	ray;
 }t_game;
 
 char	*ft_itoa(int n);
@@ -132,6 +158,7 @@ void	ft_check_store_player(t_game *game);
 void	ft_init_mlx(t_game *game);
 void	draw_dot(t_game *game);
 void	ft_keypress(t_game *game);
+void	rotation(int keycode, t_raycast ray);
 
 //GNL + utils
 # ifndef BUFFER_SIZE
