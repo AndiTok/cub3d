@@ -87,5 +87,5 @@ void	ft_check_store_player(t_game *game)
 		,game->player.y/TILESCALE);
 	// /\ may not need to check 
 	// REASON-can modify ff wall check to check,not required,saves alot time & problem
-	get_player_angel(game);
+	get_player_angle(game);
 }

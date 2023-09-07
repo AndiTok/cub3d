@@ -6,34 +6,71 @@
 /*   By: wyap <wyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:29:52 by wyap              #+#    #+#             */
-/*   Updated: 2023/09/07 12:52:11 by wyap             ###   ########.fr       */
+/*   Updated: 2023/09/07 14:25:10 by wyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-// void	set_vectors(t_raycast ray, t_player player)
-// {
-// 	if (player.p_dir == 'N')
-// 	{
-// 		ray.dir_x =
-// 		ray.dir_y =
-// 		ray.plane_x =
-// 		ray.plane_y =
-// 	}
-// 	if (player.p_dir == 'S')
-// 	if (player.p_dir == 'E')
-// 	if (player.p_dir == 'W')
-// }
+//value not confirmed
+void	set_cam_plane(t_raycast ray, t_player player)
+{
+	if (player.p_dir == 'N')
+	{
+		ray.plane_x = 0;
+		ray.plane_y = 0.66;
+	}
+	if (player.p_dir == 'S')
+	{
+		ray.plane_x = 0;
+		ray.plane_y = -0.66;
+	}
+	if (player.p_dir == 'E')
+	{
+		ray.plane_x = 0.66;
+		ray.plane_y = 0;
+	}
+	if (player.p_dir == 'W')
+	{
+		ray.plane_x = -0.66;
+		ray.plane_y = 0;	
+	}		
+}
+
+void	set_plyr_vector(t_raycast ray, t_player player)
+{
+	if (player.p_dir == 'N')
+	{
+		ray.dir_x = 0;
+		ray.dir_y = 1;
+	}
+	if (player.p_dir == 'S')
+	{
+		ray.dir_x = 0;
+		ray.dir_y = -1;
+	}
+	if (player.p_dir == 'E')
+	{
+		ray.dir_x = 1;
+		ray.dir_y = 0;
+	}
+	if (player.p_dir == 'W')
+	{
+		ray.dir_x = -1;
+		ray.dir_y = 0;
+	}	
+}
 
 void	ray_init(t_raycast *ray, t_player player)
 {
 	ray->px = player.x;
 	ray->py = player.y;
-	ray->dir_x = -1;
-	ray->dir_y = 0;
-	ray->plane_x = 0;
-	ray->plane_y = 0.66;
+	// ray->dir_x = -1;
+	// ray->dir_y = 0;
+	// ray->plane_x = 0;
+	// ray->plane_y = 0.66;
+	set_cam_plane(*ray, player);
+	set_plyr_vector(*ray, player);
 	ray->cam_x = 0;
 	ray->ray_dir_x = 0;
 	ray->ray_dir_y = 0;
