@@ -82,6 +82,7 @@ typedef struct s_player
 	double		x;
 	double		y;
 	int 		color;
+	char		p_dir;
 }t_player;
 
 typedef struct s_map

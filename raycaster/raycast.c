@@ -6,11 +6,25 @@
 /*   By: wyap <wyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:29:52 by wyap              #+#    #+#             */
-/*   Updated: 2023/09/07 12:26:54 by wyap             ###   ########.fr       */
+/*   Updated: 2023/09/07 12:52:11 by wyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+// void	set_vectors(t_raycast ray, t_player player)
+// {
+// 	if (player.p_dir == 'N')
+// 	{
+// 		ray.dir_x =
+// 		ray.dir_y =
+// 		ray.plane_x =
+// 		ray.plane_y =
+// 	}
+// 	if (player.p_dir == 'S')
+// 	if (player.p_dir == 'E')
+// 	if (player.p_dir == 'W')
+// }
 
 void	ray_init(t_raycast *ray, t_player player)
 {

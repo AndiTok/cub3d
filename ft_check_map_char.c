@@ -6,7 +6,7 @@
 /*   By: wyap <wyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:23:01 by atok              #+#    #+#             */
-/*   Updated: 2023/09/02 16:19:44 by wyap             ###   ########.fr       */
+/*   Updated: 2023/09/07 12:42:07 by wyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	check_shape(t_game *game)
 	game->map.n_col = k;
 }
 
-void	check_map_char(t_game *game)
+int	check_map_char(t_game *game)
 {
 	int	i;
 	int	j;
@@ -86,10 +86,10 @@ void	check_map_char(t_game *game)
 
 	i = 0;
 	k = 1;
-	while (game->map.xymap[i] != 0x00)
+	while (game->map.xymap[++i] != 0x00)
 	{
 		j = 0;
-		while (game->map.xymap[i][j] != 0x00)
+		while (game->map.xymap[i][++j] != 0x00)
 		{
 			if (game->map.xymap[i][j] != ' ' &&
 				game->map.xymap[i][j] != '0' && game->map.xymap[i][j] != '1' &&
@@ -98,18 +98,19 @@ void	check_map_char(t_game *game)
 				ft_exit_error("ERROR\ninvalid char in map\n");
 			if (game->map.xymap[i][j] == 'N' || game->map.xymap[i][j] == 'S' ||
 				game->map.xymap[i][j] == 'E' || game->map.xymap[i][j] == 'W')
+			{
 				k -= 1;
-			j++;
+				game->player.p_dir = game->map.xymap[i][j];
+			}
 		}
-		i++;
 	}
-	if (k != 0)
-		ft_exit_error("ERROR\nmore than 1 player spawn location\n");
+	return (k);
 }
 
 void	ft_check_map_char(t_game *game)
 {
-	check_map_char(game);
+	if (check_map_char(game) != 0)
+		ft_exit_error("ERROR\nmore than 1 player spawn location\n");
 	check_shape(game);
 }
 
