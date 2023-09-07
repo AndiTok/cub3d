@@ -28,10 +28,8 @@ void	draw_dot(t_game *game)
 		x++;
 	}
 	// mlx_do_sync(game->mlx); // Ensure smooth window management
-	// int xx = game->player.x + 10 * cos(game->ray.p_angle);
-	// int yy = game->player.y + 10 * sin(game->ray.p_angle);
-	// mlx_pixel_put(game->mlx, game->win, xx, yy, game->player.color);
-	// mlx_pixel_put(game->mlx, game->win, game->ray.dir_x + 10, game->ray.dir_y + 10, game->player.color);
+	mlx_pixel_put(game->mlx, game->win, game->player.x + game->ray.dir_x, game->player.y + game->ray.dir_y , game->player.color);
+
 }
 
 void	draw_cell(t_game *game, int x, int y, int color)
@@ -42,8 +40,8 @@ void	draw_cell(t_game *game, int x, int y, int color)
 	int y_end;
 	int	tmp;
 
-	x_start = x * TILESCALE + 1;
-	y_start = y * TILESCALE + 1;
+	x_start = x * TILESCALE;
+	y_start = y * TILESCALE;
 	x_end = (x + 1) * TILESCALE - 1;
 	y_end = (y + 1) * TILESCALE - 1;
 
@@ -72,8 +70,11 @@ void	draw_2dmap(t_game *game)
 		{
 			if (game->map.xymap[i][j] == '1')
 				draw_cell(game, j, i, 0x0000FF);
-			else if (game->map.xymap[i][j] == '0')
-				draw_cell(game, j, i, 0xFFFFFF);
+			if (game->map.xymap[i][j] == '0')
+				draw_cell(game, j, i, 0x828782);
+			if (game->map.xymap[i][j] == 'N' || game->map.xymap[i][j] == 'S' ||
+				game->map.xymap[i][j] == 'E' || game->map.xymap[i][j] == 'W')
+				draw_cell(game, j, i, 0x828782);
 			j++;
 		}
 		i++;
@@ -83,27 +84,18 @@ void	draw_2dmap(t_game *game)
 int	keypress(int keycode, t_game *game)
 {
 	if (keycode == W)
-	{
 		game->player.y -= 4;
-		printf("W pressed\n");
-	}
-	else if (keycode == S)
+	if (keycode == S)
 		game->player.y += 4;
-	else if (keycode == A)
+	if (keycode == A)
 		game->player.x -= 4;
-	else if (keycode == D)
+	if (keycode == D)
 		game->player.x += 4;
-	else if (keycode == LEFT)
-	{
-		rotation(LEFT, *game, game->ray);
-		// printf("<- pressed\n");
-	}
-	else if (keycode == RIGHT)
-	{
-		rotation(RIGHT, *game, game->ray);
-		// printf("-> pressed\n");
-	}
-	else if (keycode == ESC)
+	if (keycode == LEFT)
+		rotation(LEFT, *game, &game->ray);
+	if (keycode == RIGHT)
+		rotation(RIGHT, *game, &game->ray);
+	if (keycode == ESC)
 		exit(1);
 	mlx_clear_window(game->mlx, game->win);
 	draw_2dmap(game);

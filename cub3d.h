@@ -159,7 +159,7 @@ void	ft_check_store_player(t_game *game);
 void	ft_init_mlx(t_game *game);
 void	draw_dot(t_game *game);
 void	ft_keypress(t_game *game);
-void	rotation(int keycode, t_game game,t_raycast ray);
+void	rotation(int keycode, t_game game,t_raycast *ray);
 
 //raycast
 void	ray_init(t_raycast *ray, t_player player);
