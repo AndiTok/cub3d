@@ -6,29 +6,29 @@
 /*   By: wyap <wyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:29:52 by wyap              #+#    #+#             */
-/*   Updated: 2023/09/06 15:53:40 by wyap             ###   ########.fr       */
+/*   Updated: 2023/09/07 12:26:54 by wyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycaster.h"
+#include "../cub3d.h"
 
-void	ray_init(t_raycast ray, t_player player)
+void	ray_init(t_raycast *ray, t_player player)
 {
-	ray.px = player.x;
-	ray.py = player.y;
-	ray.dir_x = -1;
-	ray.dir_y = 0;
-	ray.plane_x = 0;
-	ray.plane_y = 0.66;
-	ray.cam_x = 0;
-	ray.ray_dir_x = 0;
-	ray.ray_dir_y = 0;
-	ray.delta_x = 0;
-	ray.delta_y = 0;
-	ray.side_x = 0;
-	ray.side_y = 0;
-	ray.step_x = 0;
-	ray.step_y = 0;
+	ray->px = player.x;
+	ray->py = player.y;
+	ray->dir_x = -1;
+	ray->dir_y = 0;
+	ray->plane_x = 0;
+	ray->plane_y = 0.66;
+	ray->cam_x = 0;
+	ray->ray_dir_x = 0;
+	ray->ray_dir_y = 0;
+	ray->delta_x = 0;
+	ray->delta_y = 0;
+	ray->side_x = 0;
+	ray->side_y = 0;
+	ray->step_x = 0;
+	ray->step_y = 0;
 }
 
 //set next x and y points
@@ -36,8 +36,8 @@ void	set_delta(t_raycast ray)
 {
 	if (ray.ray_dir_x != 0 && ray.ray_dir_y != 0)
 	{
-		ray.delta_x = abs(1 / ray.ray_dir_x);
-		ray.delta_y = abs(1 / ray.ray_dir_y);
+		ray.delta_x = fabs(1 / ray.ray_dir_x);
+		ray.delta_y = fabs(1 / ray.ray_dir_y);
 		return ;
 	}
 	printf("ray direction is 0\nrayDirX: %lf\nrayDirY: %lf\n", ray.ray_dir_x, ray.ray_dir_y);
@@ -115,7 +115,8 @@ void	calc_wall_dist(t_raycast ray)
 
 int	raycast(t_map map, t_player player){
 	t_raycast ray;
-	ray_init(ray, player);
+	
+	ray_init(&ray, player);
 
 	int x;
 	x = 0;
@@ -134,4 +135,5 @@ int	raycast(t_map map, t_player player){
 		calc_wall_dist(ray);
 		x++;
 	}
+	return (0);
 }
