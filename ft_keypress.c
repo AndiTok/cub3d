@@ -28,8 +28,20 @@ void	draw_dot(t_game *game)
 		x++;
 	}
 	// mlx_do_sync(game->mlx); // Ensure smooth window management
-	mlx_pixel_put(game->mlx, game->win, game->player.x + game->ray.dir_x, game->player.y + game->ray.dir_y , game->player.color);
+	// mlx_pixel_put(game->mlx, game->win, game->player.x + game->ray.dir_x, game->player.y + game->ray.dir_y , game->player.color);
+	int xs = game->player.x;
+	int xe = game->player.x + game->ray.dir_x;
+	int ys = game->player.y;
+	int ye = game->player.y + game->ray.dir_y;
 
+	while(xs != xe && ys != ye)
+	{
+		mlx_pixel_put(game->mlx, game->win, xs, ys, game->player.color);
+		if (xs == xe)
+			ys++;
+		if (ys == ye)
+			xs++;
+	}
 }
 
 void	draw_cell(t_game *game, int x, int y, int color)
