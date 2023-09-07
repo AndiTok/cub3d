@@ -37,6 +37,8 @@ int main(int c, char **v)
 	ft_check_store_player(&game);
 
 	ft_init_mlx(&game);
+	ray_init(&game.ray, game.player);
+	// raycast(game.map, game.player);
 	draw_dot(&game);
 	ft_keypress(&game);
 	mlx_loop(game.mlx);

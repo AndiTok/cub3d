@@ -28,6 +28,10 @@ void	draw_dot(t_game *game)
 		x++;
 	}
 	// mlx_do_sync(game->mlx); // Ensure smooth window management
+	// int xx = game->player.x + 10 * cos(game->ray.p_angle);
+	// int yy = game->player.y + 10 * sin(game->ray.p_angle);
+	// mlx_pixel_put(game->mlx, game->win, xx, yy, game->player.color);
+	// mlx_pixel_put(game->mlx, game->win, game->ray.dir_x + 10, game->ray.dir_y + 10, game->player.color);
 }
 
 void	draw_cell(t_game *game, int x, int y, int color)
@@ -91,13 +95,13 @@ int	keypress(int keycode, t_game *game)
 		game->player.x += 4;
 	else if (keycode == LEFT)
 	{
-		rotation(LEFT, game->ray);
-		printf("<- pressed\n");
+		rotation(LEFT, *game, game->ray);
+		// printf("<- pressed\n");
 	}
 	else if (keycode == RIGHT)
 	{
-		rotation(RIGHT, game->ray);
-		printf("-> pressed\n");
+		rotation(RIGHT, *game, game->ray);
+		// printf("-> pressed\n");
 	}
 	else if (keycode == ESC)
 		exit(1);

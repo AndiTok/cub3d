@@ -6,7 +6,7 @@
 /*   By: wyap <wyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:29:52 by wyap              #+#    #+#             */
-/*   Updated: 2023/09/07 14:25:10 by wyap             ###   ########.fr       */
+/*   Updated: 2023/09/07 17:03:40 by wyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,23 @@ void	set_plyr_vector(t_raycast ray, t_player player)
 {
 	if (player.p_dir == 'N')
 	{
-		ray.dir_x = 0;
+		ray.dir_x = 0.1;
 		ray.dir_y = 1;
 	}
 	if (player.p_dir == 'S')
 	{
-		ray.dir_x = 0;
+		ray.dir_x = 0.1;
 		ray.dir_y = -1;
 	}
 	if (player.p_dir == 'E')
 	{
 		ray.dir_x = 1;
-		ray.dir_y = 0;
+		ray.dir_y = 0.1;
 	}
 	if (player.p_dir == 'W')
 	{
 		ray.dir_x = -1;
-		ray.dir_y = 0;
+		ray.dir_y = 0.1;
 	}	
 }
 
@@ -65,10 +65,6 @@ void	ray_init(t_raycast *ray, t_player player)
 {
 	ray->px = player.x;
 	ray->py = player.y;
-	// ray->dir_x = -1;
-	// ray->dir_y = 0;
-	// ray->plane_x = 0;
-	// ray->plane_y = 0.66;
 	set_cam_plane(*ray, player);
 	set_plyr_vector(*ray, player);
 	ray->cam_x = 0;
@@ -80,6 +76,8 @@ void	ray_init(t_raycast *ray, t_player player)
 	ray->side_y = 0;
 	ray->step_x = 0;
 	ray->step_y = 0;
+	// ray->p_angle = 3; //store initial starting position?
+	printf("ray_init");
 }
 
 //set next x and y points
@@ -122,6 +120,9 @@ void	calc_step(t_raycast ray)
 //generates a line segment from start to the next grid intersection
 void	dda(t_map map, t_raycast ray)
 {
+	(void) map;
+
+
 	int	wall_hit;
 	wall_hit = 0;
 
@@ -141,8 +142,8 @@ void	dda(t_map map, t_raycast ray)
 			ray.side = 1;	
 		}
 		//check if ray hits a wall
-		if (map.xymap[ray.map_x][ray.map_y] == '1')
-			wall_hit = 1;
+		// if (map.xymap[ray.map_x][ray.map_y] == '1')
+		// 	wall_hit = 1;
 	}
 }
 //calculate how high the wall is drawn, use distance from wall to camera plane
@@ -164,10 +165,12 @@ void	calc_wall_dist(t_raycast ray)
 		draw_end = h - 1;
 }
 
-int	raycast(t_map map, t_player player){
+int	raycast(t_map map, t_player player)
+{
 	t_raycast ray;
+	(void) player;
 	
-	ray_init(&ray, player);
+	// ray_init(&ray, player);
 
 	int x;
 	x = 0;
