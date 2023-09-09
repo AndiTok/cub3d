@@ -33,22 +33,22 @@
 #define PI3 3*PI/2
 
 //keycode mac
-#define W 13
-#define A 0
-#define S 1
-#define D 2
-#define ESC 53
-#define LEFT 123
-#define RIGHT 124
+// #define W 13
+// #define A 0
+// #define S 1
+// #define D 2
+// #define ESC 53
+// #define LEFT 123
+// #define RIGHT 124
 
 //keycode x11
-// #define W 119
-// #define A 97
-// #define S 115
-// #define D 100
-// #define ESC 65307
-// #define LEFT 0xff51
-// #define RIGHT 0xff53
+#define W 119
+#define A 97
+#define S 115
+#define D 100
+#define ESC 65307
+#define LEFT 0xff51
+#define RIGHT 0xff53
 
 typedef struct s_raycast
 {
@@ -190,4 +190,72 @@ char	*ft_strjoin(char const *s1, char const *s2);
 		// 	j++;
 		// 	i++;
 		// }
-		// game->map.xymap = ft_split(tmp,'\n');;
+		// game->map.xymap = ft_split(tmp,'\n');
+
+	// plotted line not that smooth using Bresenham's line algorithm 
+	// decision param = 2 * (y2 - y1) - (x2 - x1)
+	// p or error/err = 2 * dy - dx
+	// it is however capable to draw multi lines effciently
+	// int xs = game->player.x;
+	// int xe = game->player.x + game->ray.dir_x;
+	// int ys = game->player.y;
+	// int ye = game->player.y + game->ray.dir_y;
+
+	// int dx = abs(xe - xs);
+	// int dy = abs(ye - ys);
+
+	// int next_x = (xs < xe) ? 1 : -1;
+	// int next_y = (ys < ye) ? 1 : -1;
+
+	// int err = dx - dy;
+	// int e2;
+
+	// while (xs != xe || ys != ye) 
+	// {
+	// 	mlx_pixel_put(game->mlx, game->win, xs, ys, game->player.color);
+
+	// 	e2 = 2 * err;
+	// 	if (e2 > -dy) 
+	// 	{
+	// 		err -= dy;
+	// 		xs += next_x;
+	// 	}
+	// 	if (e2 < dx) 
+	// 	{
+	// 		err += dx;
+	// 		ys += next_y;
+	// 	}
+	// }
+	//-----------------------------------------------------
+	// plotted line is starighter indirectl from y=mx+c linier eq [notably the "m" gradient]
+	// less efficient/effective when drawing >1 line when computationg power is limites
+	// becase it uses float instead of int
+	//	it is also shorter in code length
+	// int xs = game->player.x;
+	// int xe = game->player.x + game->ray.dir_x;
+	// int ys = game->player.y;
+	// int ye = game->player.y + game->ray.dir_y;
+	// 	// Compute the differences between the start and end points
+	// int dx = xe - xs;
+	// int dy = ye - ys;
+
+	// // Determine whether the line is steeper in the x or y direction
+	// int steps;
+	// if (abs(dx) > abs(dy)) 
+	// 	steps = abs(dx);
+	// else 
+	// 	steps = abs(dy);
+
+	// // Calculate the increments for x and y
+	// float x_increment = (float)dx / steps;
+	// float y_increment = (float)dy / steps;
+
+	// int i = 0;
+	// float j = xs, y = ys;
+	// while (i <= steps) 
+	// {
+	// 	mlx_pixel_put(game->mlx, game->win, (int)j, (int)y, game->player.color);
+	// 	j += x_increment;
+	// 	y += y_increment;
+	// 	i++;
+	// }

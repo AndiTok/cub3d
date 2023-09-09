@@ -34,13 +34,29 @@ void	draw_dot(t_game *game)
 	int ys = game->player.y;
 	int ye = game->player.y + game->ray.dir_y;
 
-	while(xs != xe && ys != ye)
+	// Compute the differences between the start and end points
+	int dx = xe - xs;
+	int dy = ye - ys;
+
+	// Determine whether the line is steeper in the x or y direction
+	int steps;
+	if (abs(dx) > abs(dy)) 
+		steps = abs(dx);
+	else 
+		steps = abs(dy);
+
+	// Calculate the increments for x and y
+	float x_increment = (float)dx / steps;
+	float y_increment = (float)dy / steps;
+
+	int i = 0;
+	float j = xs, y = ys;
+	while (i <= steps) 
 	{
-		mlx_pixel_put(game->mlx, game->win, xs, ys, game->player.color);
-		if (xs == xe)
-			ys++;
-		if (ys == ye)
-			xs++;
+		mlx_pixel_put(game->mlx, game->win, (int)j, (int)y, game->player.color);
+		j += x_increment;
+		y += y_increment;
+		i++;
 	}
 }
 
