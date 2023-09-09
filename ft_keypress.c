@@ -39,6 +39,7 @@ void	draw_dot(t_game *game)
 	int dy = ye - ys;
 
 	// Determine whether the line is steeper in the x or y direction
+	// which is longer x or y?
 	int steps;
 	if (abs(dx) > abs(dy)) 
 		steps = abs(dx);

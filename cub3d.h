@@ -227,7 +227,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 	// 	}
 	// }
 	//-----------------------------------------------------
-	// plotted line is starighter indirectl from y=mx+c linier eq [notably the "m" gradient]
+	// plotted line is starighter indirectly from y=mx+c linier eq to plain old triangle
 	// less efficient/effective when drawing >1 line when computationg power is limites
 	// becase it uses float instead of int
 	//	it is also shorter in code length
