@@ -15,7 +15,7 @@
 void	rotation(int keycode, t_game game, t_raycast *ray)
 {
 	(void) game;
-	static double angle;
+	static float angle;
 	if (keycode == LEFT)
 	{
 		angle -= 0.1;

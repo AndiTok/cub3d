@@ -37,7 +37,7 @@ int main(int c, char **v)
 	ft_check_store_player(&game);
 
 	ft_init_mlx(&game);
-	ray_init(&game.ray, game.player);
+	ray_init(&game.ray, &game.player);
 	// raycast(game.map, game.player);
 	draw_dot(&game);
 	ft_keypress(&game);
@@ -47,7 +47,6 @@ int main(int c, char **v)
 // export DISPALY=[ipv4]:0.0 wihtout[]
 // echo $DISPLAY to check
 // gcc *.c -L minilibx/minilibx-linux -lmlx -lXext -lX11 -lm -lz && ./a.out maps/map.ber
-// gcc *.c -L minilibx/minilibx-linux -lmlx -lXext -lX11 -lm -lz -fsanitize=address -g3  && ./a.out minimalist.cub 
-// gcc *.c -L minilibx/minilibx-linux -lmlx -lXext -lX11 -fsanitize=address -g3 && ./a.out minimalist.cub 
+// gcc *.c raycaster/*.c -L minilibx/minilibx-linux -lmlx -lXext -lX11 -lm -lz -fsanitize=address -g3  && ./a.out minimalist.cub 
 // gcc -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit *.c  && ./a.out minimalist.cub
 // gcc -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit *.c  -fsanitize=address -g3 && ./a.out minimalist.cub

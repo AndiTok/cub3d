@@ -50,32 +50,56 @@
 #define LEFT 0xff51
 #define RIGHT 0xff53
 
+// typedef struct s_raycast
+// {
+// 	// double	px;
+// 	// double	py;
+// 	// int		map_x;
+// 	// int		map_y;
+// 	double	dir_x; //direction vector, value may change on each keypress
+// 	double	dir_y;	//direction vector, value may change on each keypress
+// 	// double	plane_x;
+// 	// double	plane_y;
+// 	// double	cam_x;
+// 	// double	ray_dir_x;
+// 	// double	ray_dir_y;
+// 	// double	delta_x; //delta distance
+// 	// double	delta_y; //delta distance
+// 	// double	side_x; //side distance
+// 	// double	side_y; //side distance
+// 	double	wall_dist; //distance from position to wall hit
+// 	double	p_angle; //player angle
+
+// 	//DDA: calculate step (amount of steps to hit a grid)
+// 	// int		step_x;
+// 	// int		step_y;
+// 	// int		side; //to check NS or EW wall hit
+
+// }t_raycast;
+
 typedef struct s_raycast
 {
-	double	px;
-	double	py;
-	int		map_x;
-	int		map_y;
-	double	dir_x; //direction vector, value may change on each keypress
-	double	dir_y;	//direction vector, value may change on each keypress
-	double	plane_x;
-	double	plane_y;
-	double	cam_x;
-	double	ray_dir_x;
-	double	ray_dir_y;
-	double	delta_x; //delta distance
-	double	delta_y; //delta distance
-	double	side_x; //side distance
-	double	side_y; //side distance
-	double	wall_dist; //distance from position to wall hit
-	double	p_angle; //player angle
+	//carried from t_raycast
+	int px; //player position in xymap
+	int py;
+	// int map_col;
+	// int map_row;
+	float dir_x; //player dir vector
+	float dir_y; //player dir vector
+	float p_angle; //player angle
+	float wall_dist;
 
-	//DDA: calculate step (amount of steps to hit a grid)
-	int		step_x;
-	int		step_y;
-	int		side; //to check NS or EW wall hit
+	int mx; //map index to compare with player position
+	int my;
+	// int mp;
+	int dof; //depth of field (width/height of map)
+	float ra; //ray angle
+	float rx; //ray position
+	float ry;
+	float xo; //x offset
+	float yo; //y offset
 
-}t_raycast;
+} t_raycast;
 
 typedef struct s_player
 {
@@ -162,8 +186,8 @@ void	ft_keypress(t_game *game);
 void	rotation(int keycode, t_game game,t_raycast *ray);
 
 //raycast
-void	ray_init(t_raycast *ray, t_player player);
-int	raycast(t_map map, t_player player);
+void	ray_init(t_raycast *ray, t_player *player);
+// int	raycast(t_map map, t_player player);
 
 
 //GNL + utils
