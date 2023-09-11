@@ -98,7 +98,7 @@ typedef struct s_raycast
 	float ry;
 	float xo; //x offset
 	float yo; //y offset
-
+	
 } t_raycast;
 
 typedef struct s_player
@@ -166,6 +166,7 @@ char	**ft_split(char const *s, char c);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int		ft_strncmp(const char *s1, const char *s2);
 void	ft_exit_error(char *str);
+int		ft_abs(int value);
 
 void	ft_check_input(int c, char **v);
 void	ft_initialize_vars(t_game *game);
@@ -181,13 +182,16 @@ void	ft_check_map_wall(t_game *game);
 void	ft_check_map_hole(t_game *game);
 void	ft_check_store_player(t_game *game);
 void	ft_init_mlx(t_game *game);
-void	draw_dot(t_game *game);
+void	draw_player(t_game *game);
+void	draw_2dmap(t_game *game);
+void	draw_line(t_game *game, int xe, int ye, int color);
 void	ft_keypress(t_game *game);
 void	rotation(int keycode, t_game game,t_raycast *ray);
 
 //raycast
 void	ray_init(t_raycast *ray, t_player *player);
 // int	raycast(t_map map, t_player player);
+void	raycast(t_game *game, t_raycast *ray);
 
 
 //GNL + utils
@@ -283,3 +287,48 @@ char	*ft_strjoin(char const *s1, char const *s2);
 	// 	y += y_increment;
 	// 	i++;
 	// }
+
+/* void	draw_line(t_game *game, int xe, int ye, int color)
+{
+	
+	float xs;
+	float ys;
+	 
+	xs = game->player.x;
+	ys = game->player.y;
+
+	xe += game->player.x; //+ game->ray.dir_x;
+	ye += game->player.y; //+ game->ray.dir_y;
+
+	// Compute the differences between the start and end points
+	int dx;
+	int dy;
+
+	dx = xe - xs;
+	dy = ye - ys;
+
+	// Determine whether the line is steeper in the x or y direction
+	// which is longer x or y?
+	int steps;
+
+	if (ft_abs(dx) > ft_abs(dy)) 
+		steps = ft_abs(dx);
+	else 
+		steps = ft_abs(dy);
+
+	// Calculate the increments for x and y
+	float x_increment;
+	float y_increment; 
+	x_increment = (float)dx / steps;
+	y_increment = (float)dy / steps;
+
+	int i;
+	i = 0;
+	while (i <= steps) 
+	{
+		mlx_pixel_put(game->mlx, game->win, (int)xs, (int)ys, color);
+		xs += x_increment;
+		ys += y_increment;
+		i++;
+	}
+} */

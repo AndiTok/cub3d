@@ -114,6 +114,7 @@ void raycast(t_game *game, t_raycast *ray)
 		atan = -1/tan(ray->ra);
 		ray_horiz(game->map.xymap, ray, atan);
 		//draw line
+		draw_line(game, game->ray.rx, game->ray.ry, 0x00FF00);
 		ray->dof = 0;
 		atan = -1/tan(ray->ra);
 		ray_vert(game->map.xymap, ray, atan);

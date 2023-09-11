@@ -39,7 +39,8 @@ int main(int c, char **v)
 	ft_init_mlx(&game);
 	ray_init(&game.ray, &game.player);
 	// raycast(game.map, game.player);
-	draw_dot(&game);
+		// raycast(&game, &game.ray);
+	// draw_dot(&game);
 	ft_keypress(&game);
 	mlx_loop(game.mlx);
 }
