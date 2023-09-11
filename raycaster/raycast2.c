@@ -29,34 +29,37 @@ void	ray_init(t_raycast *ray, t_player *player)
 	ray->yo = 0;
 }
 
-void	ray_horiz(char **map, t_raycast *ray, float atan)
+void	ray_horiz(t_map *map, t_raycast *ray, float atan)
 {
 	if (ray->ra < PI) //looking up
 	{
 		ray->ry = ray->py + TILESCALE;
 		ray->rx = (ray->py - ray->ry) * atan + ray->px;
-		ray->yo = TILESCALE;
+		ray->yo = map->n_col * map->n_row;
 		ray->xo = ray->yo * atan;
 	}
 	if (ray->ra > PI) //looking down
 	{
 		ray->ry = ray->py - 0.0001;
 		ray->rx = (ray->py - ray->ry) * atan + ray->px;
-		ray->yo = -TILESCALE;
+		ray->yo = -1 * map->n_col * map->n_row;
 		ray->xo = ray->yo * atan;
 	}
 	if (ray->ra == 0 || ray->ra == PI) //straight left/right
 	{
 		ray->rx = ray->px;
 		ray->ry = ray->px;
-		ray->dof = 10; //map_column_size
+		ray->dof = map->n_row; //map_column_size
 	}
-	while (ray->dof < 10)
+	while (ray->dof < map->n_row)
 	{
 		ray->mx = ray->rx / TILESCALE;
 		ray->my = ray->ry / TILESCALE;
-		if (map[ray->mx][ray->my] == 1)
-			ray->dof = 10;
+		// ray->mx = 10;
+		// ray->my = 10;
+		printf("H: ray_mx: %d\nray_my: %d\n", ray->mx, ray->my);
+		if (map->xymap[ray->mx][ray->my] == 1)
+			ray->dof = map->n_row;
 		else
 		{
 			ray->rx += ray->xo;
@@ -66,34 +69,37 @@ void	ray_horiz(char **map, t_raycast *ray, float atan)
 	}
 }
 
-void	ray_vert(char **map, t_raycast *ray, float atan)
+void	ray_vert(t_map *map, t_raycast *ray, float atan)
 {
 	if (ray->ra > PI_HALF && ray->ra < PI3) //looking left
 	{
 		ray->rx = ray->px - 0.0001;
 		ray->ry = (ray->px - ray->rx) * atan + ray->py;
-		ray->xo = -TILESCALE;
+		ray->xo = -1 * map->n_col * map->n_row;
 		ray->yo = ray->xo * atan;
 	}
 	if ((ray->ra < PI_HALF && ray->ra > 0) || ray->ra > PI3) //looking right
 	{
 		ray->rx = ray->px + TILESCALE;
 		ray->ry = (ray->px - ray->rx) * atan + ray->py;
-		ray->xo = TILESCALE;
+		ray->xo = map->n_col * map->n_row;
 		ray->yo = ray->xo * atan;
 	}
-	if (ray->ra == 0 || ray->ra == PI) //straight left/right
+	if (ray->ra == PI3 || ray->ra == PI_HALF) //straight left/right
 	{
 		ray->rx = ray->px;
 		ray->ry = ray->px;
-		ray->dof = 10; //map_column_size
+		ray->dof = map->n_col; //map_column_size
 	}
-	while (ray->dof < 10)
+	while (ray->dof < map->n_col)
 	{
 		ray->mx = ray->rx / TILESCALE;
 		ray->my = ray->ry / TILESCALE;
-		if (map[ray->mx][ray->my] == 1)
-			ray->dof = 10;
+		// ray->mx = 10;
+		// ray->my = 10;
+		printf("V: ray_mx: %d\nray_my: %d\n", ray->mx, ray->my);
+		if (map->xymap[ray->mx][ray->my] == '1')
+			ray->dof = map->n_col;
 		else
 		{
 			ray->rx += ray->xo;
@@ -109,15 +115,19 @@ void raycast(t_game *game, t_raycast *ray)
 	int r;
 
 	r = 0;
+	ray->px = game->player.x;
+	ray->py = game->player.y;	
 	while (r < 1)
 	{
 		atan = -1/tan(ray->ra);
-		ray_horiz(game->map.xymap, ray, atan);
+		ray_horiz(&game->map, ray, atan);
 		//draw line
-		draw_line(game, game->ray.rx, game->ray.ry, 0x00FF00);
+		draw_line(game, game->ray.rx, game->ray.ry, 0x00FFFF);
 		ray->dof = 0;
 		atan = -1/tan(ray->ra);
-		ray_vert(game->map.xymap, ray, atan);
+		ray_vert(&game->map, ray, atan);
+		// ray_vert(game->map.xymap, ray, atan);
+		draw_line(game, game->ray.rx, game->ray.ry, 0x00FF00);
 		//draw line		
 		r++;
 	}

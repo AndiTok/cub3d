@@ -33,7 +33,7 @@ int	keypress(int keycode, t_game *game)
 	draw_player(game);
 	draw_line(game, game->player.x + game->ray.dir_x,  game->player.y + game->ray.dir_y,0xFF00FF);
 	raycast(game,&game->ray);
-	draw_line(game, 0 , 0 , 0xFFFFFF); //test
+	// draw_line(game, 0 , 0 , 0xFFFFFF); //test
 	mlx_do_sync(game->mlx);
 	return (0);
 }
