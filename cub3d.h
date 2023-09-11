@@ -80,8 +80,11 @@
 typedef struct s_raycast
 {
 	//carried from t_raycast
-	int px; //player position in xymap
-	int py;
+	// int px; //player position in xymap
+	// int py;
+
+	float px; //player position in xymap
+	float py;
 	// int map_col;
 	// int map_row;
 	float dir_x; //player dir vector
