@@ -12,6 +12,24 @@
 
 #include "../cub3d.h"
 
+/*
+*		 ----270 (3*PI/2)----
+*		/					 \	
+*	   /					  \
+* 180 (PI)					0 / 360 (2*PI)
+*	   \					 /
+*		\					/
+*		  ----90 (PI/2)----
+*
+* In mlx display window
+* the lesser the y, the more upwards the index is
+* the lesser the x, the more left the index is
+* 
+* In 2d graph
+* the lesser the y, the more *downwards* the index is
+* the lesser the x, the more left the index is
+*/
+
 /*player angle from t_raycast*/
 void	rotation(int keycode, t_game game, t_raycast *ray)
 {
@@ -19,20 +37,20 @@ void	rotation(int keycode, t_game game, t_raycast *ray)
 	// static float angle;
 	if (keycode == LEFT)
 	{
-		ray->ra -= 0.1;
+		ray->ra -= 0.104719;
+		if (ray->ra <= 0)
+			ray->ra = PI * 2 - 0.0005;
 		printf("ray->ra: %f\n", ray->ra);
-		if (ray->ra < 0)
-			ray->ra += PI * 2; //reset to 2 PI
 		ray->dir_x = cos(ray->ra) * 20; // multiply 5 to see significant value
 		ray->dir_y = sin(ray->ra) * 20;
 		// mlx_pixel_put(game.mlx, game.win, game.player.x + ray->dir_x , game.player.y + ray->dir_y , game.player.color);
 	}
 	if (keycode == RIGHT)
 	{
-		ray->ra += 0.1;
+        ray->ra += 0.104719;
+        if (ray->ra > PI * 2)
+            ray->ra = 0.10472 - 0.0005;
 		printf("ray->ra: %f\n", ray->ra);
-		if (ray->ra > PI * 2)
-			ray->ra -= PI * 2; //reset to 2 PI
 		ray->dir_x = cos(ray->ra) * 20; // multiply 5 to see significant value
 		ray->dir_y = sin(ray->ra) * 20;
 		// mlx_pixel_put(game.mlx, game.win, game.player.x + ray->dir_x, game.player.y + ray->dir_y , game.player.color);

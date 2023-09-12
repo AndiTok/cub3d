@@ -1,0 +1,7 @@
+todo:
+
+- modify check vertical (raycast2)
+- to configure movement based on character vector
+
+https://www.youtube.com/watch?v=gYRrGTC7GtA
+https://github.com/3DSage/OpenGL-Raycaster_v1/blob/master/3DSage_Raycaster_v1.c

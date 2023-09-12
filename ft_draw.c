@@ -57,6 +57,8 @@ void	draw_line(t_game *game, int xe, int ye, int color)
 	ys = game->player.y;
 	dx = xe - xs; // Compute the differences between the start and end points
 	dy = ye - ys;
+	// dx = (int)((float)xe - xs); // Compute the differences between the start and end points
+	// dy = (int)((float)ye - ys);
 	steps = step(dx,dy);
 	x_increment = (float)dx / steps; 	// Calculate the increments for x and y
 	y_increment = (float)dy / steps;

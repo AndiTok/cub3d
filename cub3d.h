@@ -28,7 +28,7 @@
 #define TILESCALE 16
 
 //math
-#define PI 3.141592
+#define PI 3.14157
 #define PI_HALF PI/2
 #define PI3 3*PI/2
 
@@ -83,24 +83,24 @@ typedef struct s_raycast
 	// int px; //player position in xymap
 	// int py;
 
-	float px; //player position in xymap
-	float py;
+	double px; //player position in xymap
+	double py;
 	// int map_col;
 	// int map_row;
-	float dir_x; //player dir vector
-	float dir_y; //player dir vector
-	float p_angle; //player angle
-	float wall_dist;
+	double dir_x; //player dir vector
+	double dir_y; //player dir vector
+	double p_angle; //player angle
+	double wall_dist;
 
 	int mx; //map index to compare with player position
 	int my;
 	// int mp;
 	int dof; //depth of field (width/height of map)
-	float ra; //ray angle
-	float rx; //ray position
-	float ry;
-	float xo; //x offset
-	float yo; //y offset
+	double ra; //ray angle
+	double rx; //ray position
+	double ry;
+	double xo; //x offset
+	double yo; //y offset
 	
 } t_raycast;
 
