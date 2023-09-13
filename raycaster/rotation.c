@@ -41,18 +41,20 @@ void	rotation(int keycode, t_game game, t_raycast *ray)
 		if (ray->ra <= 0)
 			ray->ra = PI * 2 - 0.0005;
 		printf("ray->ra: %f\n", ray->ra);
-		ray->dir_x = cos(ray->ra) * 20; // multiply 5 to see significant value
-		ray->dir_y = sin(ray->ra) * 20;
+		printf("ft_round(ray->ra): %f\n", ft_round(ray->ra));
+		ray->dir_x = cos(ray->ra) * 25; // multiply to draw longer line
+		ray->dir_y = sin(ray->ra) * 25;
 		// mlx_pixel_put(game.mlx, game.win, game.player.x + ray->dir_x , game.player.y + ray->dir_y , game.player.color);
 	}
 	if (keycode == RIGHT)
 	{
-        ray->ra += 0.104719;
+		ray->ra += 0.104719;
         if (ray->ra > PI * 2)
             ray->ra = 0.10472 - 0.0005;
 		printf("ray->ra: %f\n", ray->ra);
-		ray->dir_x = cos(ray->ra) * 20; // multiply 5 to see significant value
-		ray->dir_y = sin(ray->ra) * 20;
+		printf("ft_round(ray->ra): %f\n", ft_round(ray->ra));
+		ray->dir_x = cos(ray->ra) * 25; // multiply to draw longer line
+		ray->dir_y = sin(ray->ra) * 25;
 		// mlx_pixel_put(game.mlx, game.win, game.player.x + ray->dir_x, game.player.y + ray->dir_y , game.player.color);
 	}
 	// return (0);

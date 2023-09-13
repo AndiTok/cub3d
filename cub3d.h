@@ -196,6 +196,8 @@ void	ray_init(t_raycast *ray, t_player *player);
 // int	raycast(t_map map, t_player player);
 void	raycast(t_game *game, t_raycast *ray);
 
+// math utils
+double	ft_round(double val);
 
 //GNL + utils
 # ifndef BUFFER_SIZE
