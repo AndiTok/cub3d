@@ -16,9 +16,17 @@
 int	keypress(int keycode, t_game *game)
 {
 	if (keycode == W)
-		game->player.y -= 4;
+	{
+		game->player.x += cos(game->ray.ra) * 4;
+		game->player.y += sin(game->ray.ra) * 4;
+		// game->player.y -= 4;
+	}
 	if (keycode == S)
-		game->player.y += 4;
+	{
+		game->player.x -= cos(game->ray.ra) * 4;
+		game->player.y -= sin(game->ray.ra) * 4;
+		// game->player.y += 4;
+	}
 	if (keycode == A)
 		game->player.x -= 4;
 	if (keycode == D)

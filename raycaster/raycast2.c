@@ -19,7 +19,7 @@ void	ray_init(t_raycast *ray, t_player *player)
 	// ray->py = player->y;
 	ray->mx = 0;
 	ray->my = 0;
-	ray->ra = 0.0001;
+	ray->ra = 0;
 	
 	ray->rx = 0;
 	ray->ry = 0;
@@ -154,8 +154,8 @@ void	raycast(t_game *game, t_raycast *ray)
 		draw_line(game, game->ray.rx, game->ray.ry, 0xF7F731); //yellow
 		ray->dof = 0;
 		ntan = -tan(ray->ra);
-			ray_vert(&game->map, ray, ntan);
-			draw_line(game, game->ray.rx, game->ray.ry, 0x00FF00); //green
+			// ray_vert(&game->map, ray, ntan);
+			// draw_line(game, game->ray.rx, game->ray.ry, 0x00FF00); //green
 		r++;
 	}
 }
