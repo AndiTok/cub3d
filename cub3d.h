@@ -25,30 +25,31 @@
 //#include <mlx.h>
 
 //minimap
-#define TILESCALE 16
+#define SCALE 16
 
 //math
-#define PI 3.14157
-#define PI_HALF PI/2
-#define PI3 3*PI/2
+// #define PI 3.14157
+// #define PI_HALF PI/2
+#define PI3 3*M_PI/2
+#define DEG M_PI/180.00
 
-//keycode mac
-// #define W 13
-// #define A 0
-// #define S 1
-// #define D 2
-// #define ESC 53
-// #define LEFT 123
-// #define RIGHT 124
+// keycode mac
+#define W 13
+#define A 0
+#define S 1
+#define D 2
+#define ESC 53
+#define LEFT 123
+#define RIGHT 124
 
-//keycode x11
-#define W 119
-#define A 97
-#define S 115
-#define D 100
-#define ESC 65307
-#define LEFT 0xff51
-#define RIGHT 0xff53
+// //keycode x11
+// #define W 119
+// #define A 97
+// #define S 115
+// #define D 100
+// #define ESC 65307
+// #define LEFT 0xff51
+// #define RIGHT 0xff53
 
 // typedef struct s_raycast
 // {
@@ -169,7 +170,6 @@ char	**ft_split(char const *s, char c);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int		ft_strncmp(const char *s1, const char *s2);
 void	ft_exit_error(char *str);
-int		ft_abs(int value);
 
 void	ft_check_input(int c, char **v);
 void	ft_initialize_vars(t_game *game);

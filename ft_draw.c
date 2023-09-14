@@ -36,10 +36,10 @@ void	draw_player(t_game *game)
 
 int step(int dx, int dy)
 {
-	if (ft_abs(dx) > ft_abs(dy)) // Determine whether the line is steeper in the x or y direction
-		return(ft_abs(dx));		// which is longer x or y?
+	if (abs(dx) > abs(dy)) // Determine whether the line is steeper in the x or y direction
+		return(abs(dx));		// which is longer x or y?
 	else 
-		return(ft_abs(dy));
+		return(abs(dy));
 }
 
 void	draw_line(t_game *game, int xe, int ye, int color)
@@ -80,10 +80,10 @@ void	draw_cell(t_game *game, int x, int y, int color)
 	int y_end;
 	int	tmp;
 
-	x_start = x * TILESCALE;
-	y_start = y * TILESCALE;
-	x_end = (x + 1) * TILESCALE - 1;
-	y_end = (y + 1) * TILESCALE - 1;
+	x_start = x * SCALE;
+	y_start = y * SCALE;
+	x_end = (x + 1) * SCALE - 1;
+	y_end = (y + 1) * SCALE - 1;
 
 	while (y_start < y_end)
 	{

@@ -38,9 +38,6 @@ int main(int c, char **v)
 		printf("n_row: %d\nn_col: %d\n", game.map.n_row, game.map.n_col);
 	ft_init_mlx(&game);
 	ray_init(&game.ray, &game.player);
-	// raycast(game.map, game.player);
-		// raycast(&game, &game.ray);
-	// draw_dot(&game);
 	ft_keypress(&game);
 	mlx_loop(game.mlx);
 }

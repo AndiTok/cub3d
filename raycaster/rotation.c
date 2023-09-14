@@ -37,9 +37,10 @@ void	rotation(int keycode, t_game game, t_raycast *ray)
 	// static float angle;
 	if (keycode == LEFT)
 	{
-		ray->ra -= 0.104719;
-		if (ray->ra <= 0)
-			ray->ra = PI * 2 - 0.0005;
+		// ray->ra -= 0.104719;
+		ray->ra -= DEG * 5;
+		if (ray->ra < 0)
+			ray->ra = M_PI * 2;// - 0.0005;
 		printf("ray->ra: %f\n", ray->ra);
 		printf("ft_round(ray->ra): %f\n", ft_round(ray->ra));
 		ray->dir_x = cos(ray->ra) * 25; // multiply to draw longer line
@@ -48,9 +49,10 @@ void	rotation(int keycode, t_game game, t_raycast *ray)
 	}
 	if (keycode == RIGHT)
 	{
-		ray->ra += 0.104719;
-        if (ray->ra > PI * 2)
-            ray->ra = 0.10472 - 0.0005;
+		// ray->ra += 0.104719;
+		ray->ra += DEG * 5;
+        if (ray->ra > M_PI * 2)
+            ray->ra = 0.0;//0.10472 - 0.0005;
 		printf("ray->ra: %f\n", ray->ra);
 		printf("ft_round(ray->ra): %f\n", ft_round(ray->ra));
 		ray->dir_x = cos(ray->ra) * 25; // multiply to draw longer line
@@ -59,32 +61,3 @@ void	rotation(int keycode, t_game game, t_raycast *ray)
 	}
 	// return (0);
 }
-
-/*static player angle variable*/
-// void	rotation(int keycode, t_game game, t_raycast *ray)
-// {
-// 	(void) game;
-// 	static float angle;
-// 	if (keycode == LEFT)
-// 	{
-// 		angle -= 0.1;
-// 		printf("angle: %f\n", angle);
-// 		if (angle < 0)
-// 			angle += PI * 2; //reset to 2 PI
-// 		ray->dir_x = cos(angle) * 20; // multiply 5 to see significant value
-// 		ray->dir_y = sin(angle) * 20;
-// 		// mlx_pixel_put(game.mlx, game.win, game.player.x + ray->dir_x , game.player.y + ray->dir_y , game.player.color);
-// 	}
-// 	if (keycode == RIGHT)
-// 	{
-// 		angle += 0.1;
-// 		printf("angle: %f\n", angle);
-// 		if (angle > PI * 2)
-// 			angle -= PI * 2; //reset to 2 PI
-// 		ray->dir_x = cos(angle) * 20; // multiply 5 to see significant value
-// 		ray->dir_y = sin(angle) * 20;
-// 		// mlx_pixel_put(game.mlx, game.win, game.player.x + ray->dir_x, game.player.y + ray->dir_y , game.player.color);
-// 	}
-// 	// return (0);
-// }
-

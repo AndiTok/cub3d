@@ -38,8 +38,8 @@ void	get_player_pos(t_game *game)
 			if (game->map.xymap[i][j] == 'N' || game->map.xymap[i][j] == 'S' ||
 				game->map.xymap[i][j] == 'E' || game->map.xymap[i][j] == 'W')
 			{
-				game->player.x = (double)j * TILESCALE;
-				game->player.y = (double)i * TILESCALE;
+				game->player.x = (double)j * SCALE;
+				game->player.y = (double)i * SCALE;
 			}
 			j++;
 		}
@@ -83,8 +83,8 @@ void	ft_check_store_player(t_game *game)
 	get_player_pos(game);
 	// printf("x - %f y - %f\n", game->player.x , game->player.y);
 
-	check_player_pos(game->map.xymap,game->player.x/TILESCALE
-		,game->player.y/TILESCALE);
+	check_player_pos(game->map.xymap,game->player.x/SCALE
+		,game->player.y/SCALE);
 	// /\ may not need to check 
 	// REASON-can modify ff wall check to check,not required,saves alot time & problem
 	// get_player_angle(game);
