@@ -81,27 +81,27 @@
 typedef struct s_raycast
 {
 	//carried from t_raycast
-	// int px; //player position in xymap
-	// int py;
+	double	px; //player position in xymap
+	double	py;
+	double	dir_x; //player dir vector
+	double	dir_y; //player dir vector
+	double	p_angle; //player angle
 
-	double px; //player position in xymap
-	double py;
-	// int map_col;
-	// int map_row;
-	double dir_x; //player dir vector
-	double dir_y; //player dir vector
-	double p_angle; //player angle
-	double wall_dist;
+	double	dist_v;
+	double	vx;
+	double	vy;
+	double	dist_h;
+	double	hx;
+	double	hy;
 
-	int mx; //map index to compare with player position
-	int my;
-	// int mp;
-	int dof; //depth of field (width/height of map)
-	double ra; //ray angle
-	double rx; //ray position
-	double ry;
-	double xo; //x offset
-	double yo; //y offset
+	int		mx; //map index to compare with player position
+	int		my;
+	int		dof; //depth of field (width/height of map)
+	double	ra; //ray angle
+	double	rx; //ray position
+	double	ry;
+	double	xo; //x offset
+	double	yo; //y offset
 	
 } t_raycast;
 
@@ -195,9 +195,6 @@ void	rotation(int keycode, t_game game,t_raycast *ray);
 void	ray_init(t_raycast *ray, t_player *player);
 void	get_start_ra(t_raycast *ray, t_player *player);
 void	raycast(t_game *game, t_raycast *ray);
-
-// math utils
-double	ft_round(double val);
 
 //GNL + utils
 # ifndef BUFFER_SIZE
