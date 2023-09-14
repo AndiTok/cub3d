@@ -59,8 +59,22 @@ void	ray_horiz(t_map *map, t_raycast *ray, float atan)
     {
         ray->mx = (int)ray->rx / SCALE;
         ray->my = (int)ray->ry / SCALE;
-		if (ray->mx >= map->n_col || ray->my >= map->n_row || ray->mx <= 0|| ray->my <= 0) //avoid beyond boundary
-            return;
+		if (ray->mx >= map->n_col || ray->my >= map->n_row)//avoid beyond boundary
+        {    
+            printf("exceeded max mx/my\n");
+            if (ray->my >= map->n_row)
+                ray->my = map->n_row - 1;
+            if (ray->mx >= map->n_col)
+                ray->mx = map->n_col - 1;
+		}
+		if (ray->mx < 0|| ray->my < 0)
+		{
+			printf("negative mx/my\n");
+            if (ray->my < 0)
+                ray->my = 0;
+            if (ray->mx < 0)
+                ray->mx = 0;
+		}
         if (map->xymap[ray->my][ray->mx] == '1')
         {
 			if (ray->ra > M_PI)
@@ -70,6 +84,7 @@ void	ray_horiz(t_map *map, t_raycast *ray, float atan)
 			ray->hx = ray->rx;
 			ray->hy = ray->ry;
 			// ray->dist_h = fabs(cos(ray->ra) * (ray->hx - ray->px) - sin(ray->ra) * (ray->hy - ray->py));
+			// ray->dist_h = fabs(sqrt((ray->hx - ray->px)*(ray->hx - ray->px) + (ray->hy - ray->py)*(ray->hy - ray->py)));
 			ray->dist_h = sqrt((ray->hx - ray->px)*(ray->hx - ray->px) + (ray->hy - ray->py)*(ray->hy - ray->py));
 		// printf("\tH: distH %f\n", ray->dist_h);
 			ray->dof = map->n_row;
@@ -115,8 +130,22 @@ void	ray_vert(t_map *map, t_raycast *ray, float ntan)
 	{
 		ray->mx = (int)ray->rx / SCALE;
 		ray->my = (int)ray->ry / SCALE;
-		if (ray->mx >= map->n_col || ray->my >= map->n_row || ray->mx <= 0|| ray->my <= 0) //avoid beyond boundary
-			return;
+		if (ray->mx >= map->n_col || ray->my >= map->n_row)//avoid beyond boundary
+        {    
+            printf("exceeded max mx/my\n");
+            if (ray->my >= map->n_row)
+                ray->my = map->n_row - 1;
+            if (ray->mx >= map->n_col)
+                ray->mx = map->n_col - 1;
+		}
+		if (ray->mx <= 0|| ray->my <= 0)
+		{
+			printf("negative mx/my\n");
+            if (ray->my <= 0)
+                ray->my = 0;
+            if (ray->mx <= 0)
+                ray->mx = 0;
+		}
 		if (map->xymap[ray->my][ray->mx] == '1')
 		{
 			if (ray->ra > M_PI_2 && ray->ra < PI3) //left
@@ -126,6 +155,7 @@ void	ray_vert(t_map *map, t_raycast *ray, float ntan)
 			ray->vx = ray->rx;
 			ray->vy = ray->ry;
 			// ray->dist_v = fabs(cos(ray->ra) * (ray->vx - ray->px) - sin(ray->ra) * (ray->vy - ray->py));
+			// ray->dist_v = fabs(sqrt((ray->vx - ray->px)*(ray->vx - ray->px) + (ray->vy - ray->py)*(ray->vy - ray->py)));
 			ray->dist_v = sqrt((ray->vx - ray->px)*(ray->vx - ray->px) + (ray->vy - ray->py)*(ray->vy - ray->py));
 			// printf("\tV: distV %f\n", ray->dist_v );
 			ray->dof = map->n_col;
@@ -165,14 +195,17 @@ void	raycast(t_game *game, t_raycast *ray)
 		ntan = -tan(ray->ra);
 		ray_vert(&game->map, ray, ntan);
 		// draw_line(game, game->ray.rx, game->ray.ry, 0x00FF00); //green
-		// printf("distH %f, distV %f\n", ray->dist_h, ray->dist_v );
+		printf("distH %f, distV %f\n", ray->dist_h, ray->dist_v );
 		if (ray->dist_h > ray->dist_v)
 		{
+			printf("vx %f, vy %f\n", ray->vx, ray->vy);
 			ray->rx = ray->vx;
 			ray->ry = ray->vy;
 		}
-		if (ray->dist_h < ray->dist_v)
+		// if (ray->dist_h < ray->dist_v)
+		else
 		{
+			printf("hx %f, hy %f\n", ray->hx, ray->hy);
 			ray->rx = ray->hx;
 			ray->ry = ray->hy;
 		}
