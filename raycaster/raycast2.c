@@ -14,16 +14,13 @@
 
 void	ray_init(t_raycast *ray, t_player *player)
 {
-	(void) player;
 	// ray->px = player->x;
 	// ray->py = player->y;
+	get_start_ra(ray, player);
 	ray->mx = 0;
-	ray->my = 0;
-	ray->ra = 0;
-	
+	ray->my = 0;	
 	ray->rx = 0;
 	ray->ry = 0;
-	ray->ra = 0;
 	ray->xo = 0;
 	ray->yo = 0;
 }
@@ -40,14 +37,14 @@ void	ray_horiz(t_map *map, t_raycast *ray, float atan)
 {
 	if (ray->ra < M_PI) //looking down
 	{
-		ray->ry = (int)ray->py + SCALE;
+		ray->ry = (((int)ray->py / SCALE)*SCALE) + SCALE;
 		ray->rx = (ray->py - ray->ry) * atan + ray->px;
 		ray->yo = SCALE;
 		ray->xo = -1 * ray->yo * atan;
 	}
 	if (ray->ra > M_PI) //looking up
 	{
-		ray->ry = (int)ray->py - 0.0001;
+		ray->ry = (((int)ray->py / SCALE)*SCALE) - 0.0001;
 		ray->rx = (ray->py - ray->ry) * atan + ray->px;
 		ray->yo = -SCALE;
 		ray->xo = -1 * ray->yo * atan;
@@ -91,7 +88,7 @@ void	ray_vert(t_map *map, t_raycast *ray, float ntan)
 	if (ray->ra > M_PI_2 && ray->ra < PI3) //looking left
 	{
 		// ray->rx = (((int)ray->px / 16) * 16) - 0.0001; //A
-		ray->rx = (int)ray->px - 0.0001; //B
+		ray->rx = (((int)ray->px / SCALE)*SCALE) - 0.0001; //B
 		ray->ry = (ray->px - ray->rx) * ntan + ray->py;
 		ray->xo = -SCALE;
 		ray->yo = -1 * ray->xo * ntan;
@@ -99,7 +96,7 @@ void	ray_vert(t_map *map, t_raycast *ray, float ntan)
 	if (ray->ra < M_PI_2 || ray->ra > PI3) //looking right
 	{
 		// ray->rx = (((int)ray->px / 16) * 16) + SCALE; //A
-		ray->rx = (int)ray->px + SCALE; //B
+		ray->rx = (((int)ray->px / SCALE)*SCALE) + SCALE; //B
 		ray->ry = (ray->px - ray->rx) * ntan + ray->py;
 		ray->xo = SCALE;
 		ray->yo = -1 * ray->xo * ntan;
@@ -154,8 +151,8 @@ void	raycast(t_game *game, t_raycast *ray)
 		draw_line(game, game->ray.rx, game->ray.ry, 0xF7F731); //yellow
 		ray->dof = 0;
 		ntan = -tan(ray->ra);
-			// ray_vert(&game->map, ray, ntan);
-			// draw_line(game, game->ray.rx, game->ray.ry, 0x00FF00); //green
+			ray_vert(&game->map, ray, ntan);
+			draw_line(game, game->ray.rx, game->ray.ry, 0x00FF00); //green
 		r++;
 	}
 }

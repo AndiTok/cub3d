@@ -47,30 +47,17 @@ void	get_player_pos(t_game *game)
 	}
 }
 
-// void get_player_angle(t_game *game)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	while (game->map.xymap[i] != 0x00)
-// 	{
-// 		j = 0;
-// 		while (game->map.xymap[i][j] != 0x00)
-// 		{
-// 			if (game->map.xymap[i][j] == 'N')
-// 				game->ray.p_angle = PI_HALF;
-// 			if (game->map.xymap[i][j] == 'S')
-// 				game->ray.p_angle = PI3;
-// 			if (game->map.xymap[i][j] == 'E')
-// 				game->ray.p_angle = 0;
-// 			if (game->map.xymap[i][j] == 'W')
-// 				game->ray.p_angle = PI;
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
+void	get_start_ra(t_raycast *ray, t_player *player)
+{
+	if (player->p_dir == 'N')
+		ray->ra = PI3;
+	if (player->p_dir == 'S')
+		ray->ra = M_PI_2;
+	if (player->p_dir == 'E')
+		ray->ra = 0;
+	if (player->p_dir == 'W')
+		ray->ra = M_PI;
+}
 
 void	ft_check_store_player(t_game *game)
 {
