@@ -25,6 +25,11 @@ void	ray_init(t_raycast *ray, t_player *player)
 	ray->dist_v = 1000000;
 }
 
+double    ft_round(double val)
+{
+    return (round(val * 1000000) / 1000000);
+}
+
 void	ray_horiz(t_map *map, t_raycast *ray, float atan)
 {
 	if (ray->ra < M_PI) //looking down
@@ -41,11 +46,14 @@ void	ray_horiz(t_map *map, t_raycast *ray, float atan)
 		ray->yo = -SCALE;
 		ray->xo = -1 * ray->yo * atan;
 	}
-	if (ray->ra == 0 || ray->ra == M_PI * 2 || ray->ra == M_PI) //straight left/right
+	if (ft_round(ray->ra) == ft_round(M_PI * 2) || ft_round(ray->ra) == ft_round(M_PI)) //straight left/right
 	{
-		ray->rx = ray->px;
+		if (ft_round(ray->ra) == ft_round(M_PI * 2))
+			ray->rx = map->n_col * SCALE;
+		else
+			ray->rx = 0;
 		ray->ry = ray->py;
-		ray->dof = map->n_row;
+		return ;
 	}
     while (ray->dof < map->n_row)
     {
@@ -94,11 +102,14 @@ void	ray_vert(t_map *map, t_raycast *ray, float ntan)
 		ray->xo = SCALE;
 		ray->yo = -1 * ray->xo * ntan;
 	}
-	if (ray->ra == M_PI_2 || ray->ra == PI3) //straight up and down
+	if (ft_round(ray->ra) == ft_round(M_PI_2) || ft_round(ray->ra) == ft_round(PI3)) //straight up and down
 	{
 		ray->rx = ray->px;
-		ray->ry = ray->py;
-		ray->dof = map->n_col;
+		if (ft_round(ray->ra) == ft_round(M_PI_2))
+			ray->ry = map->n_row * SCALE;
+		else
+			ray->ry = 0;
+		return;
 	}
 	while (ray->dof < map->n_col)
 	{
@@ -153,7 +164,7 @@ void	raycast(t_game *game, t_raycast *ray)
 		ray->vy = ray->py;
 		ntan = -tan(ray->ra);
 		ray_vert(&game->map, ray, ntan);
-		draw_line(game, game->ray.rx, game->ray.ry, 0x00FF00); //green
+		// draw_line(game, game->ray.rx, game->ray.ry, 0x00FF00); //green
 		// printf("distH %f, distV %f\n", ray->dist_h, ray->dist_v );
 		if (ray->dist_h > ray->dist_v)
 		{
@@ -166,7 +177,7 @@ void	raycast(t_game *game, t_raycast *ray)
 			ray->ry = ray->hy;
 		}
 		// printf("ray_rx: %f, ray_ry: %f\n", ray->rx, ray->ry);
-		// draw_line(game, game->ray.rx, game->ray.ry, 0xFFFF); //blue
+		draw_line(game, game->ray.rx, game->ray.ry, 0x00FFFF); //blue
 		r++;
 	}
 }
