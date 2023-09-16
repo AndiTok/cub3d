@@ -17,7 +17,7 @@ void	ray_init(t_raycast *ray, t_player *player)
 	ray->p_angle = 0;
 	get_start_pa(ray, player);
 	ray->mx = 0;
-	ray->my = 0;	
+	ray->my = 0;
 	ray->rx = 0;
 	ray->ry = 0;
 	ray->xo = 0;
@@ -29,6 +29,26 @@ void	ray_init(t_raycast *ray, t_player *player)
 double    ft_round(double val)
 {
     return (round(val * 1000000) / 1000000);
+}
+
+void	limit_2dmap_index(t_map *map, t_raycast *ray)
+{
+	if (ray->mx >= map->n_col || ray->my >= map->n_row)//avoid beyond boundary
+	{    
+		// printf("exceeded max mx/my\n");
+		if (ray->my >= map->n_row)
+			ray->my = map->n_row - 1;
+		if (ray->mx >= map->n_col)
+			ray->mx = map->n_col - 1;
+	}
+	if (ray->mx < 0|| ray->my < 0)
+	{
+		// printf("negative mx/my\n");
+		if (ray->my < 0)
+			ray->my = 0;
+		if (ray->mx < 0)
+			ray->mx = 0;
+	}
 }
 
 void	ray_horiz(t_map *map, t_raycast *ray, float atan)
@@ -60,22 +80,7 @@ void	ray_horiz(t_map *map, t_raycast *ray, float atan)
     {
         ray->mx = (int)ray->rx / SCALE;
         ray->my = (int)ray->ry / SCALE;
-		if (ray->mx >= map->n_col || ray->my >= map->n_row)//avoid beyond boundary
-        {    
-            // printf("exceeded max mx/my\n");
-            if (ray->my >= map->n_row)
-                ray->my = map->n_row - 1;
-            if (ray->mx >= map->n_col)
-                ray->mx = map->n_col - 1;
-		}
-		if (ray->mx < 0|| ray->my < 0)
-		{
-			// printf("negative mx/my\n");
-            if (ray->my < 0)
-                ray->my = 0;
-            if (ray->mx < 0)
-                ray->mx = 0;
-		}
+		limit_2dmap_index(map, ray);
         if (map->xymap[ray->my][ray->mx] == '1')
         {
 			if (ray->ra > M_PI)
@@ -131,22 +136,7 @@ void	ray_vert(t_map *map, t_raycast *ray, float ntan)
 	{
 		ray->mx = (int)ray->rx / SCALE;
 		ray->my = (int)ray->ry / SCALE;
-		if (ray->mx >= map->n_col || ray->my >= map->n_row)//avoid beyond boundary
-        {    
-            // printf("exceeded max mx/my\n");
-            if (ray->my >= map->n_row)
-                ray->my = map->n_row - 1;
-            if (ray->mx >= map->n_col)
-                ray->mx = map->n_col - 1;
-		}
-		if (ray->mx <= 0|| ray->my <= 0)
-		{
-			// printf("negative mx/my\n");
-            if (ray->my <= 0)
-                ray->my = 0;
-            if (ray->mx <= 0)
-                ray->mx = 0;
-		}
+		limit_2dmap_index(map, ray);
 		if (map->xymap[ray->my][ray->mx] == '1')
 		{
 			if (ray->ra > M_PI_2 && ray->ra < PI3) //left
@@ -172,6 +162,14 @@ void	ray_vert(t_map *map, t_raycast *ray, float ntan)
     // printf("V: ray_mx: %d, ray_my: %d\n", ray->mx, ray->my);
 }
 
+void	ra_reset(t_raycast *ray)
+{
+	if (ray->ra < 0)
+		ray->ra += M_PI * 2;
+	if (ray->ra > M_PI * 2)
+		ray->ra -= M_PI * 2;
+}
+
 void	raycast(t_game *game, t_raycast *ray)
 {
 	double	atan;
@@ -179,7 +177,8 @@ void	raycast(t_game *game, t_raycast *ray)
 	int		r;
 
 	r = 0;
-	ray->ra = ray->p_angle + (30.0 * DEG); //multi-ray
+	ray->ra = ray->p_angle - (30.0 * DEG); //multi-ray
+	ra_reset(ray);
 	ray->px = game->player.x;
 	ray->py = game->player.y;
 	while (r < 60) // (r < 1)
@@ -203,8 +202,7 @@ void	raycast(t_game *game, t_raycast *ray)
 			ray->rx = ray->vx;
 			ray->ry = ray->vy;
 		}
-		// if (ray->dist_h < ray->dist_v)
-		else
+		if (ray->dist_h < ray->dist_v)
 		{
 			// printf("hx %f, hy %f\n", ray->hx, ray->hy);
 			ray->rx = ray->hx;
@@ -212,8 +210,8 @@ void	raycast(t_game *game, t_raycast *ray)
 		}
 		// printf("ray_rx: %f, ray_ry: %f\n", ray->rx, ray->ry);
 		draw_line(game, game->ray.rx, game->ray.ry, 0x00FFFF); //blue
-			// printf("r %d\n", r);
-		ray->ra -= DEG; //multi-ray
+		ray->ra += DEG; //multi-ray
+		ra_reset(ray);
 		r++;
 	}
 }
