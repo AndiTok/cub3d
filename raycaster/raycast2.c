@@ -14,7 +14,8 @@
 
 void	ray_init(t_raycast *ray, t_player *player)
 {
-	get_start_ra(ray, player);
+	ray->p_angle = 0;
+	get_start_pa(ray, player);
 	ray->mx = 0;
 	ray->my = 0;	
 	ray->rx = 0;
@@ -61,7 +62,7 @@ void	ray_horiz(t_map *map, t_raycast *ray, float atan)
         ray->my = (int)ray->ry / SCALE;
 		if (ray->mx >= map->n_col || ray->my >= map->n_row)//avoid beyond boundary
         {    
-            printf("exceeded max mx/my\n");
+            // printf("exceeded max mx/my\n");
             if (ray->my >= map->n_row)
                 ray->my = map->n_row - 1;
             if (ray->mx >= map->n_col)
@@ -69,7 +70,7 @@ void	ray_horiz(t_map *map, t_raycast *ray, float atan)
 		}
 		if (ray->mx < 0|| ray->my < 0)
 		{
-			printf("negative mx/my\n");
+			// printf("negative mx/my\n");
             if (ray->my < 0)
                 ray->my = 0;
             if (ray->mx < 0)
@@ -132,7 +133,7 @@ void	ray_vert(t_map *map, t_raycast *ray, float ntan)
 		ray->my = (int)ray->ry / SCALE;
 		if (ray->mx >= map->n_col || ray->my >= map->n_row)//avoid beyond boundary
         {    
-            printf("exceeded max mx/my\n");
+            // printf("exceeded max mx/my\n");
             if (ray->my >= map->n_row)
                 ray->my = map->n_row - 1;
             if (ray->mx >= map->n_col)
@@ -140,7 +141,7 @@ void	ray_vert(t_map *map, t_raycast *ray, float ntan)
 		}
 		if (ray->mx <= 0|| ray->my <= 0)
 		{
-			printf("negative mx/my\n");
+			// printf("negative mx/my\n");
             if (ray->my <= 0)
                 ray->my = 0;
             if (ray->mx <= 0)
@@ -178,10 +179,10 @@ void	raycast(t_game *game, t_raycast *ray)
 	int		r;
 
 	r = 0;
+	ray->ra = ray->p_angle + (30.0 * DEG); //multi-ray
 	ray->px = game->player.x;
 	ray->py = game->player.y;
-
-	while (r < 1)
+	while (r < 60) // (r < 1)
 	{
 		ray->dof = 0;
 		ray->hx = ray->px;
@@ -195,22 +196,24 @@ void	raycast(t_game *game, t_raycast *ray)
 		ntan = -tan(ray->ra);
 		ray_vert(&game->map, ray, ntan);
 		// draw_line(game, game->ray.rx, game->ray.ry, 0x00FF00); //green
-		printf("distH %f, distV %f\n", ray->dist_h, ray->dist_v );
+		// printf("distH %f, distV %f\n", ray->dist_h, ray->dist_v );
 		if (ray->dist_h > ray->dist_v)
 		{
-			printf("vx %f, vy %f\n", ray->vx, ray->vy);
+			// printf("vx %f, vy %f\n", ray->vx, ray->vy);
 			ray->rx = ray->vx;
 			ray->ry = ray->vy;
 		}
 		// if (ray->dist_h < ray->dist_v)
 		else
 		{
-			printf("hx %f, hy %f\n", ray->hx, ray->hy);
+			// printf("hx %f, hy %f\n", ray->hx, ray->hy);
 			ray->rx = ray->hx;
 			ray->ry = ray->hy;
 		}
 		// printf("ray_rx: %f, ray_ry: %f\n", ray->rx, ray->ry);
 		draw_line(game, game->ray.rx, game->ray.ry, 0x00FFFF); //blue
+			// printf("r %d\n", r);
+		ray->ra -= DEG; //multi-ray
 		r++;
 	}
 }

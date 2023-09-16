@@ -34,22 +34,22 @@
 #define DEG M_PI/180.00
 
 // keycode mac
-#define W 13
-#define A 0
-#define S 1
-#define D 2
-#define ESC 53
-#define LEFT 123
-#define RIGHT 124
+// #define W 13
+// #define A 0
+// #define S 1
+// #define D 2
+// #define ESC 53
+// #define LEFT 123
+// #define RIGHT 124
 
 // //keycode x11
-// #define W 119
-// #define A 97
-// #define S 115
-// #define D 100
-// #define ESC 65307
-// #define LEFT 0xff51
-// #define RIGHT 0xff53
+#define W 119
+#define A 97
+#define S 115
+#define D 100
+#define ESC 65307
+#define LEFT 0xff51
+#define RIGHT 0xff53
 
 // typedef struct s_raycast
 // {
@@ -193,7 +193,8 @@ void	rotation(int keycode, t_game game,t_raycast *ray);
 
 //raycast
 void	ray_init(t_raycast *ray, t_player *player);
-void	get_start_ra(t_raycast *ray, t_player *player);
+// void	get_start_ra(t_raycast *ray, t_player *player);
+void	get_start_pa(t_raycast *ray, t_player *player);
 void	raycast(t_game *game, t_raycast *ray);
 
 //GNL + utils

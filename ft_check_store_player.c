@@ -47,16 +47,16 @@ void	get_player_pos(t_game *game)
 	}
 }
 
-void	get_start_ra(t_raycast *ray, t_player *player)
+void	get_start_pa(t_raycast *ray, t_player *player)
 {
 	if (player->p_dir == 'N')
-		ray->ra = PI3;
+		ray->p_angle = PI3;
 	if (player->p_dir == 'S')
-		ray->ra = M_PI_2;
+		ray->p_angle = M_PI_2;
 	if (player->p_dir == 'E')
-		ray->ra = 0;
+		ray->p_angle = 0;
 	if (player->p_dir == 'W')
-		ray->ra = M_PI;
+		ray->p_angle = M_PI;
 }
 
 void	ft_check_store_player(t_game *game)
