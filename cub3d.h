@@ -28,8 +28,6 @@
 #define SCALE 16
 
 //math
-// #define PI 3.14157
-// #define PI_HALF PI/2
 #define PI3 3*M_PI/2
 #define DEG M_PI/180.00
 
@@ -93,6 +91,7 @@ typedef struct s_raycast
 	double	dist_h;
 	double	hx;
 	double	hy;
+	double	dist_t; //finalized line distance
 
 	int		mx; //map index to compare with player position
 	int		my;
@@ -102,6 +101,10 @@ typedef struct s_raycast
 	double	ry;
 	double	xo; //x offset
 	double	yo; //y offset
+
+	double	line_h; //wall line height
+	double	line_o; //wall line offset
+	double	fish; //fisheye fix
 	
 } t_raycast;
 

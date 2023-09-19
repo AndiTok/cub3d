@@ -1,11 +1,15 @@
 todo:
-- to configure movement based on character vector
-- to limit movement in floor only
-- calc wall distance
-- display short ray (between H and V) with hit
+- 3D map
+- remove fisheye effect
+- to limit movement in floor only (bonus)
+
 
 done:
 - modify check vertical (raycast2)
+- calc wall distance (done)
+- display short ray (between H and V) with hit (done)
+- to configure movement based on character vector (done)
+- cast multiple ray
 
 issue on hold:
 horiz & vert ray clipping
