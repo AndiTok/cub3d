@@ -88,14 +88,8 @@ void	ray_horiz(t_map *map, t_raycast *ray, float atan)
 		limit_2dmap_index(map, ray);
         if (map->xymap[ray->my][ray->mx] == '1' || map->xymap[ray->my][ray->mx] == ' ')
         {
-			if (ray->ra > M_PI)
-				ray->ry = (((int)ray->ry / SCALE)*SCALE) + SCALE;
-			if (ray->ra < M_PI)
-				ray->ry = (((int)ray->ry / SCALE)*SCALE);
 			ray->hx = ray->rx;
 			ray->hy = ray->ry;
-			// ray->dist_h = fabs(cos(ray->ra) * (ray->hx - ray->px) - sin(ray->ra) * (ray->hy - ray->py));
-			// ray->dist_h = fabs(sqrt((ray->hx - ray->px)*(ray->hx - ray->px) + (ray->hy - ray->py)*(ray->hy - ray->py)));
 			ray->dist_h = sqrt((ray->hx - ray->px)*(ray->hx - ray->px) + (ray->hy - ray->py)*(ray->hy - ray->py));
 		// printf("\tH: distH %f\n", ray->dist_h);
 			ray->dof = map->n_row;
@@ -144,14 +138,8 @@ void	ray_vert(t_map *map, t_raycast *ray, float ntan)
 		limit_2dmap_index(map, ray);
         if (map->xymap[ray->my][ray->mx] == '1' || map->xymap[ray->my][ray->mx] == ' ')
 		{
-			if (ray->ra > M_PI_2 && ray->ra < PI3) //left
-				ray->rx = (((int)ray->rx / SCALE)*SCALE) + SCALE;
-			if ((ray->ra < M_PI_2 && ray->ra > 0) || ray->ra > PI3) //right
-				ray->rx = (((int)ray->rx / SCALE)*SCALE);
 			ray->vx = ray->rx;
 			ray->vy = ray->ry;
-			// ray->dist_v = fabs(cos(ray->ra) * (ray->vx - ray->px) - sin(ray->ra) * (ray->vy - ray->py));
-			// ray->dist_v = fabs(sqrt((ray->vx - ray->px)*(ray->vx - ray->px) + (ray->vy - ray->py)*(ray->vy - ray->py)));
 			ray->dist_v = sqrt((ray->vx - ray->px)*(ray->vx - ray->px) + (ray->vy - ray->py)*(ray->vy - ray->py));
 			// printf("\tV: distV %f\n", ray->dist_v );
 			ray->dof = map->n_col;
@@ -222,12 +210,7 @@ void	raycast(t_game *game, t_raycast *ray)
 		ray->fish = ray->p_angle - ray->ra;
 		ray->fish = angle_reset(ray->fish);
 		ray->dist_t *= cos(ray->fish);
-		ray->line_h = (game->map.n_row * game->map.n_col) * 320 / ray->dist_t;
-		if (ray->line_h > 320)
-			ray->line_h = 320;
-		ray->line_o = 160 - ray->line_h / 2;
-		// draw_line(game, ray->line_o, ray->line_h + ray->line_o, 0x0FFF00); //3D line test *Wrong* (green)
-		// printf("ray_rx: %f, ray_ry: %f\n", ray->rx, ray->ry);
+		draw_wall(game, ray, r, 0x0FFF00);
 		//***********************************
 		ray->ra += DEG; //multi-ray
 		ray->ra = angle_reset(ray->ra);

@@ -199,6 +199,7 @@ void	ray_init(t_raycast *ray, t_player *player);
 // void	get_start_ra(t_raycast *ray, t_player *player);
 void	get_start_pa(t_raycast *ray, t_player *player);
 void	raycast(t_game *game, t_raycast *ray);
+void	draw_wall(t_game *game, t_raycast *ray, int r, int color);
 
 //GNL + utils
 # ifndef BUFFER_SIZE
