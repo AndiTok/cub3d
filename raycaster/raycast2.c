@@ -202,7 +202,7 @@ void	raycast(t_game *game, t_raycast *ray)
 			// printf("hx %f, hy %f\n", ray->hx, ray->hy);
 			ray->rx = ray->hx;
 			ray->ry = ray->hy;
-			ray->dist_t = ray->dist_v; //3d
+			ray->dist_t = ray->dist_h; //3d
 		}
 		draw_line(game, ray->rx, ray->ry, 0x00FFFF); //blue
 
