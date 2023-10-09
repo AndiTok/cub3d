@@ -25,7 +25,8 @@ void	draw_player(t_game *game)
 		y = game->player.y - 2;
 		while (y <= game->player.y + 2) 
 		{
-			mlx_pixel_put(game->mlx, game->win, x, y, game->player.color);
+			img_pix_put(&game->img, x, y, game->player.color);
+			// mlx_pixel_put(game->mlx, game->win, x, y, game->player.color);
 			y++;
 		}
 		x++;
@@ -65,7 +66,8 @@ void	draw_line(t_game *game, int xe, int ye, int color)
 	i = 0;
 	while (i <= steps) 
 	{
-		mlx_pixel_put(game->mlx, game->win, (int)xs, (int)ys, color);
+		img_pix_put(&game->img, (int)xs, (int)ys, color);
+		// mlx_pixel_put(game->mlx, game->win, (int)xs, (int)ys, color);
 		xs += x_increment;
 		ys += y_increment;
 		i++;
@@ -90,7 +92,8 @@ void	draw_cell(t_game *game, int x, int y, int color)
 		tmp = x_start;
 		while (tmp < x_end)
 		{
-			mlx_pixel_put(game->mlx, game->win, tmp, y_start, color);
+			img_pix_put(&game->img, tmp, y_start, color);
+			// mlx_pixel_put(game->mlx, game->win, tmp, y_start, color);
 			tmp++;
 		}
 		y_start++;

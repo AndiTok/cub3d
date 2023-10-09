@@ -153,6 +153,15 @@ typedef struct s_file
 	int		EA;
 }t_file;
 
+typedef struct s_img //
+{
+    void	*mlx_img;
+    char	*addr;
+    int		bpp; /* bits per pixel */
+    int		line_len;
+    int		endian;
+}	t_img;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -164,6 +173,7 @@ typedef struct s_game
 	t_map		map;
 	t_element 	element;
 	t_raycast	ray;
+	t_img 		img;
 }t_game;
 
 char	*ft_itoa(int n);
@@ -193,6 +203,10 @@ void	draw_2dmap(t_game *game);
 void	draw_line(t_game *game, int xe, int ye, int color);
 void	ft_keypress(t_game *game);
 void	rotation(int keycode, t_game game,t_raycast *ray);
+// new
+void	ft_init_img(t_game *game); //
+void	img_pix_put(t_img *img, int x, int y, int color); //
+int		ft_render(t_game *game); //
 
 //raycast
 void	ray_init(t_raycast *ray, t_player *player);

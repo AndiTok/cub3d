@@ -43,14 +43,7 @@ int	keypress(int keycode, t_game *game)
 		rotation(RIGHT, *game, &game->ray);
 	if (keycode == ESC)
 		exit(1);
-	mlx_clear_window(game->mlx, game->win);
-	draw_2dmap(game);
-	draw_player(game);
-	draw_line(game, game->player.x + game->ray.dir_x,  game->player.y + game->ray.dir_y, 0xFF00FF);
-	// printf("P: dir_x: %f, dir_y %f\n", game->ray.dir_x, game->ray.dir_y);
-	raycast(game,&game->ray);
-		// draw_line(game, 0 , 0 , 0xFFFFFF); //test
-	mlx_do_sync(game->mlx);
+	ft_render(game);
 	return (0);
 }
 
