@@ -12,6 +12,27 @@
 
 #include "cub3d.h"
 
+void render_void(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < game->win_height)
+	{
+		j = 0;
+		while (j < game->win_width)
+		{
+			if(i < game->win_height / 2)
+				img_pix_put(&game->img, j, i,game->map.ceiling);
+			else
+				img_pix_put(&game->img, j, i,game->map.floor);
+			j++;
+		}
+		i++;
+	}
+}
+
 int	ft_render(t_game *game)
 {
 	mlx_destroy_image(game->mlx,game->img.mlx_img);
@@ -19,6 +40,7 @@ int	ft_render(t_game *game)
 
 	// mlx_clear_window(game->mlx, game->win);
 	// mlx_put_image_to_window(game->mlx,game->win,game->img.mlx_img,0,0); //
+	render_void(game);
 	raycast(game,&game->ray);
 	if (game->toggle_m == 1)
 	{
