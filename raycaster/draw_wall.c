@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_wall.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wyap <wyap@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/12 15:43:45 by wyap              #+#    #+#             */
+/*   Updated: 2023/10/12 15:43:45 by wyap             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	draw_wall(t_game *game, t_raycast *ray, int r, int color)
@@ -25,7 +37,7 @@ void	draw_wall(t_game *game, t_raycast *ray, int r, int color)
 	for (double y = 0; y < ray->line_h + 200.00; y++)
 		for (double x = 0; x < 21; x++)
 			// mlx_pixel_put(game->mlx, game->win, r * 21 + x, (int)(y), 0x0FFF00);
-			img_pix_put(&game->img, r * 21 + x + 8, (int)(y + ray->line_o + 100), 0x0FFF00);
+			img_pix_put(&game->img, r * 21 + x, (int)(y + ray->line_o + 100), 0x0FFF00);
 			// img_pix_put(&game->img, r * 16 + x + 300, (int)(y + ray->line_o), 0x0FFF00);
 			// mlx_pixel_put(game->mlx, game->win, r * 16 + x + 300, (int)(y + ray->line_o), 0x0FFF00);
 	//~~~~********************************~~~~

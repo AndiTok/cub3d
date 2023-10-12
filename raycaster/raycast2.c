@@ -204,7 +204,7 @@ void	raycast(t_game *game, t_raycast *ray)
 			ray->ry = ray->hy;
 			ray->dist_t = ray->dist_h; //3d
 		}
-		// draw_line(game, ray->rx, ray->ry, 0x00FFFF); //blue
+		draw_line(game, ray->rx, ray->ry, 0x00FFFF); //blue
 
 		//3D*********************************
 		ray->fish = ray->p_angle - ray->ra;
@@ -212,6 +212,7 @@ void	raycast(t_game *game, t_raycast *ray)
 		ray->dist_t *= cos(ray->fish);
 		draw_wall(game, ray, r, 0x0FFF00);
 		//***********************************
+		// draw_line(game, ray->rx, ray->ry, 0x00FFFF); //blue
 		ray->ra += DEG; //multi-ray
 		ray->ra = angle_reset(ray->ra);
 		// printf("r: %d\n", r);

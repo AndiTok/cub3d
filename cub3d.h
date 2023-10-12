@@ -53,33 +53,6 @@
 // #define L 83
 // #define M 66
 
-// typedef struct s_raycast
-// {
-// 	// double	px;
-// 	// double	py;
-// 	// int		map_x;
-// 	// int		map_y;
-// 	double	dir_x; //direction vector, value may change on each keypress
-// 	double	dir_y;	//direction vector, value may change on each keypress
-// 	// double	plane_x;
-// 	// double	plane_y;
-// 	// double	cam_x;
-// 	// double	ray_dir_x;
-// 	// double	ray_dir_y;
-// 	// double	delta_x; //delta distance
-// 	// double	delta_y; //delta distance
-// 	// double	side_x; //side distance
-// 	// double	side_y; //side distance
-// 	double	wall_dist; //distance from position to wall hit
-// 	double	p_angle; //player angle
-
-// 	//DDA: calculate step (amount of steps to hit a grid)
-// 	// int		step_x;
-// 	// int		step_y;
-// 	// int		side; //to check NS or EW wall hit
-
-// }t_raycast;
-
 typedef struct s_raycast
 {
 	//carried from t_raycast
@@ -120,6 +93,15 @@ typedef struct s_player
 	char		p_dir;
 }t_player;
 
+typedef struct s_img //
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp; /* bits per pixel */
+	int		line_len;
+	int		endian;
+}	t_img;
+
 typedef struct s_map
 {
 	//char	**ffmap;
@@ -129,6 +111,10 @@ typedef struct s_map
 	char	*map;//
 	int		floor; // final
 	int		ceiling; // final
+	t_img	north;
+	t_img	south;
+	t_img	east;
+	t_img	west;
 	int		n_row;
 	int 	n_col;
 }t_map;
@@ -157,14 +143,6 @@ typedef struct s_file
 	int		EA;
 }t_file;
 
-typedef struct s_img //
-{
-	void	*mlx_img;
-	char	*addr;
-	int		bpp; /* bits per pixel */
-	int		line_len;
-	int		endian;
-}	t_img;
 
 typedef struct s_game
 {
@@ -212,6 +190,8 @@ void	rotation(int keycode, t_game game,t_raycast *ray);
 void	ft_init_img(t_game *game); //
 void	img_pix_put(t_img *img, int x, int y, int color); //
 int		ft_render(t_game *game); //
+int		init_texture(t_game *game, t_map *map, t_element *elem);
+
 
 //raycast
 void	ray_init(t_raycast *ray, t_player *player);

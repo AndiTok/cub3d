@@ -40,5 +40,8 @@ void	ft_check_store_xpm_element(t_game *game)
 	game->element.SO = check_texture_path_extention(game->element.SO);
 	game->element.WE = check_texture_path_extention(game->element.WE);
 	game->element.EA = check_texture_path_extention(game->element.EA);
-	//printf("%s\n",game->element.NO);
+	// 	printf("%s\n",game->element.NO);
+	// 	printf("%s\n",game->element.SO);
+	// 	printf("%s\n",game->element.EA);
+	// 	printf("%s\n",game->element.WE);
 }
