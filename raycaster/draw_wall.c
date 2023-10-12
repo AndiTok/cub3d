@@ -2,6 +2,7 @@
 
 void	draw_wall(t_game *game, t_raycast *ray, int r, int color)
 {
+    (void) color;
 	// //will overlap minimap
 	// ray->line_h = (game->map.n_row * game->map.n_col) * 1280 / ray->dist_t;
 	// if (ray->line_h > 1280)
