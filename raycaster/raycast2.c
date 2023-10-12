@@ -204,7 +204,7 @@ void	raycast(t_game *game, t_raycast *ray)
 			ray->ry = ray->hy;
 			ray->dist_t = ray->dist_h; //3d
 		}
-		draw_line(game, ray->rx, ray->ry, 0x00FFFF); //blue
+		// draw_line(game, ray->rx, ray->ry, 0x00FFFF); //blue
 
 		//3D*********************************
 		ray->fish = ray->p_angle - ray->ra;

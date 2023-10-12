@@ -39,6 +39,8 @@
 #define ESC 53
 #define LEFT 123
 #define RIGHT 124
+#define L 37 // toggle map
+#define M 46 // reserve form ouse
 
 // //keycode x11
 // #define W 119
@@ -48,6 +50,8 @@
 // #define ESC 65307
 // #define LEFT 0xff51
 // #define RIGHT 0xff53
+// #define L 83
+// #define M 66
 
 // typedef struct s_raycast
 // {
@@ -155,11 +159,11 @@ typedef struct s_file
 
 typedef struct s_img //
 {
-    void	*mlx_img;
-    char	*addr;
-    int		bpp; /* bits per pixel */
-    int		line_len;
-    int		endian;
+	void	*mlx_img;
+	char	*addr;
+	int		bpp; /* bits per pixel */
+	int		line_len;
+	int		endian;
 }	t_img;
 
 typedef struct s_game
@@ -174,6 +178,7 @@ typedef struct s_game
 	t_element 	element;
 	t_raycast	ray;
 	t_img 		img;
+	int			toggle_m;
 }t_game;
 
 char	*ft_itoa(int n);

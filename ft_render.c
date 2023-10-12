@@ -19,11 +19,15 @@ int	ft_render(t_game *game)
 
 	// mlx_clear_window(game->mlx, game->win);
 	// mlx_put_image_to_window(game->mlx,game->win,game->img.mlx_img,0,0); //
-	draw_2dmap(game);
-	draw_player(game);
-	draw_line(game, game->player.x + game->ray.dir_x,  game->player.y + game->ray.dir_y, 0xFF00FF);
-	// printf("P: dir_x: %f, dir_y %f\n", game->ray.dir_x, game->ray.dir_y);
 	raycast(game,&game->ray);
+	if (game->toggle_m == 1)
+	{
+		draw_2dmap(game);
+		draw_player(game);
+		draw_line(game, game->player.x + game->ray.dir_x,  game->player.y + game->ray.dir_y, 0xFF00FF);
+		// draw_line(game, game->ray.rx, game->ray.ry, 0x00FFFF);
+	}
+	// printf("P: dir_x: %f, dir_y %f\n", game->ray.dir_x, game->ray.dir_y);
 		// draw_line(game, 0 , 0 , 0xFFFFFF); //test
 	// draw_rect(game); // test  ft above
 	mlx_put_image_to_window(game->mlx,game->win,game->img.mlx_img,0,0); //

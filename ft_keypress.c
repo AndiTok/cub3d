@@ -16,6 +16,15 @@
 //replaced ray->ra with ray->angle, otherwise cant casy multiple ray
 int	keypress(int keycode, t_game *game)
 {
+	if (keycode == L)
+	{
+		// if (game->toggle_m == 1)
+		// 	game->toggle_m = 0;
+		// else
+		// 	game->toggle_m = 1;
+		game->toggle_m = (game->toggle_m + 1) % 2;
+		
+	}
 	if (keycode == W)
 	{
 		game->player.x += cos(game->ray.p_angle) * 4;

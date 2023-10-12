@@ -26,4 +26,5 @@ void	ft_initialize_vars(t_game *game)
 	game->file.EA = 0;
 	game->map.n_row = 0;
 	game->map.n_col = 0;
+    game->toggle_m = 0;
 }
