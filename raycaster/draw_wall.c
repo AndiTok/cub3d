@@ -20,12 +20,13 @@ void	draw_wall(t_game *game, t_raycast *ray, int r, int color)
 		ray->line_h = 320;
 	ray->line_o = 160 - ray->line_h / 2;
 		// y: vertical wall line pixel length; x: vertical wall line thickness
-		// start x: mlx_pixel_put 3rd param 
-	// for (double y = 0; y < ray->line_h + 400.00; y++)
-	for (double y = 0; y < ray->line_h + 350.00; y++)
-		for (double x = 0; x < 15; x++)
+		// start x: mlx_pixel_put 3rd param
+	// for (double y = 0; y < ray->line_h + 350.00; y++)
+	for (double y = 0; y < ray->line_h + 200.00; y++)
+		for (double x = 0; x < 21; x++)
 			// mlx_pixel_put(game->mlx, game->win, r * 21 + x, (int)(y), 0x0FFF00);
-			img_pix_put(&game->img, r * 16 + x + 300, (int)(y + ray->line_o), 0x0FFF00);
+			img_pix_put(&game->img, r * 21 + x, (int)(y + ray->line_o + 100), 0x0FFF00);
+			// img_pix_put(&game->img, r * 16 + x + 300, (int)(y + ray->line_o), 0x0FFF00);
 			// mlx_pixel_put(game->mlx, game->win, r * 16 + x + 300, (int)(y + ray->line_o), 0x0FFF00);
 	//~~~~********************************~~~~
 
