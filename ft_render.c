@@ -46,8 +46,8 @@ int	ft_render(t_game *game)
 	{
 		draw_2dmap(game);
 		draw_player(game);
-		draw_line(game, game->player.x + cos(game->ray.p_angle - 30 * DEG) * 25,  game->player.y + sin(game->ray.p_angle - 30 * DEG) * 25, 0xFF00FF);
-		draw_line(game, game->player.x + cos(game->ray.p_angle + 30 * DEG) * 25,  game->player.y + sin(game->ray.p_angle + 30 * DEG) * 25, 0xFF00FF);
+		draw_line(game, game->player.x + cos(game->ray.p_angle - 30 * DEG) * 25,  game->player.y + sin(game->ray.p_angle - 30 * DEG) * 25, 0xFFFF00);
+		draw_line(game, game->player.x + cos(game->ray.p_angle + 30 * DEG) * 25,  game->player.y + sin(game->ray.p_angle + 30 * DEG) * 25, 0xFFFF00);
 		// draw_line(game, game->player.x + game->ray.dir_x,  game->player.y + game->ray.dir_y, 0xFF00FF);
 		// draw_line(game, game->ray.rx, game->ray.ry, 0x00FFFF);
 	}

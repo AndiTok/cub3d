@@ -175,7 +175,7 @@ void	raycast(t_game *game, t_raycast *ray)
 	ray->ra = angle_reset(ray->ra);
 	ray->px = game->player.x;
 	ray->py = game->player.y;
-	while (r < 60) // (r < 1)
+	while (r < 1260)
 	{
 		ray->dof = 0;
 		ray->hx = ray->px;
@@ -213,7 +213,7 @@ void	raycast(t_game *game, t_raycast *ray)
 		draw_wall(game, ray, r, 0x0FFF00);
 		//***********************************
 		// draw_line(game, ray->rx, ray->ry, 0x00FFFF); //blue
-		ray->ra += DEG; //multi-ray
+		ray->ra += (DEG / 21); //DEG; //multi-ray
 		ray->ra = angle_reset(ray->ra);
 		// printf("r: %d\n", r);
 		r++;
