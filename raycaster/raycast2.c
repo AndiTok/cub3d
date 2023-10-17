@@ -169,6 +169,7 @@ void	raycast(t_game *game, t_raycast *ray)
 	double	atan;
 	double	ntan;
 	int		r;
+	int		color;
 
 	r = 0;
 	ray->ra = ray->p_angle - (30.0 * DEG); //multi-ray
@@ -196,6 +197,10 @@ void	raycast(t_game *game, t_raycast *ray)
 			ray->rx = ray->vx;
 			ray->ry = ray->vy;
 			ray->dist_t = ray->dist_v; //3d
+			if (ray->ra > M_PI_2 && ray->ra < PI3) // look left W wall
+				color = 0xFF0000;
+			else // look right E wall
+				color = 0xF7F731;
 		}
 		if (ray->dist_h < ray->dist_v)
 		{
@@ -203,6 +208,10 @@ void	raycast(t_game *game, t_raycast *ray)
 			ray->rx = ray->hx;
 			ray->ry = ray->hy;
 			ray->dist_t = ray->dist_h; //3d
+			if (ray->ra > M_PI) // look up S wall
+				color = 0x00FF00;
+			else // look down N wall
+				color = 0x0000FF;
 		}
 		// draw_line(game, ray->rx, ray->ry, 0x00FFFF); //blue
 
@@ -210,7 +219,8 @@ void	raycast(t_game *game, t_raycast *ray)
 		ray->fish = ray->p_angle - ray->ra;
 		ray->fish = angle_reset(ray->fish);
 		ray->dist_t *= cos(ray->fish);
-		draw_wall(game, ray, r, 0x0FFF00);
+		// draw_wall(game, ray, r, 0x0FFF00);
+		draw_wall(game, ray, r, color);
 		//***********************************
 		// draw_line(game, ray->rx, ray->ry, 0x00FFFF); //blue
 		ray->ra += (DEG / 21); //DEG; //multi-ray

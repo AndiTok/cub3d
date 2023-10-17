@@ -84,8 +84,8 @@ void	draw_cell(t_game *game, int x, int y, int color)
 
 	x_start = x * SCALE;
 	y_start = y * SCALE;
-	x_end = (x + 1) * SCALE - 1;
-	y_end = (y + 1) * SCALE - 1;
+	x_end = (x + 1) * SCALE;// - 1;
+	y_end = (y + 1) * SCALE;// - 1;
 
 	while (y_start < y_end)
 	{
@@ -98,6 +98,23 @@ void	draw_cell(t_game *game, int x, int y, int color)
 		}
 		y_start++;
 	}
+
+	// // checkerd black lines
+	// tmp = x * SCALE;
+	// while (tmp < x_end)
+	// 	img_pix_put(&game->img, tmp++, y * SCALE, 0x000000);
+	
+	// y_start = y * SCALE;
+	// while (y_start < y_end)
+	// {
+	// 	img_pix_put(&game->img, x * SCALE, y_start, 0x000000);
+	// 	img_pix_put(&game->img, (x + 1) * SCALE, y_start, 0x000000);
+	// 	y_start++;
+	// }
+	// tmp = x * SCALE;
+	// while (tmp < x_end)
+	// 	img_pix_put(&game->img, tmp++, y_start, 0x000000);
+		
 }
 
 void	draw_2dmap(t_game *game)
