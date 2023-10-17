@@ -26,13 +26,13 @@ void	draw_wall(t_game *game, t_raycast *ray, int r, int color)
 	double y;
 		// y: vertical wall line pixel length;
 	y = 0;
-	ray->line_h = (game->map.n_row * game->map.n_col) * SCALE / ray->dist_t;
-	if (ray->line_h > 320)
-		ray->line_h = 320;
-	ray->line_o = 160 - ray->line_h / 2;
+	ray->line_h = (game->map.n_row * game->map.n_col) * SCALE / (ray->dist_t / 2);
+	if (ray->line_h > 520)
+		ray->line_h = 520;
+	ray->line_o = 260 - ray->line_h / 2;
 	while (y < ray->line_h + 200.00)
 	{
-		img_pix_put(&game->img, r, (int)(y + ray->line_o + 100), color);
+		img_pix_put(&game->img, r, (int)(y + ray->line_o), color);
 		y++;
 	}
 }
