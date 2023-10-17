@@ -99,21 +99,21 @@ void	draw_cell(t_game *game, int x, int y, int color)
 		y_start++;
 	}
 
-	// // checkerd black lines
-	// tmp = x * SCALE;
-	// while (tmp < x_end)
-	// 	img_pix_put(&game->img, tmp++, y * SCALE, 0x000000);
+	// checkerd black lines
+	tmp = x * SCALE;
+	while (tmp < x_end)
+		img_pix_put(&game->img, tmp++, y * SCALE, 0x000000);
 	
-	// y_start = y * SCALE;
-	// while (y_start < y_end)
-	// {
-	// 	img_pix_put(&game->img, x * SCALE, y_start, 0x000000);
-	// 	img_pix_put(&game->img, (x + 1) * SCALE, y_start, 0x000000);
-	// 	y_start++;
-	// }
-	// tmp = x * SCALE;
-	// while (tmp < x_end)
-	// 	img_pix_put(&game->img, tmp++, y_start, 0x000000);
+	y_start = y * SCALE;
+	while (y_start < y_end)
+	{
+		img_pix_put(&game->img, x * SCALE, y_start, 0x000000);
+		img_pix_put(&game->img, (x + 1) * SCALE, y_start, 0x000000);
+		y_start++;
+	}
+	tmp = x * SCALE;
+	while (tmp < x_end)
+		img_pix_put(&game->img, tmp++, y_start, 0x000000);
 		
 }
 
