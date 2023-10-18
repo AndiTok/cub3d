@@ -36,3 +36,30 @@ void	draw_wall(t_game *game, t_raycast *ray, int r, int color)
 		y++;
 	}
 }
+
+void	draw_texture(t_game *game, t_raycast *ray, int r, int color)
+{
+	char *dst;
+	double y;
+		// y: vertical wall line pixel length;
+	int ty;
+	int tx;
+	int pix;
+	(void) color;
+	ty = 0;
+	tx = 0;
+	y = 0;
+	ray->line_h = (game->map.n_row * game->map.n_col) * SCALE / (ray->dist_t / 2);
+	if (ray->line_h > 520)
+		ray->line_h = 520;
+	ray->line_o = 260 - ray->line_h / 2;
+	while (y < ray->line_h + 200.00)
+	{
+		dst = game->map.north.addr + (ty * (game->map.north.line_len) + tx * (game->map.north.bpp / 8));
+		pix = *(unsigned int*)dst;
+		img_pix_put(&game->img, r, (int)(y + ray->line_o),pix);
+		ty = (ty + 1) % 16;
+		tx = r % 16;
+		y++;
+	}
+}

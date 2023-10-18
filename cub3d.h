@@ -32,26 +32,26 @@
 #define DEG M_PI/180.00
 
 // keycode mac
-#define W 13
-#define A 0
-#define S 1
-#define D 2
-#define ESC 53
-#define LEFT 123
-#define RIGHT 124
-#define L 37 // toggle map
-#define M 46 // reserve form ouse
+// #define W 13
+// #define A 0
+// #define S 1
+// #define D 2
+// #define ESC 53
+// #define LEFT 123
+// #define RIGHT 124
+// #define L 37 // toggle map
+// #define M 46 // reserve form ouse
 
 // //keycode x11
-// #define W 119
-// #define A 97
-// #define S 115
-// #define D 100
-// #define ESC 65307
-// #define LEFT 0xff51
-// #define RIGHT 0xff53
-// #define L 83
-// #define M 66
+#define W 119
+#define A 97
+#define S 115
+#define D 100
+#define ESC 65307
+#define LEFT 0xff51
+#define RIGHT 0xff53
+#define L 108
+#define M 109
 
 typedef struct s_raycast
 {
@@ -198,6 +198,7 @@ void	ray_init(t_raycast *ray, t_player *player);
 void	get_start_pa(t_raycast *ray, t_player *player);
 void	raycast(t_game *game, t_raycast *ray);
 void	draw_wall(t_game *game, t_raycast *ray, int r, int color);
+void	draw_texture(t_game *game, t_raycast *ray, int r, int color);
 
 //GNL + utils
 # ifndef BUFFER_SIZE

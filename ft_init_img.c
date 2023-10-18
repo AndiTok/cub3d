@@ -45,3 +45,17 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	// 	i -= 8;
 	// }
 }
+
+// int	get_xpm_color(t_img *img)
+// {
+// 	char *dst;
+// 	int x;
+// 	int y;
+
+// 	while ( x < )
+// 	{
+// 		while ( y < )
+// 		{
+// 			dst = img->addr + (y * (img->line_len) + x * (img->bpp / 8));
+// 		}
+// }
