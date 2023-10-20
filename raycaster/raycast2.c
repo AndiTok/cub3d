@@ -67,7 +67,7 @@ void	ray_horiz(t_map *map, t_raycast *ray, float atan)
 	}
 	if (ray->ra > M_PI) //looking up
 	{
-		ray->ry = (((int)ray->py / SCALE)*SCALE) - 0.0001;
+		ray->ry = (((int)ray->py / SCALE)*SCALE) - 0.0000001;
 		ray->rx = (ray->py - ray->ry) * atan + ray->px;
 		ray->yo = -SCALE;
 		ray->xo = -1 * ray->yo * atan;
@@ -110,7 +110,7 @@ void	ray_vert(t_map *map, t_raycast *ray, float ntan)
 {
 	if (ray->ra > M_PI_2 && ray->ra < PI3) //looking left
 	{
-		ray->rx = (((int)ray->px / SCALE)*SCALE) - 0.0001; //B
+		ray->rx = (((int)ray->px / SCALE)*SCALE) - 0.0000001; //B
 		ray->ry = (ray->px - ray->rx) * ntan + ray->py;
 		ray->xo = -SCALE;
 		ray->yo = -1 * ray->xo * ntan;
@@ -221,18 +221,25 @@ void	raycast(t_game *game, t_raycast *ray)
 				color = 0x0000FF;
 				// draw_wall(game, ray, r, 0x0000FF);
 		}
-		// draw_line(game, ray->rx, ray->ry, 0x00FFFF); //blue
+		draw_line(game, ray->rx, ray->ry, 0x00FFFF); //blue
 
 		//3D*********************************
 		ray->fish = ray->p_angle - ray->ra;
 		ray->fish = angle_reset(ray->fish);
 		ray->dist_t *= cos(ray->fish);
 		// draw_wall(game, ray, r, 0x0FFF00);
-		// draw_wall(game, ray, r, color);
-		draw_texture(game, ray, r, color);
+			draw_wall(game, ray, r, color);
+		// int p = 0;
+		// int q = r * 21;
+		// while (p < 21)
+		// {
+		// 	draw_wall(game, ray, p + q, color);
+		// 	p++;
+		// }
+		// draw_texture(game, ray, r, color);
 		//***********************************
 		// draw_line(game, ray->rx, ray->ry, 0x00FFFF); //blue
-		ray->ra += (DEG / 21); //DEG; //multi-ray
+		ray->ra += (DEG/21); //DEG; //multi-ray
 		ray->ra = angle_reset(ray->ra);
 		// printf("r: %d\n", r);
 		r++;

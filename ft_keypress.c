@@ -27,13 +27,13 @@ int	keypress(int keycode, t_game *game)
 	}
 	if (keycode == W)
 	{
-		game->player.x += cos(game->ray.p_angle) * 4;
-		game->player.y += sin(game->ray.p_angle) * 4;
+		game->player.x += cos(game->ray.p_angle) * 2;
+		game->player.y += sin(game->ray.p_angle) * 2;
 	}
 	if (keycode == S)
 	{
-		game->player.x -= cos(game->ray.p_angle) * 4;
-		game->player.y -= sin(game->ray.p_angle) * 4;
+		game->player.x -= cos(game->ray.p_angle) * 2;
+		game->player.y -= sin(game->ray.p_angle) * 2;
 	}
 	//move left right config
 	if (keycode == A)
