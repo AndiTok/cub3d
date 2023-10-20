@@ -236,7 +236,7 @@ void	raycast(t_game *game, t_raycast *ray)
 		// 	draw_wall(game, ray, p + q, color);
 		// 	p++;
 		// }
-		draw_texture(game, ray, r, color);
+			draw_texture(game, ray, r, color);
 		//***********************************
 		// draw_line(game, ray->rx, ray->ry, 0x00FFFF); //blue
 		ray->ra += (DEG/21); //DEG; //multi-ray
