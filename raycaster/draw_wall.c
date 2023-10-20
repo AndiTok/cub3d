@@ -70,19 +70,37 @@ void	draw_texture(t_game *game, t_raycast *ray, int r, int color)
 	int pix;
 	(void) color;
 	ty = 0;
-	tx = 0;
+	// tx = 0;
 	y = 0;
-	ray->line_h = (game->map.n_row * game->map.n_col) * SCALE / (ray->dist_t / 2);
-	if (ray->line_h > 520)
-		ray->line_h = 520;
-	ray->line_o = 260 - ray->line_h / 2;
-	while (y < ray->line_h + 200.00)
+
+	y = 0;
+	ray->line_h = (4 * 1440) / (ray->dist_t);
+	// ray->line_h = ((game->map.n_row * game->map.n_col) * 720) / (ray->dist_t * sqrt(game->map.n_row * game->map.n_col));
+	// ray->line_h = ((game->map.n_row * game->map.n_col) * 720) / (ray->dist_t * (sqrt(pow(game->map.n_row,2) + pow(game->map.n_col,2))));
+	// ray->dist_t * value
+	// bigger value = futhur render distance, wall wider
+	// smaller vlaue = closer distance, wall thiner
+	// value = longest side of map??
+	if (ray->line_h > 720)
+		ray->line_h = 720;
+	ray->line_o = 360 - ray->line_h/2;
+	int steps = (int)ray->line_h / 16;
+	tx = (int)ray->rx % 16;
+	while (y < ray->line_h)// + 200.00)
 	{
+		double x = 0;
+		int i = 0;
 		dst = game->map.north.addr + (ty * (game->map.north.line_len) + tx * (game->map.north.bpp / 8));
 		pix = *(unsigned int*)dst;
-		img_pix_put(&game->img, r, (int)(y + ray->line_o),pix);
-		ty = (ty + 1) % 16;
-		tx = r % 16;
-		y++;
+		// for (double x = 0; x < 21; x++)
+		while (i < steps)
+		{
+			img_pix_put(&game->img, r, (int)(y + ray->line_o), pix);
+			i++;
+			y++;
+			x++;
+		}
+		// ty = (ty + 1) % 16;
+		ty++;
 	}
 }
