@@ -199,6 +199,7 @@ void	get_start_pa(t_raycast *ray, t_player *player);
 void	raycast(t_game *game, t_raycast *ray);
 void	draw_wall(t_game *game, t_raycast *ray, int r, int color);
 void	draw_texture(t_game *game, t_raycast *ray, int r, int color);
+void	draw_xpm(t_game *game, t_raycast *ray, int r, int t);
 
 //GNL + utils
 # ifndef BUFFER_SIZE

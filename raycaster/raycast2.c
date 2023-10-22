@@ -170,6 +170,7 @@ void	raycast(t_game *game, t_raycast *ray)
 	double	ntan;
 	int		r;
 	int		color;
+	int	t;
 
 	r = 0;
 	ray->ra = ray->p_angle - (30.0 * DEG); //multi-ray
@@ -201,11 +202,13 @@ void	raycast(t_game *game, t_raycast *ray)
 			ray->rx = ray->vx;
 			ray->ry = ray->vy;
 			ray->dist_t = ray->dist_v; //3d
-			if (ray->ra > M_PI_2 && ray->ra < PI3) // look left E wall
-				color = 0xFF0000;
+			if (ray->ra > M_PI_2 && ray->ra < PI3) // look left mm E wall
+				// color = 0xFF0000;
+				t = 'E';
 				// draw_wall(game, ray, r, 0xFF0000);
-			else // look right W wall
-				color = 0xF7F731;
+			if (ray->ra < M_PI_2 || ray->ra > PI3)  // look right mm W wall
+				// color = 0xF7F731;
+				t = 'W';
 				// draw_wall(game, ray, r, 0xF7F731);
 		}
 		if (ray->dist_h < ray->dist_v)
@@ -214,11 +217,13 @@ void	raycast(t_game *game, t_raycast *ray)
 			ray->rx = ray->hx;
 			ray->ry = ray->hy;
 			ray->dist_t = ray->dist_h; //3d
-			if (ray->ra > M_PI) // look up S wall
-				color = 0x00FF00;
+			if (ray->ra > M_PI) // look up mm N wall
+				// color = 0x00FF00;
+				t = 'N';
 				// draw_wall(game, ray, r, 0x00FF00);
-			else // look down N wall
-				color = 0x0000FF;
+			if (ray->ra < M_PI) // look down mm S wall
+				// color = 0x0000FF;
+				t = 'S';
 				// draw_wall(game, ray, r, 0x0000FF);
 		}
 		draw_line(game, ray->rx, ray->ry, 0x00FFFF); //blue
@@ -236,7 +241,8 @@ void	raycast(t_game *game, t_raycast *ray)
 		// 	draw_wall(game, ray, p + q, color);
 		// 	p++;
 		// }
-			draw_texture(game, ray, r, color);
+			// draw_texture(game, ray, r, color);
+			draw_xpm(game, ray, r, t);
 		//***********************************
 		// draw_line(game, ray->rx, ray->ry, 0x00FFFF); //blue
 		ray->ra += (DEG/21); //DEG; //multi-ray

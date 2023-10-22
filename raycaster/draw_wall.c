@@ -100,3 +100,60 @@ void	draw_texture(t_game *game, t_raycast *ray, int r, int color)
 		y++;
 	}
 }
+
+char* get_pix(t_map *map, double ty, int tx, int t)
+{
+	char *dst;
+	if(t == 'N')
+		dst = map->north.addr + ((int)ty * (map->north.line_len) + tx * (map->north.bpp / 8));
+	if(t == 'S')
+		dst = map->south.addr + ((int)ty * (map->south.line_len) + tx * (map->south.bpp / 8));
+	if(t == 'E')
+		dst = map->east.addr + ((int)ty * (map->east.line_len) + tx * (map->east.bpp / 8));
+	if(t == 'W')
+		dst = map->west.addr + ((int)ty * (map->west.line_len) + tx * (map->west.bpp / 8));
+	return (dst);
+}
+
+void	draw_xpm(t_game *game, t_raycast *ray, int r, int t)
+{
+	char *dst;
+	double y;
+	double ty;
+	int tx;
+	int pix;
+
+	y = 0;
+	ray->line_h = (4 * 1440) / (ray->dist_t);
+	double steps = 16.0 / ray->line_h;
+	double line_h_off = 0;
+	if (ray->line_h > 720)
+	{
+		line_h_off = (ray->line_h-720)/2.0;
+		ray->line_h = 720;
+	}
+	ty = line_h_off * steps;
+	ray->line_o = 360 - ray->line_h/2;
+
+	if (t == 'N')
+		tx = (int)ray->rx % 16; //
+	if (t == 'S')
+		tx = 15 - (int)ray->rx % 16; //
+	if (t == 'W')
+		tx = (int)ray->ry % 16; //
+	if (t == 'E')
+		tx = 15 -(int)ray->ry % 16; //
+	
+	while (y < ray->line_h)
+	{
+		dst = get_pix(&game->map,ty,tx,t);
+		pix = *(unsigned int*)dst;
+		// dst = addr + ((int)ty * (line_len) + tx * bpp / 8);
+		// pix = *(unsigned int*)dst;
+
+			img_pix_put(&game->img, r, (int)(y + ray->line_o), pix);
+
+		ty += steps;
+		y++;
+	}
+}
