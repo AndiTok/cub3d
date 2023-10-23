@@ -177,10 +177,10 @@ void	raycast(t_game *game, t_raycast *ray)
 	ray->ra = angle_reset(ray->ra);
 	ray->px = game->player.x;
 	ray->py = game->player.y;
-	draw_2dmap(game);
-	draw_player(game);
-	draw_line(game, game->player.x + cos(game->ray.p_angle - 30 * DEG) * 25,  game->player.y + sin(game->ray.p_angle - 30 * DEG) * 25, 0xFFFF00);
-	draw_line(game, game->player.x + cos(game->ray.p_angle + 30 * DEG) * 25,  game->player.y + sin(game->ray.p_angle + 30 * DEG) * 25, 0xFFFF00);
+	// draw_2dmap(game);
+	// draw_player(game);
+	// draw_line(game, game->player.x + cos(game->ray.p_angle - 30 * DEG) * 25,  game->player.y + sin(game->ray.p_angle - 30 * DEG) * 25, 0xFFFF00);
+	// draw_line(game, game->player.x + cos(game->ray.p_angle + 30 * DEG) * 25,  game->player.y + sin(game->ray.p_angle + 30 * DEG) * 25, 0xFFFF00);
 	while (r < 1260)
 	{
 		ray->dof = 0;
@@ -226,7 +226,7 @@ void	raycast(t_game *game, t_raycast *ray)
 				t = 'S';
 				// draw_wall(game, ray, r, 0x0000FF);
 		}
-		draw_line(game, ray->rx, ray->ry, 0x00FFFF); //blue
+		// draw_line(game, ray->rx, ray->ry, 0x00FFFF); //blue
 
 		//3D*********************************
 		ray->fish = ray->p_angle - ray->ra;

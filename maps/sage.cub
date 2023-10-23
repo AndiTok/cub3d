@@ -1,9 +1,9 @@
-NO ./texture/N.xpm
+NO  ./texture/N.xpm
 SO ./texture/S.xpm
 WE ./texture/W.xpm
 EA ./texture/E.xpm
 
-F 94,74,74
+F  94,74,74
 C 105,29,122
 
 

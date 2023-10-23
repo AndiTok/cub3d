@@ -33,12 +33,13 @@ int main(int c, char **v)
 	ft_check_map_wall(&game);
 	// ft_check_map_hole(&game);
 	ft_check_store_player(&game);
-		printf("n_row: %d\nn_col: %d\n", game.map.n_row, game.map.n_col);
+		// printf("n_row: %d\nn_col: %d\n", game.map.n_row, game.map.n_col);
 	ft_init_mlx(&game);
 	init_texture(&game, &game.map, &game.element);
 	ft_init_img(&game); //
 	ray_init(&game.ray, &game.player);
 	// mlx_loop_hook(game.mlx,&ft_render,&game);
+	ft_render(&game);
 	ft_keypress(&game);
 	mlx_loop(game.mlx);
 }

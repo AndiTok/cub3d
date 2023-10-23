@@ -21,11 +21,13 @@ char	*check_texture_path_extention(char *str)
 	if (!ft_strnstr ((str + i), ".xpm", 4))
 		ft_exit_error("ERROR check texture .xpm extention\n");
 	i = 0;
-	j = 5;
+	j = 2; // start after identifier
+	while (str[j] == ' ')
+		j++;
 	while (str[j] != 0x00)
 	{
-		if (str[j] == ' ')
-			ft_exit_error("ERROR file path has sapce\n");
+		// if (str[j] == ' ')
+		// 	ft_exit_error("ERROR file path has sapce\n"); // handles by init_texture
 		str[i] = str[j];
 		i++;
 		j++;

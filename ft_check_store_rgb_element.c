@@ -34,7 +34,11 @@ int	convert_check_store_rgb(char *str)
 	int	b;
 	int	i;
 			// note if i = 2, i++ will +2 
-	i = 1; // start at 1
+	// i = 1; // start at 1
+	i = 0;
+	while (str[i + 1] < '0' || str[i + 1] > '9') // added +1 becase ++ next
+		i++;
+	// printf("%d\n",i);
 	r = 0;
 	while (str[++i] != ',') //++i first to start at 2 where numbers are at 
 		r = r * 10 + (str[i] - '0');
@@ -62,7 +66,10 @@ void	check_rgbformat(char *str)
 	j = ft_strlen(str) - 1;
 	if (str[j] < '0' || str[j] > '9') // check for 0-9 at end
 		ft_exit_error("Error\nwrong RGB format at END, must only be 0-9\n");
-	i = 2;
+	i = 0;
+	while (str[i] < '0' || str[i] > '9')
+		i++;
+	// printf("%d\n",i);
 	if (str[i] < '0' || str[i] > '9') // check for 0-9 at beginning
 		ft_exit_error("Error\nwrong RGB format at START, must only be 0-9\n");
 	i = 3;

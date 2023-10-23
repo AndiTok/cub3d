@@ -69,17 +69,17 @@ void	check_other_element(t_game *game)
 	i = 0;
 	while (i < game->file.mid)
 	{
-		if (ft_strnstr(game->file.xyfile[i], "NO ./", 5) && 
-			game->file.xyfile[i][5] != ' ')
+		if (ft_strnstr(game->file.xyfile[i], "NO ", 3)) //&& 
+			// game->file.xyfile[i][5] != ' ')
 			game->file.NO++;
-		else if (ft_strnstr(game->file.xyfile[i], "SO ./", 5) && 
-			game->file.xyfile[i][5] != ' ')
+		else if (ft_strnstr(game->file.xyfile[i], "SO ", 3)) //&& 
+			// game->file.xyfile[i][5] != ' ')
 			game->file.SO++;
-		else if (ft_strnstr(game->file.xyfile[i], "WE ./", 5) && 
-			game->file.xyfile[i][5] != ' ')
+		else if (ft_strnstr(game->file.xyfile[i], "WE ", 3)) //&& 
+			// game->file.xyfile[i][5] != ' ')
 			game->file.WE++;
-		else if (ft_strnstr(game->file.xyfile[i], "EA ./", 5) && 
-			game->file.xyfile[i][5] != ' ')
+		else if (ft_strnstr(game->file.xyfile[i], "EA ", 3)) //&& 
+			// game->file.xyfile[i][5] != ' ')
 			game->file.EA++;
 		i++;
 	}
@@ -97,11 +97,11 @@ void	check_fc_element(t_game *game)
 	i = 0;
 	while (i < game->file.mid)
 	{
-		if (!ft_strncmp(game->file.xyfile[i], "F ") && 
-			game->file.xyfile[i][2] != ' ')
+		if (!ft_strncmp(game->file.xyfile[i], "F ")) //&& 
+			// game->file.xyfile[i][2] != ' ')
 			game->file.F++;
-		else if (!ft_strncmp(game->file.xyfile[i], "C ") && 
-			game->file.xyfile[i][2] != ' ')
+		else if (!ft_strncmp(game->file.xyfile[i], "C ")) //&& 
+			// game->file.xyfile[i][2] != ' ')
 			game->file.C++;
 		i++;
 	}
@@ -220,4 +220,5 @@ void	ft_split_store_file_element(t_game *game)
 	//check_duplicate_element(game); // handeled in check
 	store_element(game);
 	//store_map(game);
+	// printf("%s\n",game->element.F);
 }
