@@ -27,24 +27,60 @@ int	keypress(int keycode, t_game *game)
 	}
 	if (keycode == W)
 	{
-		game->player.x += cos(game->ray.p_angle) * 2;
+		game->player.x += cos(game->ray.p_angle) * 2; // move 2 pixles
 		game->player.y += sin(game->ray.p_angle) * 2;
+		int tmpx = game->player.x + cos(game->ray.p_angle) * 4; // check 4 pixles ahead
+		int tmpy = game->player.y + sin(game->ray.p_angle) * 4; // modify value to manipulate distance
+		// printf("x/j - %f, y/i %f\n",game->player.x,game->player.y);
+		// printf("%dmx,%dmy\n",(int)game->player.x / SCALE,(int)game->player.y / SCALE);
+		// printf("%c\n", game->map.xymap[(int)(game->player.y / SCALE)][(int)(game->player.x / SCALE)]);
+		// if (game->map.xymap[((int)game->player.y / SCALE)][((int)game->player.x / SCALE)] == '1')
+		if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '1')
+		{
+			// printf("test\n");
+			game->player.x -= cos(game->ray.p_angle) * 2;// reverse the movement
+			game->player.y -= sin(game->ray.p_angle) * 2;// if wall head
+		}
 	}
 	if (keycode == S)
 	{
 		game->player.x -= cos(game->ray.p_angle) * 2;
 		game->player.y -= sin(game->ray.p_angle) * 2;
+		int tmpx = game->player.x - cos(game->ray.p_angle) * 4;
+		int tmpy = game->player.y - sin(game->ray.p_angle) * 4;
+		// printf("x/j - %f, y/i %f\n",game->player.x,game->player.y);
+		if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '1')
+		{
+			game->player.x += cos(game->ray.p_angle) * 2;
+			game->player.y += sin(game->ray.p_angle) * 2;
+		}
 	}
 	//move left right config
 	if (keycode == A)
 	{
 		game->player.x += sin(game->ray.p_angle) * 2;
 		game->player.y -= cos(game->ray.p_angle) * 2;
+		int tmpx = game->player.x + sin(game->ray.p_angle) * 4;
+		int tmpy = game->player.y - cos(game->ray.p_angle) * 4;
+		// printf("x/j - %f, y/i %f\n",game->player.x,game->player.y);
+		if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '1')
+		{
+			game->player.x -= sin(game->ray.p_angle) * 2;
+			game->player.y += cos(game->ray.p_angle) * 2;
+		}
 	}
 	if (keycode == D)
 	{
 		game->player.x -= sin(game->ray.p_angle) * 2;
 		game->player.y += cos(game->ray.p_angle) * 2;
+		int tmpx = game->player.x - sin(game->ray.p_angle) * 4;
+		int tmpy = game->player.y + cos(game->ray.p_angle) * 4;
+		// printf("x/j - %f, y/i %f\n",game->player.x,game->player.y);
+		if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '1')
+		{
+			game->player.x += sin(game->ray.p_angle) * 2;
+			game->player.y -= cos(game->ray.p_angle) * 2;
+		}
 	}
 	if (keycode == LEFT)
 		rotation(LEFT, *game, &game->ray);

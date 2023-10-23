@@ -38,8 +38,8 @@ void	get_player_pos(t_game *game)
 			if (game->map.xymap[i][j] == 'N' || game->map.xymap[i][j] == 'S' ||
 				game->map.xymap[i][j] == 'E' || game->map.xymap[i][j] == 'W')
 			{
-				game->player.x = (double)j * SCALE;
-				game->player.y = (double)i * SCALE;
+				game->player.x = (double)j * SCALE - 8; // -8 to center
+				game->player.y = (double)i * SCALE - 8; // -8 to center
 			}
 			j++;
 		}
