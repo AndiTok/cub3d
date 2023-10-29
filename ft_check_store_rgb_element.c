@@ -23,7 +23,6 @@ int	check_rgb_value(int r, int g, int b)
 	if (b < 0 || b > 255)
 		ft_exit_error("Error\nRGB -,-,B not within 0 & 255 \n");
 	i = (r << 16) | (g << 8) | b; // formula
-		//printf("%d\n", i);
 	return (i);
 }
 

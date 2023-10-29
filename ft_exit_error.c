@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-//static to make it run exclusively on this file
+/*local ft_putstr*/
 void	ft_putstr(char *s)
 {
 	int	i;
@@ -32,4 +32,3 @@ void	ft_exit_error(char *str)
 	ft_putstr(str);
 	exit(1);
 }
-//exit(1) stdlib.h

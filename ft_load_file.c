@@ -12,6 +12,8 @@
 
 #include "cub3d.h"
 
+/*read .cub file, store content in one string,
+and splitted versionin 2D char array*/
 void	ft_load_file(t_game *game, char **v)
 {
 	static int	fd;
@@ -27,30 +29,11 @@ void	ft_load_file(t_game *game, char **v)
 		tmp = get_next_line(fd);
 		if (tmp == 0x00)
 			break ;
-		// if(tmp[1] != '\n') // parse in file with no blank row
-		// {
-		// 	file = ft_joinfree(file, tmp);
-		// 	game->file.lines += 1;
-		// }
 		file = ft_joinfree(file, tmp);
-		free(tmp); // need to free
+		free(tmp);
 		game->file.lines += 1;
 	}
 	close(fd);
-	game->file.file = file; //raw .cub file (no split)
-	game->file.xyfile = ft_split(file, '\n'); //split .cub file
-		//printf("%d\n",game->file.lines);
-
-	// int i = 0;
-	// while (game->file.file[i] != 0x00)
-	// {
-	// 	printf("%c",game->file.file[i]);
-	// 	i++;
-	// }
-	// int i = 0;
-	// while (game->file.xyfile[i] != 0x00)
-	// {
-	// 	printf("%s\n",game->file.xyfile[i]);
-	// 	i++;
-	// }
+	game->file.file = file;
+	game->file.xyfile = ft_split(file, '\n');
 }

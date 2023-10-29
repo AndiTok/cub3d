@@ -62,6 +62,7 @@
 // 	//& "next" to it is not space
 // }
 
+/*check texture specification on .cub*/
 void	check_other_element(t_game *game)
 {
 	int	i;
@@ -69,27 +70,22 @@ void	check_other_element(t_game *game)
 	i = 0;
 	while (i < game->file.mid)
 	{
-		if (ft_strnstr(game->file.xyfile[i], "NO ", 3)) //&& 
-			// game->file.xyfile[i][5] != ' ')
+		if (ft_strnstr(game->file.xyfile[i], "NO ", 3))
 			game->file.NO++;
-		else if (ft_strnstr(game->file.xyfile[i], "SO ", 3)) //&& 
-			// game->file.xyfile[i][5] != ' ')
+		else if (ft_strnstr(game->file.xyfile[i], "SO ", 3))
 			game->file.SO++;
-		else if (ft_strnstr(game->file.xyfile[i], "WE ", 3)) //&& 
-			// game->file.xyfile[i][5] != ' ')
+		else if (ft_strnstr(game->file.xyfile[i], "WE ", 3))
 			game->file.WE++;
-		else if (ft_strnstr(game->file.xyfile[i], "EA ", 3)) //&& 
-			// game->file.xyfile[i][5] != ' ')
+		else if (ft_strnstr(game->file.xyfile[i], "EA ", 3))
 			game->file.EA++;
 		i++;
 	}
-	if (game->file.NO != 1 || game->file.SO != 1 || 
-		game->file.WE != 1 || game->file.EA != 1)
+	if (game->file.NO != 1 || game->file.SO != 1
+		|| game->file.WE != 1 || game->file.EA != 1)
 		ft_exit_error("Error\nOther element not found or duplicate\n");
-	//to make sure there is NO ./,SO ./,WE ./,EA ./
-	//& "next" to it is not space
 }
 
+/*check floor & ceiling spec on .cub*/
 void	check_fc_element(t_game *game)
 {
 	int	i;
@@ -97,20 +93,17 @@ void	check_fc_element(t_game *game)
 	i = 0;
 	while (i < game->file.mid)
 	{
-		if (!ft_strncmp(game->file.xyfile[i], "F ")) //&& 
-			// game->file.xyfile[i][2] != ' ')
+		if (!ft_strncmp(game->file.xyfile[i], "F "))
 			game->file.F++;
-		else if (!ft_strncmp(game->file.xyfile[i], "C ")) //&& 
-			// game->file.xyfile[i][2] != ' ')
+		else if (!ft_strncmp(game->file.xyfile[i], "C "))
 			game->file.C++;
 		i++;
 	}
 	if (game->file.F != 1 || game->file.C != 1)
 		ft_exit_error("Error\nFC element not found or duplicate\n");
-	// to make sure there is C ,F ,
-	// & "next" to it is not space
 }
 
+/*store specification to t_game data*/
 void	store_element(t_game *game)
 {
 	int	i;
@@ -162,6 +155,7 @@ void	store_element(t_game *game)
 // 	// }
 // }
 
+/*locate empty line after specification in .cub*/
 void	find_mid(t_game *game)
 {
 	int	i;
@@ -179,36 +173,6 @@ void	find_mid(t_game *game)
 		}
 		i++;
 	}
-		//printf("mid - %s\n",game->file.xyfile[i]);
-		//printf("mid - %d\n",i);
-	// if(i != 6) // make sure there ar only 6 elements at the top
-	// 	ft_exit_error("extra or missing color/texture map element line\n");
-		// printf("%s\n",game->file.xyfile[i]); // check where "i" is pointing
-		//printf("%d\n",i); // check number 
-		// k = 0; // check file
-		// while (game->file.xyfile[k] != 0x00)
-		// {
-		// 	printf("%s\n",game->file.xyfile[k]);
-		// 	k++;
-		// }
-/* 	char **tmp = (char**)malloc(sizeof (char *) * game->file.lines - i + 1);
-	k = 0;
-	while(game->file.xyfile[i] != 0x00)
-	{
-		tmp[k] = ft_strdup(game->file.xyfile[i]);
-		game->map.n_row++;
-		k++;
-		i++;
-	}
-	tmp[k] = 0x00;
-	game->map.xymap = tmp;
-	game->map.ffmap = tmp; */
-		// i = 0; // check map
-		// while(game->map.xymap[i] != 0x00)
-		// {
-		// 	printf("%s\n",game->map.xymap[i]);
-		// 	i++;
-		// }
 }
 
 void	ft_split_store_file_element(t_game *game)

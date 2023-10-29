@@ -12,19 +12,11 @@
 
 #include "cub3d.h"
 
-//configured WASD movement based on player vector
-//replaced ray->ra with ray->angle, otherwise cant casy multiple ray
+/*player movement with wall collision*/
 int	keypress(int keycode, t_game *game)
 {
 	if (keycode == L)
-	{
-		// if (game->toggle_m == 1)
-		// 	game->toggle_m = 0;
-		// else
-		// 	game->toggle_m = 1;
 		game->toggle_m = (game->toggle_m + 1) % 2;
-		
-	}
 	if (keycode == W)
 	{
 		game->player.x += cos(game->ray.p_angle) * 2; // move 2 pixles
@@ -37,7 +29,6 @@ int	keypress(int keycode, t_game *game)
 		// if (game->map.xymap[((int)game->player.y / SCALE)][((int)game->player.x / SCALE)] == '1')
 		if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '1')
 		{
-			// printf("test\n");
 			game->player.x -= cos(game->ray.p_angle) * 2;// reverse the movement
 			game->player.y -= sin(game->ray.p_angle) * 2;// if wall head
 		}
@@ -48,7 +39,6 @@ int	keypress(int keycode, t_game *game)
 		game->player.y -= sin(game->ray.p_angle) * 2;
 		int tmpx = game->player.x - cos(game->ray.p_angle) * 4;
 		int tmpy = game->player.y - sin(game->ray.p_angle) * 4;
-		// printf("x/j - %f, y/i %f\n",game->player.x,game->player.y);
 		if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '1')
 		{
 			game->player.x += cos(game->ray.p_angle) * 2;
@@ -62,7 +52,6 @@ int	keypress(int keycode, t_game *game)
 		game->player.y -= cos(game->ray.p_angle) * 2;
 		int tmpx = game->player.x + sin(game->ray.p_angle) * 4;
 		int tmpy = game->player.y - cos(game->ray.p_angle) * 4;
-		// printf("x/j - %f, y/i %f\n",game->player.x,game->player.y);
 		if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '1')
 		{
 			game->player.x -= sin(game->ray.p_angle) * 2;
@@ -75,7 +64,6 @@ int	keypress(int keycode, t_game *game)
 		game->player.y += cos(game->ray.p_angle) * 2;
 		int tmpx = game->player.x - sin(game->ray.p_angle) * 4;
 		int tmpy = game->player.y + cos(game->ray.p_angle) * 4;
-		// printf("x/j - %f, y/i %f\n",game->player.x,game->player.y);
 		if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '1')
 		{
 			game->player.x += sin(game->ray.p_angle) * 2;
@@ -92,44 +80,8 @@ int	keypress(int keycode, t_game *game)
 	return (0);
 }
 
-// //to: configure WASD movement based on player vector
-// int	keypress(int keycode, t_game *game)
-// {
-// 	if (keycode == W)
-// 	{
-// 		game->player.x += cos(game->ray.ra) * 4;
-// 		game->player.y += sin(game->ray.ra) * 4;
-// 	}
-// 	if (keycode == S)
-// 	{
-// 		game->player.x -= cos(game->ray.ra) * 4;
-// 		game->player.y -= sin(game->ray.ra) * 4;
-// 	}
-// 	if (keycode == A)
-// 		game->player.x -= 4;
-// 	if (keycode == D)
-// 		game->player.x += 4;
-// 	if (keycode == LEFT)
-// 		rotation(LEFT, *game, &game->ray);
-// 	if (keycode == RIGHT)
-// 		rotation(RIGHT, *game, &game->ray);
-// 	if (keycode == ESC)
-// 		exit(1);
-// 	mlx_clear_window(game->mlx, game->win);
-// 	draw_2dmap(game);
-// 	draw_player(game);
-// 	draw_line(game, game->player.x + game->ray.dir_x,  game->player.y + game->ray.dir_y, 0xFF00FF);
-// 	// printf("P: dir_x: %f, dir_y %f\n", game->ray.dir_x, game->ray.dir_y);
-// 	raycast(game,&game->ray);
-// 		// draw_line(game, 0 , 0 , 0xFFFFFF); //test
-// 	mlx_do_sync(game->mlx);
-// 	return (0);
-// }
-
 int	ft_end(t_game *game)
 {
-	//mlx_destroy_window(game->mlx, game->win);
-	//mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	exit(1);
 }

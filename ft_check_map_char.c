@@ -6,7 +6,7 @@
 /*   By: wyap <wyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:23:01 by atok              #+#    #+#             */
-/*   Updated: 2023/09/07 12:42:07 by wyap             ###   ########.fr       */
+/*   Updated: 2023/10/29 22:50:10 by wyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,19 @@ void validate_wall(t_game *game)
 void	check_shape(t_game *game)
 {
 	int	i;
-	// int	j;
+	int	j;
 	int	k;
-	int	l;
 
 	i = 1;
-	k = ft_strlen(game->map.xymap[0]);
+	j = ft_strlen(game->map.xymap[0]);
 	while (game->map.xymap[i] != 0x00)
 	{
-		l = ft_strlen(game->map.xymap[i]);
-		// printf("%d , %d\n",k ,l);
-		// printf("%d\n",i);
-		if (k != l) 
-			ft_exit_error("Error\nmap row !=");
+		k = ft_strlen(game->map.xymap[i]);
+		if (j != k)
+			ft_exit_error("Error: map row !=");
 		i++;
 	}
-	game->map.n_col = k;
+	game->map.n_col = j;
 }
 
 int	check_map_char(t_game *game)
@@ -95,7 +92,7 @@ int	check_map_char(t_game *game)
 				game->map.xymap[i][j] != '0' && game->map.xymap[i][j] != '1' &&
 				game->map.xymap[i][j] != 'N' && game->map.xymap[i][j] != 'S' &&
 				game->map.xymap[i][j] != 'E' && game->map.xymap[i][j] != 'W')
-				ft_exit_error("ERROR\ninvalid char in map\n");
+				ft_exit_error("ERROR: invalid char in map\n");
 			if (game->map.xymap[i][j] == 'N' || game->map.xymap[i][j] == 'S' ||
 				game->map.xymap[i][j] == 'E' || game->map.xymap[i][j] == 'W')
 			{

@@ -14,14 +14,13 @@
 
 char	*bstrdup(t_game *game)
 {
-	// char	*str;
 	char	*dup;
 	int		i;
 	int		len;
 
 	len = game->map.n_col;
 	dup = (char *) malloc(sizeof(char) * (len + 3));
-	dup[len + 2] = 0x00;;
+	dup[len + 2] = 0x00;
 	i = 0;
 	while (dup[i] != 0x00)
 	{
@@ -82,11 +81,8 @@ char	**dup_map(t_game *game)
 	//game->map.ffmap = tmp;
 }
 
-void ft_dup_ffmap(t_game *game)
+void	ft_dup_ffmap(t_game *game)
 {
 	game->map.ffomap = dup_map(game);
 	game->map.ffimap = dup_map(game);
-	// int i = 0;
-	// while(game->map.ffimap[i] != 0x00)
-	// 	printf("%s\n",game->map.ffimap[i++]);
 }

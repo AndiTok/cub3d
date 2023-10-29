@@ -15,7 +15,7 @@
 int	ft_strncmp(const char *s1, const char *s2)
 {
 	int	i;
-	int len;
+	int	len;
 
 	i = 0;
 	len = ft_strlen(s2);
@@ -24,7 +24,7 @@ int	ft_strncmp(const char *s1, const char *s2)
 		if (s1[i] == s2[i])
 			i++;
 		else if (s1[i] != s2[i])
-			break;
+			break ;
 	}
 	return (s1[i] - s2[i]);
 }

@@ -25,7 +25,6 @@ void	ray_init(t_raycast *ray, t_player *player)
 	ray->dist_h = 1000000;
 	ray->dist_v = 1000000;
 	ray->dist_t = 0;
-
 	ray->line_h = 0;
 	ray->line_o = 0;
 	ray->fish = 0;
@@ -170,17 +169,14 @@ void	raycast(t_game *game, t_raycast *ray)
 	double	ntan;
 	int		r;
 	int		color;
-	int	t;
+	int		t;
 
 	r = 0;
 	ray->ra = ray->p_angle - (30.0 * DEG); //multi-ray
 	ray->ra = angle_reset(ray->ra);
 	ray->px = game->player.x;
 	ray->py = game->player.y;
-	// draw_2dmap(game);
-	// draw_player(game);
-	// draw_line(game, game->player.x + cos(game->ray.p_angle - 30 * DEG) * 25,  game->player.y + sin(game->ray.p_angle - 30 * DEG) * 25, 0xFFFF00);
-	// draw_line(game, game->player.x + cos(game->ray.p_angle + 30 * DEG) * 25,  game->player.y + sin(game->ray.p_angle + 30 * DEG) * 25, 0xFFFF00);
+
 	while (r < 1260)
 	{
 		ray->dof = 0;
@@ -232,22 +228,12 @@ void	raycast(t_game *game, t_raycast *ray)
 		ray->fish = ray->p_angle - ray->ra;
 		ray->fish = angle_reset(ray->fish);
 		ray->dist_t *= cos(ray->fish);
-		// draw_wall(game, ray, r, 0x0FFF00);
 			// draw_wall(game, ray, r, color);
-		// int p = 0;
-		// int q = r * 21;
-		// while (p < 21)
-		// {
-		// 	draw_wall(game, ray, p + q, color);
-		// 	p++;
-		// }
 			// draw_texture(game, ray, r, color);
 			draw_xpm(game, ray, r, t);
 		//***********************************
-		// draw_line(game, ray->rx, ray->ry, 0x00FFFF); //blue
-		ray->ra += (DEG/21); //DEG; //multi-ray
+		ray->ra += (DEG / 21);//multi-ray
 		ray->ra = angle_reset(ray->ra);
-		// printf("r: %d\n", r);
 		r++;
 	}
 }

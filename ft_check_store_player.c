@@ -12,18 +12,21 @@
 
 #include "cub3d.h"
 
+//Oct 28: not sure if still required
 void	check_player_pos(char **map, int x, int y)
 {
 	if (map[y - 1][x] != '0' && map[y - 1][x] != '1')
-		ft_exit_error("Error\nplayer out of bound\n");
+		ft_exit_error("Error: player out of bound\n");
 	if (map[y + 1][x] != '0' && map[y + 1][x] != '1')
-		ft_exit_error("Error\nplayer out of bound\n");
+		ft_exit_error("Error: player out of bound\n");
 	if (map[y][x - 1] != '0' && map[y][x - 1] != '1')
-		ft_exit_error("Error\nplayer out of bound\n");
+		ft_exit_error("Error: player out of bound\n");
 	if (map[y][x + 1] != '0' && map[y][x + 1] != '1')
-		ft_exit_error("Error\nplayer out of bound\n");
+		ft_exit_error("Error: player out of bound\n");
 }
 
+
+/*player x and y - 8 to center the dot*/
 void	get_player_pos(t_game *game)
 {
 	int	i;
@@ -38,8 +41,8 @@ void	get_player_pos(t_game *game)
 			if (game->map.xymap[i][j] == 'N' || game->map.xymap[i][j] == 'S' ||
 				game->map.xymap[i][j] == 'E' || game->map.xymap[i][j] == 'W')
 			{
-				game->player.x = (double)j * SCALE - 8; // -8 to center
-				game->player.y = (double)i * SCALE - 8; // -8 to center
+				game->player.x = (double)j * SCALE - 8;
+				game->player.y = (double)i * SCALE - 8;
 			}
 			j++;
 		}
@@ -61,17 +64,9 @@ void	get_start_pa(t_raycast *ray, t_player *player)
 
 void	ft_check_store_player(t_game *game)
 {
-		// int i = 0;
-		// while (game->map.xymap[i] != 0x00)
-		// {
-		// 	printf("%s\n",game->map.xymap[i]);
-		// 	i++;
-		// }
 	get_player_pos(game);
-	// printf("x - %f y - %f\n", game->player.x , game->player.y);
-
-	check_player_pos(game->map.xymap,game->player.x/SCALE
-		,game->player.y/SCALE);
+	check_player_pos(game->map.xymap, game->player.x / SCALE,
+		game->player.y / SCALE);
 	// /\ may not need to check 
 	// REASON-can modify ff wall check to check,not required,saves alot time & problem
 	// get_player_angle(game);

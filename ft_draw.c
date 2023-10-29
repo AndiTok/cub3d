@@ -14,8 +14,6 @@
 
 void	draw_player(t_game *game)
 {
-	// mlx_clear_window(game->mlx, game->win);
-	//mlx_pixel_put(game.mlx, game.win, game.player.y, game.player.y, game.player.color); // 1 pixle dot
 	int	x;
 	int	y;
 	
@@ -26,13 +24,10 @@ void	draw_player(t_game *game)
 		while (y <= game->player.y + 2) 
 		{
 			img_pix_put(&game->img, x, y, game->player.color);
-			// mlx_pixel_put(game->mlx, game->win, x, y, game->player.color);
 			y++;
 		}
 		x++;
 	}
-	// mlx_do_sync(game->mlx); // Ensure smooth window management
-	// mlx_pixel_put(game->mlx, game->win, game->player.x + game->ray.dir_x, game->player.y + game->ray.dir_y , game->player.color);
 }
 
 int step(int dx, int dy)
@@ -67,7 +62,6 @@ void	draw_line(t_game *game, int xe, int ye, int color)
 	while (i <= steps) 
 	{
 		img_pix_put(&game->img, (int)xs, (int)ys, color);
-		// mlx_pixel_put(game->mlx, game->win, (int)xs, (int)ys, color);
 		xs += x_increment;
 		ys += y_increment;
 		i++;
@@ -93,7 +87,6 @@ void	draw_cell(t_game *game, int x, int y, int color)
 		while (tmp < x_end)
 		{
 			img_pix_put(&game->img, tmp, y_start, color);
-			// mlx_pixel_put(game->mlx, game->win, tmp, y_start, color);
 			tmp++;
 		}
 		y_start++;
@@ -103,7 +96,6 @@ void	draw_cell(t_game *game, int x, int y, int color)
 	tmp = x * SCALE;
 	while (tmp < x_end)
 		img_pix_put(&game->img, tmp++, y * SCALE, 0x000000);
-	
 	y_start = y * SCALE;
 	while (y_start < y_end)
 	{
@@ -114,14 +106,13 @@ void	draw_cell(t_game *game, int x, int y, int color)
 	tmp = x * SCALE;
 	while (tmp < x_end)
 		img_pix_put(&game->img, tmp++, y_start, 0x000000);
-		
 }
 
 void	draw_2dmap(t_game *game)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (game->map.xymap[i] != 0x00)
 	{

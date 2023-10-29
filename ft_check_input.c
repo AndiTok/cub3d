@@ -17,8 +17,8 @@ void	ft_check_input(int c, char **v)
 	int	i;
 
 	if (c != 2)
-		ft_exit_error("Error\nCheck number of input/param\n");
+		ft_exit_error("Error: Wrong number of input/param\n");
 	i = ft_strlen(v[1]) - 4;
 	if (!ft_strnstr ((v[1] + i), ".cub", 4))
-		ft_exit_error("Error\nCheck map file extention is correct\n");
+		ft_exit_error("Error: Wrong map file format, must be a .cub file\n");
 }
