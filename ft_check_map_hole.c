@@ -26,7 +26,7 @@ void	check_hole(t_game *game)
 		{
 			if (game->map.ffomap[i][j] == ' ')
 			{
-				printf("[%d][%d]\n", i, j);
+				printf("on [%d][%d]\n", i, j);
 				ft_exit_error("Error: hole in map\n");
 			}
 			j++;
@@ -37,11 +37,11 @@ void	check_hole(t_game *game)
 
 void	ft_check_map_hole(t_game *game)
 {
-	int	i;
-
-	i = 0;
 	check_hole(game);
-	while (game->map.xymap[i] != 0x00)
-		printf("%s\n", game->map.xymap[i++]);
-	printf("%d\n", i);
 }
+	/*show map*/
+	//	int	i;
+	// i = 0;
+	// while (game->map.xymap[i] != 0x00)
+	// 	printf("%s\n", game->map.xymap[i++]);
+	// printf("%d\n", i);

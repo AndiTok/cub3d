@@ -19,6 +19,10 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
+/*
+* convert RGB intensity to color hex value
+* (r << 16) | (g << 8) | b;
+*/
 int	check_rgb_value(int r, int g, int b)
 {
 	int	i;
@@ -29,10 +33,14 @@ int	check_rgb_value(int r, int g, int b)
 		ft_exit_error("Error\nRGB -,G- not within 0 & 255 \n");
 	if (b < 0 || b > 255)
 		ft_exit_error("Error\nRGB -,-,B not within 0 & 255 \n");
-	i = (r << 16) | (g << 8) | b; // formula
+	i = (r << 16) | (g << 8) | b;
 	return (i);
 }
 
+/*
+* R: ++i first to start at 2 where numbers are at
+* G: ++i to get over ',' first then check
+*/
 int	convert_check_store_rgb(char *str)
 {
 	int	r;
@@ -44,10 +52,10 @@ int	convert_check_store_rgb(char *str)
 	while (ft_isdigit(str[i + 1]) == 0)
 		i++;
 	r = 0;
-	while (str[++i] != ',') //++i first to start at 2 where numbers are at 
+	while (str[++i] != ',')
 		r = r * 10 + (str[i] - '0');
 	g = 0;
-	while (str[++i] != ',') // it will ++i to get over ',' first then check
+	while (str[++i] != ',')
 		g = g * 10 + (str[i] - '0');
 	i++;
 	b = 0;

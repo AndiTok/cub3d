@@ -50,8 +50,9 @@ int	last_map_line(t_game *game) // err.. replace eom? end of map
 	}
 } */
 
-int	trim_map(t_game *game) //what if top & bottum has 1 howle row of blanl ' '
-{							// should trim
+/*trim additional lines of blank spaces before and after map body (if any)*/
+int	trim_map(t_game *game)
+{
 	int	i;
 	int	eom;
 
@@ -66,6 +67,7 @@ int	trim_map(t_game *game) //what if top & bottum has 1 howle row of blanl ' '
 	return (eom);
 }
 
+/*trim and store map section*/
 void	ft_store_map(t_game *game)
 {
 	int		i;

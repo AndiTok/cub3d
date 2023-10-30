@@ -37,9 +37,10 @@ void	ff_outer_map(t_game *game, char **ffmap, int x, int y)
 void	ft_check_map_wall(t_game *game)
 {
 	ff_outer_map(game, game->map.ffomap, 0, 0);
+}
+
+	// /*view flood fill map*/
 	// int	i = 0;
 	// while(game->map.ffomap[i] != 0x00)
 	// 	printf("%s\n",game->map.ffomap[i++]);
-}
-
-// make map surounded by ' ' to ff outside;
+	// make map surounded by ' ' to ff outside;

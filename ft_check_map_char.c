@@ -6,7 +6,7 @@
 /*   By: wyap <wyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:23:01 by atok              #+#    #+#             */
-/*   Updated: 2023/10/30 17:03:20 by wyap             ###   ########.fr       */
+/*   Updated: 2023/10/31 00:54:59 by wyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	check_shape(t_game *game)
 	{
 		k = ft_strlen(game->map.xymap[i]);
 		if (j != k)
-			ft_exit_error("Error: map row !=");
+			ft_exit_error("Error: Wrong map shape\n");
 		i++;
 	}
 	game->map.n_col = j;

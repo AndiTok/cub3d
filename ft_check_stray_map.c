@@ -36,12 +36,6 @@ void	verify_ff(t_game *game)
 	int	i;
 	int	j;
 
-	// i = 0;
-	// while(game->map.ffmap[i] != 0x00)
-	// 	printf("%s\n",game->map.ffmap[i++]);
-	// i = 0;
-	// while(game->map.xymap[i] != 0x00)
-	// 	printf("%s\n",game->map.xymap[i++]);
 	i = 0;
 	while (game->map.ffimap[i] != 0x00)
 	{
@@ -56,6 +50,13 @@ void	verify_ff(t_game *game)
 		i++;
 	}
 }
+// /*view flood fill map (after)*/
+	// i = 0;
+	// while(game->map.ffmap[i] != 0x00)
+	// 	printf("%s\n",game->map.ffmap[i++]);
+	// i = 0;
+	// while(game->map.xymap[i] != 0x00)
+	// 	printf("%s\n",game->map.xymap[i++]);
 
 void	check_stray(t_game *game)
 {
@@ -72,8 +73,12 @@ void	check_stray(t_game *game)
 	verify_ff(game);
 }
 
+/*check if got 'island' in map*/
 void	ft_check_stray_map(t_game *game)
 {
+	check_stray(game);
+}
+// /*view flood fill map (before)*/
 	// printf("row -%d\n",game->map.n_row);
 	// printf("col -%d\n",game->map.n_col);
 		// int i = 0;
@@ -83,5 +88,3 @@ void	ft_check_stray_map(t_game *game)
 		// 	i++;
 		// }
 		// printf("%d\n",i); 
-	check_stray(game);
-}

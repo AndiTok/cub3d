@@ -12,13 +12,16 @@
 
 #include "cub3d.h"
 
-/*j = 2: to start after texture name*/
+/*
+* i = strlen - 4: to start before ".xpm"
+* j = 2: to start after texture name
+*/
 char	*check_xpm_format(char *str)
 {
 	int	i;
 	int	j;
 
-	i = ft_strlen(str) - 4; // should be 4 fix due to str_dup in ft_split
+	i = ft_strlen(str) - 4;
 	if (!ft_strnstr ((str + i), ".xpm", 4))
 		ft_exit_error("ERROR: Invalid texture format\n");
 	i = 0;
@@ -41,8 +44,8 @@ void	ft_check_store_xpm_element(t_game *game)
 	game->element.SO = check_xpm_format(game->element.SO);
 	game->element.WE = check_xpm_format(game->element.WE);
 	game->element.EA = check_xpm_format(game->element.EA);
+}
 	// 	printf("%s\n",game->element.NO);
 	// 	printf("%s\n",game->element.SO);
 	// 	printf("%s\n",game->element.EA);
 	// 	printf("%s\n",game->element.WE);
-}

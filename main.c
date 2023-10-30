@@ -17,7 +17,6 @@ int	main(int c, char **v)
 	t_game game;
 
     game.player.color = PINK;
-	
 	ft_check_input(c, v);
 	ft_initialize_vars(&game);
 	ft_load_file(&game, v); // free tmp
@@ -27,10 +26,10 @@ int	main(int c, char **v)
 	ft_store_map(&game); // maybe add a feature to cube the map at > dont hvae ' '
 	ft_check_map_char(&game);
 	ft_dup_ffmap(&game); // rmb to free after use
+	ft_check_store_player(&game);
 	ft_check_stray_map(&game); // may not need
 	ft_check_map_wall(&game);
-	// ft_check_map_hole(&game);
-	ft_check_store_player(&game);
+	ft_check_map_hole(&game);
 	ft_init_mlx(&game);
 	init_texture(&game, &game.map, &game.element);
 	ft_init_img(&game); //

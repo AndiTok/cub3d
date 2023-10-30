@@ -12,7 +12,6 @@
 
 #include "cub3d.h"
 
-//Oct 28: not sure if still required
 void	check_player_pos(char **map, int x, int y)
 {
 	if (map[y - 1][x] != '0' && map[y - 1][x] != '1')
@@ -24,7 +23,6 @@ void	check_player_pos(char **map, int x, int y)
 	if (map[y][x + 1] != '0' && map[y][x + 1] != '1')
 		ft_exit_error("Error: player out of bound\n");
 }
-
 
 /*player x and y - 8 to center the dot*/
 void	get_player_pos(t_game *game)
@@ -67,7 +65,4 @@ void	ft_check_store_player(t_game *game)
 	get_player_pos(game);
 	check_player_pos(game->map.xymap, game->player.x / SCALE,
 		game->player.y / SCALE);
-	// /\ may not need to check 
-	// REASON-can modify ff wall check to check,not required,saves alot time & problem
-	// get_player_angle(game);
 }

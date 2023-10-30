@@ -12,7 +12,11 @@
 
 #include "cub3d.h"
 
-char	*bstrdup(t_game *game)
+/*
+* add a row of whitespace on top & bot of map body
+* to set up for floodfill
+*/
+char	*add_row_padding(t_game *game)
 {
 	char	*dup;
 	int		i;
@@ -31,7 +35,11 @@ char	*bstrdup(t_game *game)
 	return (dup);
 }
 
-char	*mstrdup(char *src)
+/*
+* add a column of whitespace on left & right of map body
+* to set up for floodfill
+*/
+char	*left_right_padding(char *src)
 {
 	char	*dup;
 	int		i;
@@ -67,18 +75,16 @@ char	**dup_map(t_game *game)
 	i = 0;
 	j = 0;
 	tmp = (char **)malloc(sizeof(char *) * (game->map.n_row + 3));
-	tmp[j++] = bstrdup(game); // a row of ' ' for top
+	tmp[j++] = add_row_padding(game);
 	while (i < game->map.n_row)
 	{
-		tmp[j] = mstrdup(game->map.xymap[i]); //include ' ' for < & >
+		tmp[j] = left_right_padding(game->map.xymap[i]);
 		j++;
 		i++;
 	}
-	//printf("here-%d\n", j);
-	tmp[j++] = bstrdup(game); // a row of ' ' for bottum
+	tmp[j++] = add_row_padding(game);
 	tmp[j] = 0x00;
 	return (tmp);
-	//game->map.ffmap = tmp;
 }
 
 void	ft_dup_ffmap(t_game *game)
