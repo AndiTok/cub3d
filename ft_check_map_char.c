@@ -6,7 +6,7 @@
 /*   By: wyap <wyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:23:01 by atok              #+#    #+#             */
-/*   Updated: 2023/10/29 22:50:10 by wyap             ###   ########.fr       */
+/*   Updated: 2023/10/30 17:03:20 by wyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void validate_wall(t_game *game)
 	}
 	ff_wall(game,game->map.ffmap, j, 0);
 } */
-
 
 void	check_shape(t_game *game)
 {

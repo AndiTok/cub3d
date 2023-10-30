@@ -12,6 +12,13 @@
 
 #include "cub3d.h"
 
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
 int	check_rgb_value(int r, int g, int b)
 {
 	int	i;
@@ -32,12 +39,10 @@ int	convert_check_store_rgb(char *str)
 	int	g;
 	int	b;
 	int	i;
-			// note if i = 2, i++ will +2 
-	// i = 1; // start at 1
+
 	i = 0;
-	while (str[i + 1] < '0' || str[i + 1] > '9') // added +1 becase ++ next
+	while (ft_isdigit(str[i + 1]) == 0)
 		i++;
-	// printf("%d\n",i);
 	r = 0;
 	while (str[++i] != ',') //++i first to start at 2 where numbers are at 
 		r = r * 10 + (str[i] - '0');
@@ -46,7 +51,7 @@ int	convert_check_store_rgb(char *str)
 		g = g * 10 + (str[i] - '0');
 	i++;
 	b = 0;
-	while (str[i] >= '0' && str[i] <= '9') // cant use while != 0x00 & is btter to check for num
+	while (ft_isdigit(str[i]) == 1)
 	{
 		b = b * 10 + (str[i] - '0');
 		i++;
@@ -55,34 +60,33 @@ int	convert_check_store_rgb(char *str)
 	return (i);
 }
 
+/*check rgb specification string, skip "F " and "C "*/
 void	check_rgbformat(char *str)
 {
-	int		i;
-	int		j;
-	int		counter;
+	int	i;
+	int	j;
+	int	comma;
 
-	counter = 0;
+	comma = 0;
 	j = ft_strlen(str) - 1;
-	if (str[j] < '0' || str[j] > '9') // check for 0-9 at end
+	if (ft_isdigit(str[j]) == 0)
 		ft_exit_error("Error\nwrong RGB format at END, must only be 0-9\n");
 	i = 0;
-	while (str[i] < '0' || str[i] > '9')
+	while (ft_isdigit(str[i]) == 0)
 		i++;
-	// printf("%d\n",i);
-	if (str[i] < '0' || str[i] > '9') // check for 0-9 at beginning
+	if (ft_isdigit(str[i]) == 0)
 		ft_exit_error("Error\nwrong RGB format at START, must only be 0-9\n");
 	i = 3;
-	while (i < j) // check inbetween
+	while (i++ < j)
 	{
 		if (str[i] == ',')
 		{
-			if (str[i + 1] == ',') // cannot be netx ot each other
+			if (str[i + 1] == ',')
 				ft_exit_error("Error\n ',' next to each other\n");
-			counter++;
+			comma++;
 		}
-		i++;
 	}
-	if (counter != 2) // can only have 2 ','
+	if (comma != 2)
 		ft_exit_error("Errorn\n wrong format, extra/missing ','\n");
 }
 

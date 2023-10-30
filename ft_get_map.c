@@ -66,7 +66,7 @@ int	trim_map(t_game *game) //what if top & bottum has 1 howle row of blanl ' '
 	return (eom);
 }
 
-void	store_map(t_game *game)
+void	ft_store_map(t_game *game)
 {
 	int		i;
 	int		j;
@@ -91,7 +91,7 @@ void	store_map(t_game *game)
 	//game->map.ffmap = tmp; // will link
 }
 
-void	ft_get_map(t_game *game)
-{
-	store_map(game);
-}
+// void	ft_get_map(t_game *game)
+// {
+// 	store_map(game);
+// }

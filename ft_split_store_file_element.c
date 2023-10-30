@@ -107,10 +107,8 @@ void	check_fc_element(t_game *game)
 void	store_element(t_game *game)
 {
 	int	i;
-	int	counter;
 
 	i = 0;
-	counter = 0;
 	while (i < game->file.mid)
 	{
 		if (game->file.xyfile[i][0] == 'F')

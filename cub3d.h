@@ -38,8 +38,9 @@
 //color
 # define RED 0xFF0000
 # define GREEN 0x00FF00
-# define BLUE 0x00FFFF
+# define BLUE 0x0000FF
 # define YELLOW 0xF7F731
+# define PINK 0xFF00FF
 
 
 // // keycode mac
@@ -183,7 +184,7 @@ void	ft_load_file(t_game *game, char **v);
 void	ft_split_store_file_element(t_game *game);
 void	ft_check_store_rgb_element(t_game *game);
 void	ft_check_store_xpm_element(t_game *game);
-void	ft_get_map(t_game *game);
+void	ft_store_map(t_game *game);
 void	ft_check_map_char(t_game *game);
 void	ft_dup_ffmap(t_game *game);
 void	ft_check_stray_map(t_game *game);
@@ -203,13 +204,20 @@ int		ft_render(t_game *game); //
 void	init_texture(t_game *game, t_map *map, t_element *elem);
 
 
-//raycast
+/*raycast + utils*/
 void	ray_init(t_raycast *ray, t_player *player);
 void	get_start_pa(t_raycast *ray, t_player *player);
+void	dda(t_map *map, t_raycast *ray);
 void	raycast(t_game *game, t_raycast *ray);
 void	draw_wall(t_game *game, t_raycast *ray, int r, int color);
-void	draw_texture(t_game *game, t_raycast *ray, int r);
 void	draw_xpm(t_game *game, t_raycast *ray, int r, int t);
+double	ft_round(double val);
+double	angle_reset(double angle);
+void	fix_fisheye(t_raycast *ray);
+void	limit_2dmap_index(t_map *map, t_raycast *ray);
+int		set_dist_t_texture(t_raycast *ray);
+
+
 
 //GNL + utils
 # ifndef BUFFER_SIZE

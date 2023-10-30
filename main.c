@@ -12,13 +12,11 @@
 
 #include "cub3d.h"
 
-int main(int c, char **v)
+int	main(int c, char **v)
 {
 	t_game game;
 
-    game.player.color = 0xFF00FF; // 0x-Hex 00-R 00-G 00-B
-    // game.player.color = 65535; // 
-    //game.player.color = (0 << 16) | (255 << 8) | 255; 
+    game.player.color = PINK;
 	
 	ft_check_input(c, v);
 	ft_initialize_vars(&game);
@@ -26,19 +24,17 @@ int main(int c, char **v)
 	ft_split_store_file_element(&game);
 	ft_check_store_rgb_element(&game);
 	ft_check_store_xpm_element(&game);
-	ft_get_map(&game); // maybe add a feature to cube the map at > dont hvae ' '
+	ft_store_map(&game); // maybe add a feature to cube the map at > dont hvae ' '
 	ft_check_map_char(&game);
 	ft_dup_ffmap(&game); // rmb to free after use
 	ft_check_stray_map(&game); // may not need
 	ft_check_map_wall(&game);
 	// ft_check_map_hole(&game);
 	ft_check_store_player(&game);
-		// printf("n_row: %d\nn_col: %d\n", game.map.n_row, game.map.n_col);
 	ft_init_mlx(&game);
 	init_texture(&game, &game.map, &game.element);
 	ft_init_img(&game); //
 	ray_init(&game.ray, &game.player);
-	// mlx_loop_hook(game.mlx,&ft_render,&game);
 	ft_render(&game);
 	ft_keypress(&game);
 	mlx_loop(game.mlx);

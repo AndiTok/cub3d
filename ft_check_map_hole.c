@@ -42,6 +42,6 @@ void	ft_check_map_hole(t_game *game)
 	i = 0;
 	check_hole(game);
 	while (game->map.xymap[i] != 0x00)
-		printf("%s\n",game->map.xymap[i++]);
-	printf("%d\n",i);
+		printf("%s\n", game->map.xymap[i++]);
+	printf("%d\n", i);
 }
