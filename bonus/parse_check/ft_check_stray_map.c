@@ -45,7 +45,7 @@ void	verify_ff(t_game *game)
 			if (game->map.ffimap[i][j] == ' ' || game->map.ffimap[i][j] == 'F')
 				j++;
 			else
-				ft_exit_error("Error\nstray map found\n");
+				ft_exit_error("Error: stray map found\n");
 		}
 		i++;
 	}

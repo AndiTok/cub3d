@@ -6,7 +6,7 @@
 /*   By: wyap <wyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:23:01 by atok              #+#    #+#             */
-/*   Updated: 2023/10/31 15:05:05 by wyap             ###   ########.fr       */
+/*   Updated: 2023/11/01 00:38:46 by wyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	check_map_char(t_game *game)
 void	ft_check_map_char(t_game *game)
 {
 	if (check_map_char(game) != 0)
-		ft_exit_error("ERROR\nWrong number of players, single player please\n");
+		ft_exit_error("ERROR: Wrong number of players, single player please\n");
 	check_shape(game);
 }
 

@@ -15,8 +15,6 @@ BONUS = cub3d_bonus
 
 SRC_DIR = mandatory/
 BONUS_DIR = bonus/
-# OBJ_DIR = obj
-# SUB_DIR = parse_check raycaster gnl mlx utils
 SRC = parse_check/ft_check_input.c parse_check/ft_check_map_char.c\
 		parse_check/ft_check_map_hole.c parse_check/ft_check_map_wall.c\
 		parse_check/ft_check_store_player.c\
@@ -45,15 +43,15 @@ MLX_FLAG_WIN = -L minilibx/minilibx-linux -lmlx -lXext -lX11 -lm -lz
 .PHONY = all clean fclean re
 
 $(NAME): $(OBJ)
+	@$(GCC) $(CFLAGS) $(OBJ) $(MLX_FLAG_WIN) -o $(NAME)
 	@echo compiling make...
-	$(GCC) $(CFLAGS) $(OBJ) $(MLX_FLAG_WIN) -o $(NAME)
 
 all: $(NAME)
 	@echo compiling all...
 
 $(BONUS): $(BONUS_OBJ)
 	@echo compiling bonus...
-	$(GCC) $(CFLAGS) $(MLX_FLAG_MAC) $(BONUS_OBJ) -o $(NAME)
+	$(GCC) $(CFLAGS) $(MLX_FLAG_WIN) $(BONUS_OBJ) -o $(NAME)
 
 bonus: $(BONUS)
 
@@ -71,4 +69,4 @@ re: fclean all
 
 debug: $(OBJ)
 	@echo compiling with debug flags...
-	$(GCC) $(CFLAGS) $(MLX_FLAG_MAC) $(FSAN) $(OBJ) -o $(NAME)
+	$(GCC) $(CFLAGS) $(MLX_FLAG_WIN) $(FSAN) $(OBJ) -o $(NAME)

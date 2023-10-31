@@ -23,22 +23,17 @@ char	*add_row_padding(t_game *game)
 	int		len;
 
 	len = game->map.n_col;
-	// printf("%d\n",len);
 	dup = (char *) malloc(sizeof(char) * (len + 3));
-	// if (dup == (NULL))
-	// 	return (printf("here\n"),NULL);
+	if (!dup)
+		ft_exit_error("Error: FF malloc failed");
 	dup[len + 2] = 0x00;
 	i = 0;
-	// while (dup[i] != 0x00) // << causing issue, fsanitize help to pass
-	// cannot iterate trough garbage value b readin what dup i is pointing at
-	while (i < len + 2) // << working one 
+	while (i < len + 2)
 	{
 		dup[i] = ' ';
 		i++;
 	}
 	dup[i] = 0x00;
-	// printf("i-%d\n",i);	
-	// printf("here-(%s)\n",dup);
 	return (dup);
 }
 
@@ -57,8 +52,8 @@ char	*left_right_padding(char *src)
 	while (src[len])
 		len++;
 	dup = (char *) malloc(sizeof(char) * (len + 3));
-	if (dup == (NULL))
-		return (NULL);
+	if (!dup)
+		ft_exit_error("Error: FF malloc failed");
 	i = 0;
 	j = 0;
 	dup[i++] = ' ';
@@ -91,8 +86,6 @@ char	**dup_map(t_game *game)
 	}
 	tmp[j++] = add_row_padding(game);
 	tmp[j] = 0x00;
-	// printf("%c,%d\n",tmp[1][0],tmp[1][0]);
-	// printf("(%s)\n",tmp[0]);
 	return (tmp);
 }
 

@@ -13,7 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <stdio.h>//
+# include <stdio.h>
 # include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -21,7 +21,7 @@
 # include <stdio.h>
 # include <math.h>
 # include "../../minilibx/minilibx-linux/mlx.h"
-# include <string.h>//
+# include <string.h>
 //#include <mlx.h>
 
 //minimap
@@ -131,7 +131,6 @@ typedef struct s_img //
 /*final floor ceiling color hex stored here*/
 typedef struct s_map
 {
-	//char	**ffmap;
 	char	**ffomap;
 	char	**ffimap;
 	char	**xymap;

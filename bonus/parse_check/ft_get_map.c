@@ -12,44 +12,6 @@
 
 #include "../incl/cub3d.h"
 
-/* int	first_map_line(t_game *game) // replace the mid line for trim
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (game->file.xyfile[i] != 0x00)
-	{
-		j = 0;
-		while (game->file.xyfile[i][j] != 0x00)
-		{
-			if (game->file.xyfile[i][j] == '1')
-				return (i);
-			j++;
-		}
-		i++;
-	}
-}
-
-int	last_map_line(t_game *game) // err.. replace eom? end of map
-{
-	int	i;
-	int	j;
-
-	i = game->file.lines;
-	while (i > 0) //(game->file.xyfile[i] != 0x00)
-	{
-		j = 0;
-		while (game->file.xyfile[i][j] != 0x00)
-		{
-			if (game->file.xyfile[i][j] == '1')
-				return (i);
-			j++;
-		}
-		i--;
-	}
-} */
-
 /*trim additional lines of blank spaces before and after map body (if any)*/
 int	trim_map(t_game *game)
 {
@@ -90,10 +52,4 @@ void	ft_store_map(t_game *game)
 	}
 	tmp[j] = 0x00;
 	game->map.xymap = tmp;
-	//game->map.ffmap = tmp; // will link
 }
-
-// void	ft_get_map(t_game *game)
-// {
-// 	store_map(game);
-// }

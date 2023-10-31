@@ -41,7 +41,6 @@ char	*check_xpm_format(char *str)
 void	ft_check_store_xpm_element(t_game *game)
 {
 	game->element.no = check_xpm_format(game->element.no);
-	printf("(%s)\n",game->element.no);
 	game->element.so = check_xpm_format(game->element.so);
 	game->element.we = check_xpm_format(game->element.we);
 	game->element.ea = check_xpm_format(game->element.ea);

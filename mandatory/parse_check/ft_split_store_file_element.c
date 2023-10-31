@@ -12,58 +12,8 @@
 
 #include "../incl/cub3d.h"
 
-// void check_duplicate_element(t_game *game)
-// {
-// 	int counter;
-
-// 	counter = 0;
-// 	if(game->file.f == 1)
-// 		counter++;
-// 	if(game->file.c == 1)
-// 		counter++;
-// 	if(game->file.no == 1)
-// 		counter++;
-// 	if(game->file.so == 1)
-// 		counter++;
-// 	if(game->file.we == 1)
-// 		counter++;
-// 	if(game->file.ea == 1)
-// 		counter++;
-// 	if(counter != 6) //
-// 		ft_exit_error("duplicate element\n");
-// }
-
-// void check_6_element(t_game *game)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	while(i < game->file.mid)
-// 	{
-// 		if (ft_strnstr(game->file.xyfile[i],"F ",2) && 
-// 				game->file.xyfile[i][2] != ' ')
-// 			game->file.f++;
-// 		else if (ft_strnstr(game->file.xyfile[i],"C ",2) &&
-// 				game->file.xyfile[i][2] != ' ')
-// 			game->file.c++;
-// 		else if (ft_strnstr(game->file.xyfile[i],"NO ./",5))
-// 			game->file.no++;
-// 		else if (ft_strnstr(game->file.xyfile[i],"SO ./",5))
-// 			game->file.so++;
-// 		else if (ft_strnstr(game->file.xyfile[i],"WE ./",5))
-// 			game->file.we++;
-// 		else if (ft_strnstr(game->file.xyfile[i],"EA ./",5))
-// 			game->file.ea++;
-// 		else
-// 			ft_exit_error("wrong element format, typo or spacing\n");
-// 		i++;
-// 	}
-// 	//to make sure there is C ,F ,NO ./,SO ./,WE ./,EA ./
-// 	//& "next" to it is not space
-// }
-
 /*check texture specification on .cub*/
-void	check_other_element(t_game *game)
+void	check_texture_element(t_game *game)
 {
 	int	i;
 
@@ -82,7 +32,7 @@ void	check_other_element(t_game *game)
 	}
 	if (game->file.no != 1 || game->file.so != 1
 		|| game->file.we != 1 || game->file.ea != 1)
-		ft_exit_error("Error\nOther element not found or duplicate\n");
+		ft_exit_error("Error: Texture element not found or duplicate\n");
 }
 
 /*check floor & ceiling spec on .cub*/
@@ -100,7 +50,7 @@ void	check_fc_element(t_game *game)
 		i++;
 	}
 	if (game->file.f != 1 || game->file.c != 1)
-		ft_exit_error("Error\nFC element not found or duplicate\n");
+		ft_exit_error("Error: FC element not found or duplicate\n");
 }
 
 /*store specification to t_game data*/
@@ -127,32 +77,6 @@ void	store_element(t_game *game)
 	}
 }
 
-// void store_map(t_game *game)
-// {
-// 	char **tmp; 
-// 	int i;
-// 	int j;
-
-// 	j = game->file.mid;
-// 	i = 0;
-// 	tmp = (char**)malloc(sizeof (char *) * (game->file.lines - j + 1)); // +1 for null
-// 	// while(j < game->file.lines)
-// 	while(game->file.xyfile[j] != 0x00)
-// 	{
-// 		tmp[i] = ft_strdup(game->file.xyfile[j]);
-// 		i++;
-// 		j++;
-// 	}
-// 	tmp[i] = 0x00; // so can loop trough with null
-// 	game->map.xymap = tmp;
-// 	// i = 0;
-// 	// while(game->map.xymap[i] != 0x00)
-// 	// {
-// 	// 	printf("%s\n",game->map.xymap[i]);
-// 	// 	i++;
-// 	// }
-// }
-
 /*locate empty line after specification in .cub*/
 void	find_mid(t_game *game)
 {
@@ -176,11 +100,7 @@ void	find_mid(t_game *game)
 void	ft_split_store_file_element(t_game *game)
 {
 	find_mid(game);
-	// check_6_element(game);
 	check_fc_element(game);
-	check_other_element(game);
-	//check_duplicate_element(game); // handeled in check
+	check_texture_element(game);
 	store_element(game);
-	//store_map(game);
-	// printf("%s\n",game->element.f);
 }
