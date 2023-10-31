@@ -97,8 +97,8 @@ int	keypress(int keycode, t_game *game)
 		if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '2')
 			game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] = '0';
 	}	
-	// if (keycode == M)
-	// 	mlx_mouse_move(game->mlx,game->win, 630, 360);
+	if (keycode == M)
+		mlx_mouse_move(game->mlx,game->win, 630, 360);
 	if (keycode == L)
 		game->toggle_m = (game->toggle_m + 1) % 2;
 	if (keycode == W || keycode == S)
@@ -122,45 +122,45 @@ int	ft_end(t_game *game)
 	exit(1);
 }
 
-// int mouse_move(int x, int y, t_game *game)
-// {
-//     (void) y; // We're not using the y-coordinate
+int mouse_move(int x, int y, t_game *game)
+{
+    (void) y; // We're not using the y-coordinate
 
-//     // Initialize prev_x the first time the function is called
-//     static int prev_x = 0;
+    // Initialize prev_x the first time the function is called
+    static int prev_x = 0;
 
-//     // Calculate the change in the x-coordinate
-//     int delta_x = x - prev_x;
+    // Calculate the change in the x-coordinate
+    int delta_x = x - prev_x;
     
-//     // Define the rotation speed
-//     float rotation_speed = 0.02; // Adjust this value as needed
+    // Define the rotation speed
+    float rotation_speed = 0.02; // Adjust this value as needed
     
-//     // Update the view angle based on the change in the x-coordinate
-//     game->ray.p_angle += delta_x * rotation_speed;
+    // Update the view angle based on the change in the x-coordinate
+    game->ray.p_angle += delta_x * rotation_speed;
     
-//     // Ensure the view angle stays within the range [0, 2 * PI]
-//     if (game->ray.p_angle < 0)
-//         game->ray.p_angle += 2 * M_PI;
-//     else if (game->ray.p_angle >= 2 * M_PI)
-//         game->ray.p_angle -= 2 * M_PI;
+    // Ensure the view angle stays within the range [0, 2 * PI]
+    if (game->ray.p_angle < 0)
+        game->ray.p_angle += 2 * M_PI;
+    else if (game->ray.p_angle >= 2 * M_PI)
+        game->ray.p_angle -= 2 * M_PI;
     
-//     // Update the direction vector
-//     game->ray.dir_x = cos(game->ray.p_angle) * 25;
-//     game->ray.dir_y = sin(game->ray.p_angle) * 25;
+    // Update the direction vector
+    game->ray.dir_x = cos(game->ray.p_angle) * 25;
+    game->ray.dir_y = sin(game->ray.p_angle) * 25;
     
-//     // Update the previous x-coordinate
-//     prev_x = x;
+    // Update the previous x-coordinate
+    prev_x = x;
 
-//     // Redraw the scene with the updated view angle
-//     // Call your rendering function here to display the scene
-// 	ft_render(game);
-//     return (0);
-// }
+    // Redraw the scene with the updated view angle
+    // Call your rendering function here to display the scene
+	ft_render(game);
+    return (0);
+}
 
 void	ft_keypress(t_game *game)
 {
 	mlx_loop_hook(game->mlx, ft_fps, game);
-	// mlx_hook(game->win, 6, (1L << 6), mouse_move, game);
+	mlx_hook(game->win, 6, (1L << 6), mouse_move, game);
 	mlx_hook(game->win, (02), (1L << 0), keypress, game);
 	mlx_hook(game->win, (17), (1L << 0), ft_end, game);
 }
