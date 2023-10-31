@@ -17,7 +17,8 @@ void	ff_map(t_game *game, char **ffmap, int x, int y)
 	if ((y < 0 || y >= game->map.n_row + 2) || \
 		(x < 0 || x >= game->map.n_col + 2))
 		return ;
-	if (ffmap[y][x] == '1' || ffmap[y][x] == '0' ||
+	if (ffmap[y][x] == '0' || 
+		ffmap[y][x] == '1' || ffmap[y][x] == '2' ||
 		ffmap[y][x] == 'N' || ffmap[y][x] == 'S' ||
 		ffmap[y][x] == 'E' || ffmap[y][x] == 'W')
 	{
@@ -65,7 +66,7 @@ void	check_stray(t_game *game)
 	j = 0;
 	while (game->map.ffimap[1][j] != 0x00)
 	{
-		if (game->map.ffimap[1][j] == '1')
+		if (game->map.ffimap[1][j] == '1' || game->map.ffimap[1][j] == '2')
 			break ;
 		j++;
 	}

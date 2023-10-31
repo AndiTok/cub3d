@@ -6,7 +6,7 @@
 /*   By: atok <atok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 15:43:32 by wyap              #+#    #+#             */
-/*   Updated: 2023/10/31 22:35:27 by atok             ###   ########.fr       */
+/*   Updated: 2023/11/01 03:19:18 by atok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init_texture(t_game *game, t_map *map, t_element *elem)
 	int	i;
 	int	j;
 
+	// printf("(%s)\n",elem->no);
 	map->north.mlx_img = mlx_xpm_file_to_image(game->mlx, elem->no, &i, &j);
 	if (!map->north.mlx_img)
 		ft_exit_error("north texture not loaded\n");
@@ -37,5 +38,15 @@ void	init_texture(t_game *game, t_map *map, t_element *elem)
 		ft_exit_error("west texture not loaded\n");
 	map->west.addr = mlx_get_data_addr(map->west.mlx_img,
 			&map->west.bpp, &map->west.line_len, &map->west.endian);
+	map->door[0].mlx_img = mlx_xpm_file_to_image(game->mlx, "./texture/doora.xpm", &i, &j);
+	if (!map->door[0].mlx_img)
+		ft_exit_error("doora texture not loaded\n");
+	map->door[0].addr = mlx_get_data_addr(map->door[0].mlx_img,
+			&map->door[0].bpp, &map->door[0].line_len, &map->door[0].endian);
+	map->door[1].mlx_img = mlx_xpm_file_to_image(game->mlx, "./texture/doorb.xpm", &i, &j);
+	if (!map->door[1].mlx_img)
+		ft_exit_error("doorb texture not loaded\n");
+	map->door[1].addr = mlx_get_data_addr(map->door[1].mlx_img,
+			&map->door[1].bpp, &map->door[1].line_len, &map->door[1].endian);
 	return ;
 }

@@ -21,7 +21,7 @@
 *	if (ray->ra > M_PI): look up mm N wall
 *	if (ray->ra < M_PI): look down mm S wall
 */
-int	set_dist_t_texture(t_raycast *ray)
+int	set_dist_t_texture(t_map *map, t_raycast *ray)
 {
 	int	texture;
 
@@ -31,9 +31,19 @@ int	set_dist_t_texture(t_raycast *ray)
 		ray->ry = ray->vy;
 		ray->dist_t = ray->dist_v;
 		if (ray->ra > M_PI_2 && ray->ra < M_PI_2 * 3)
-			texture = 'E';
+		{
+			if (map->xymap[(int)ray->ry/SCALE][(int)ray->rx/SCALE] == '2')
+				texture = 'e';
+			if (map->xymap[(int)ray->ry/SCALE][(int)ray->rx/SCALE] == '1')
+				texture = 'E';
+		}
 		if (ray->ra < M_PI_2 || ray->ra > M_PI_2 * 3)
-			texture = 'W';
+		{
+			if (map->xymap[(int)ray->ry/SCALE][(int)ray->rx/SCALE] == '2')
+				texture = 'w';
+			if (map->xymap[(int)ray->ry/SCALE][(int)ray->rx/SCALE] == '1')
+				texture = 'W';
+		}
 	}
 	if (ray->dist_h < ray->dist_v)
 	{
@@ -41,9 +51,19 @@ int	set_dist_t_texture(t_raycast *ray)
 		ray->ry = ray->hy;
 		ray->dist_t = ray->dist_h;
 		if (ray->ra > M_PI)
-			texture = 'N';
+		{
+			if (map->xymap[(int)ray->ry/SCALE][(int)ray->rx/SCALE] == '2')
+				texture = 'n';
+			if (map->xymap[(int)ray->ry/SCALE][(int)ray->rx/SCALE] == '1')
+				texture = 'N';
+		}
 		if (ray->ra < M_PI)
-			texture = 'S';
+		{
+			if (map->xymap[(int)ray->ry/SCALE][(int)ray->rx/SCALE] == '2')
+				texture = 's';
+			if (map->xymap[(int)ray->ry/SCALE][(int)ray->rx/SCALE] == '1')
+				texture = 'S';
+		}
 	}
 	return (texture);
 }

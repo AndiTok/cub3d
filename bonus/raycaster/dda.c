@@ -20,7 +20,8 @@ void	get_dist_h(t_map *map, t_raycast *ray)
 		ray->my = (int)ray->ry / SCALE;
 		limit_2dmap_index(map, ray);
 		if (map->xymap[ray->my][ray->mx] == '1'
-			|| map->xymap[ray->my][ray->mx] == ' ')
+			|| map->xymap[ray->my][ray->mx] == ' '
+			|| map->xymap[ray->my][ray->mx] == '2')
 		{
 			ray->hx = ray->rx;
 			ray->hy = ray->ry;
@@ -84,7 +85,8 @@ void	get_dist_v(t_map *map, t_raycast *ray)
 		ray->my = (int)ray->ry / SCALE;
 		limit_2dmap_index(map, ray);
 		if (map->xymap[ray->my][ray->mx] == '1'
-			|| map->xymap[ray->my][ray->mx] == ' ')
+			|| map->xymap[ray->my][ray->mx] == ' '
+			|| map->xymap[ray->my][ray->mx] == '2')
 		{
 			ray->vx = ray->rx;
 			ray->vy = ray->ry;

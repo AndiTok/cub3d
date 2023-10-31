@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map_char.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyap <wyap@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: atok <atok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:23:01 by atok              #+#    #+#             */
-/*   Updated: 2023/11/01 00:38:46 by wyap             ###   ########.fr       */
+/*   Updated: 2023/11/01 02:22:15 by atok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	check_map_char(t_game *game)
 		j = 0;
 		while (game->map.xymap[i][++j] != 0x00)
 		{
-			if (game->map.xymap[i][j] != ' ' &&
+			if (game->map.xymap[i][j] != ' ' && game->map.xymap[i][j] != '2' &&
 				game->map.xymap[i][j] != '0' && game->map.xymap[i][j] != '1' &&
 				game->map.xymap[i][j] != 'N' && game->map.xymap[i][j] != 'S' &&
 				game->map.xymap[i][j] != 'E' && game->map.xymap[i][j] != 'W')

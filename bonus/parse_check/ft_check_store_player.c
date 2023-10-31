@@ -14,13 +14,13 @@
 
 void	check_player_pos(char **map, int x, int y)
 {
-	if (map[y - 1][x] != '0' && map[y - 1][x] != '1')
+	if (map[y - 1][x] != '0' && (map[y - 1][x] != '1' && map[y - 1][x] != '2'))
 		ft_exit_error("Error: player out of bound\n");
-	if (map[y + 1][x] != '0' && map[y + 1][x] != '1')
+	if (map[y + 1][x] != '0' && (map[y - 1][x] != '1' && map[y + 1][x] != '2'))
 		ft_exit_error("Error: player out of bound\n");
-	if (map[y][x - 1] != '0' && map[y][x - 1] != '1')
+	if (map[y][x - 1] != '0' && (map[y - 1][x] != '1' && map[y][x - 1] != '2'))
 		ft_exit_error("Error: player out of bound\n");
-	if (map[y][x + 1] != '0' && map[y][x + 1] != '1')
+	if (map[y][x + 1] != '0' && (map[y - 1][x] != '1' && map[y][x + 1] != '2'))
 		ft_exit_error("Error: player out of bound\n");
 }
 

@@ -25,7 +25,7 @@ void	raycast(t_game *game, t_raycast *ray)
 	while (r < 1260)
 	{
 		dda(&game->map, ray);
-		t = set_dist_t_texture(ray);
+		t = set_dist_t_texture(&game->map, ray);
 		fix_fisheye(ray);
 		draw_xpm(game, ray, r, t);
 		ray->ra += ((M_PI / 180.00) / 21);

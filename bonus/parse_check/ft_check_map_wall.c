@@ -17,7 +17,7 @@ void	ff_outer_map(t_game *game, char **ffmap, int x, int y)
 	if ((y < 0 || y >= game->map.n_row + 2) || \
 		(x < 0 || x >= game->map.n_col + 2))
 		return ;
-	if (ffmap[y][x] == '0')
+	if (ffmap[y][x] == '0' || ffmap[y][x] == '2')
 	{
 		ft_exit_error("Error: map not enclosed/surounded by '1'\n");
 		return ;

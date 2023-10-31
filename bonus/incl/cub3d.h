@@ -43,12 +43,14 @@
 # define PINK 0xFF00FF
 # define BLACK 0x000000
 # define GREY 0x828782
+# define BROWN 0x964B00
 
 // // keycode mac
 // # define W 13
 // # define A 0
 // # define S 1
 // # define D 2
+// # define E 14
 // # define ESC 53
 // # define LEFT 123
 // # define RIGHT 124
@@ -60,6 +62,7 @@
 # define A 97
 # define S 115
 # define D 100
+# define E 101
 # define ESC 65307
 # define LEFT 0xff51
 # define RIGHT 0xff53
@@ -141,6 +144,8 @@ typedef struct s_map
 	t_img	south;
 	t_img	east;
 	t_img	west;
+	t_img	door[2]; // doora + doorb 0 & 1
+	int		d; // door switch
 	int		n_row;
 	int		n_col;
 }t_map;
@@ -183,6 +188,7 @@ typedef struct s_game
 	t_raycast	ray;
 	t_img		img;
 	int			toggle_m;
+	int			fps;
 }t_game;
 
 char	*ft_itoa(int n);
@@ -217,6 +223,7 @@ void	ft_init_img(t_game *game); //
 void	img_pix_put(t_img *img, int x, int y, int color); //
 int		ft_render(t_game *game); //
 void	init_texture(t_game *game, t_map *map, t_element *elem);
+int		ft_fps(t_game *game);
 
 /*raycast + utils*/
 void	ray_init(t_raycast *ray, t_player *player);
@@ -229,7 +236,7 @@ double	ft_round(double val);
 double	angle_reset(double angle);
 void	fix_fisheye(t_raycast *ray);
 void	limit_2dmap_index(t_map *map, t_raycast *ray);
-int		set_dist_t_texture(t_raycast *ray);
+int		set_dist_t_texture(t_map *map, t_raycast *ray);
 
 //GNL + utils
 # ifndef BUFFER_SIZE
