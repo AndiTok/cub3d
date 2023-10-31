@@ -1,46 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_map_hole.c                                :+:      :+:    :+:   */
+/*   ft_exit_error.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atok <atok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/06 09:36:38 by atok              #+#    #+#             */
-/*   Updated: 2023/08/06 09:36:38 by atok             ###   ########.fr       */
+/*   Created: 2023/07/30 07:48:13 by atok              #+#    #+#             */
+/*   Updated: 2023/07/30 07:48:13 by atok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/cub3d.h"
 
-void	check_hole(t_game *game)
+/*local ft_putstr*/
+void	ft_putstr(char *s)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	while (game->map.ffomap[i] != 0x00)
+	if (s == 0)
+		return ;
+	while (s[i] != 0x00)
 	{
-		j = 0;
-		while (game->map.ffomap[i][j] != 0x00)
-		{
-			if (game->map.ffomap[i][j] == ' ')
-			{
-				printf("on [%d][%d]\n", i, j);
-				ft_exit_error("Error: hole in map\n");
-			}
-			j++;
-		}
+		write(1, &s[i], 1);
 		i++;
 	}
 }
 
-void	ft_check_map_hole(t_game *game)
+void	ft_exit_error(char *str)
 {
-	check_hole(game);
+	ft_putstr(str);
+	exit(1);
 }
-	/*show map*/
-	//	int	i;
-	// i = 0;
-	// while (game->map.xymap[i] != 0x00)
-	// 	printf("%s\n", game->map.xymap[i++]);
-	// printf("%d\n", i);
