@@ -12,6 +12,7 @@
 
 #include "../incl/cub3d.h"
 
+/*door animation: switch door texture when condition met*/
 int	ft_fps(t_game *game)
 {
 	game->fps++;

@@ -168,6 +168,8 @@ void	draw_2dmap(t_game *game)
 		{
 			if (game->map.xymap[i][j] == '2')
 				draw_cell(game, j, i, BROWN);
+			if (game->map.xymap[i][j] == '3')
+				draw_cell(game, j, i, PINK);
 			if (game->map.xymap[i][j] == '1')
 				draw_cell(game, j, i, BLUE);
 			if (game->map.xymap[i][j] == '0')

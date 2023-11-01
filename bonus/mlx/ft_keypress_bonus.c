@@ -89,13 +89,15 @@ int	keypress(int keycode, t_game *game)
 {
 	int	tmpx;
 	int	tmpy;
-	
+
 	if (keycode == E)
 	{
 		tmpx = game->player.x + cos(game->ray.p_angle) * SCALE;
 		tmpy = game->player.y + sin(game->ray.p_angle) * SCALE;
 		if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '2')
-			game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] = '0';
+			game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] = '3';
+		else if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '3')
+			game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] = '2';
 	}	
 	if (keycode == M)
 		mlx_mouse_move(game->mlx,game->win, 630, 360);
@@ -122,6 +124,7 @@ int	ft_end(t_game *game)
 	exit(1);
 }
 
+//to chg param to t_ray *ray
 int mouse_move(int x, int y, t_game *game)
 {
     (void) y; // We're not using the y-coordinate
@@ -139,10 +142,8 @@ int mouse_move(int x, int y, t_game *game)
     game->ray.p_angle += delta_x * rotation_speed;
     
     // Ensure the view angle stays within the range [0, 2 * PI]
-    if (game->ray.p_angle < 0)
-        game->ray.p_angle += 2 * M_PI;
-    else if (game->ray.p_angle >= 2 * M_PI)
-        game->ray.p_angle -= 2 * M_PI;
+	game->ray.p_angle = angle_reset(game->ray.p_angle);
+    // printf("%f\n", game->ray.p_angle);
     
     // Update the direction vector
     game->ray.dir_x = cos(game->ray.p_angle) * 25;
