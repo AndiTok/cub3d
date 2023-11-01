@@ -22,7 +22,7 @@ void	ft_load_file(t_game *game, char **v)
 
 	fd = open(v[1], O_RDONLY);
 	if (fd == -1)
-		ft_exit_error("Error\nFile empty");
+		ft_exit_error("Error\nFile empty\n");
 	file = ft_strdup("");
 	while (fd != -1)
 	{
