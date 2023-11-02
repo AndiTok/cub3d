@@ -14,14 +14,17 @@
 
 void	check_player_pos(char **map, int x, int y)
 {
-	if (map[y - 1][x] != '0' && map[y - 1][x] != '1')
+	if (map[y - 1][x] == ' ' || map[y + 1][x] == ' '
+		|| map[y][x - 1] == ' ' || map[y][x + 1] == ' ')
 		ft_exit_error("Error: player out of bound\n");
-	if (map[y + 1][x] != '0' && map[y + 1][x] != '1')
-		ft_exit_error("Error: player out of bound\n");
-	if (map[y][x - 1] != '0' && map[y][x - 1] != '1')
-		ft_exit_error("Error: player out of bound\n");
-	if (map[y][x + 1] != '0' && map[y][x + 1] != '1')
-		ft_exit_error("Error: player out of bound\n");
+	// if (map[y - 1][x] != '0' && map[y - 1][x] != '1' && map[y - 1][x] != '2')
+	// 	ft_exit_error("Error: player out of bound\n");
+	// if (map[y + 1][x] != '0' && map[y + 1][x] != '1' && map[y + 1][x] != '2')
+	// 	ft_exit_error("Error: player out of bound\n");
+	// if (map[y][x - 1] != '0' && map[y][x - 1] != '1' && map[y][x - 1] != '2')
+	// 	ft_exit_error("Error: player out of bound\n");
+	// if (map[y][x + 1] != '0' && map[y][x + 1] != '1' && map[y][x + 1] != '2')
+	// 	ft_exit_error("Error: player out of bound\n");
 }
 
 /*player x and y - 8 to center the dot*/
@@ -39,8 +42,8 @@ void	get_player_pos(t_game *game)
 			if (game->map.xymap[i][j] == 'N' || game->map.xymap[i][j] == 'S' ||
 				game->map.xymap[i][j] == 'E' || game->map.xymap[i][j] == 'W')
 			{
-				game->player.x = (double)j * SCALE - 8;
-				game->player.y = (double)i * SCALE - 8;
+				game->player.x = (double)j * SCALE + 8;
+				game->player.y = (double)i * SCALE + 8;
 			}
 			j++;
 		}
