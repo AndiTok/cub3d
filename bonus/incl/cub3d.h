@@ -176,14 +176,6 @@ typedef struct s_file
 	int		ea;
 }t_file;
 
-typedef struct s_key
-{
-	int	w;
-	int	a;
-	int	s;
-	int	d;
-}t_key;
-
 typedef struct s_game
 {
 	void		*mlx;
@@ -196,7 +188,6 @@ typedef struct s_game
 	t_element	element;
 	t_raycast	ray;
 	t_img		img;
-	t_key		key;
 	int			toggle_m;
 	int			fps;
 }t_game;
@@ -234,8 +225,6 @@ void	img_pix_put(t_img *img, int x, int y, int color); //
 int		ft_render(t_game *game); //
 void	init_texture(t_game *game, t_map *map, t_element *elem);
 int		ft_fps(t_game *game);
-// void	plyr_up(int trigger, t_game *game);
-// void	plyr_left(int trigger, t_game *game);
 
 /*raycast + utils*/
 void	ray_init(t_raycast *ray, t_player *player);

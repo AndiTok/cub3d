@@ -12,15 +12,6 @@
 
 #include "incl/cub3d.h"
 
-void	key_init(t_key *key)
-{
-	key->w = 0;
-	key->a = 0;
-	key->s = 0;
-	key->d = 0;
-}
-
-
 int	main(int c, char **v)
 {
 	t_game	game;
@@ -43,7 +34,6 @@ int	main(int c, char **v)
 	init_texture(&game, &game.map, &game.element);
 	ft_init_img(&game);
 	ray_init(&game.ray, &game.player);
-	key_init(&game.key);
 	ft_render(&game);
 	ft_keypress(&game);
 	mlx_loop(game.mlx);
