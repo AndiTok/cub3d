@@ -51,6 +51,5 @@ int	main(int c, char **v)
 // gcc -Wall -Werror -Wextra main.c raycaster/*.c utils/*.c parse_check/*.c mlx/*.c gnl/*.c -L ../minilibx/minilibx-linux -lmlx -lXext -lX11 -lm -lz && ./a.out ../maps/w2020.cub
 // gcc -Wall -Werror -Wextra main.c raycaster/*.c utils/*.c parse_check/*.c mlx/*.c gnl/*.c -L ../minilibx/minilibx-linux -lmlx -lXext -lX11 -lm -lz -fsanitize=address -g3 && ./a.out ../maps/w2020.cub
 
-// note:
-// moved texture out of mandatory to share between mandatory and bonus
-// save the hassel for file pathing ./mandatory/texture/N.xpm & ./bonus/texture/N.xpm
+// run on mac:
+// gcc -Wall -Werror -Wextra main_bonus.c raycaster/*.c utils/*.c parse_check/*.c mlx/*.c gnl/*.c -L ../minilibx/minilibx_opengl_20191021 -lmlx -framework OpenGL -framework AppKit && ./a.out ../maps/bonus.cub

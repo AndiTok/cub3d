@@ -20,9 +20,10 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
-# include "../../minilibx/minilibx-linux/mlx.h"
+// # include "../../minilibx/minilibx-linux/mlx.h"
+# include "../../minilibx/minilibx_opengl_20191021/mlx.h"
 # include <string.h>
-//#include <mlx.h>
+// #include <mlx.h>
 
 //minimap
 # define SCALE 16
@@ -46,28 +47,28 @@
 # define BROWN 0x964B00
 
 // // keycode mac
-// # define W 13
-// # define A 0
-// # define S 1
-// # define D 2
-// # define E 14
-// # define ESC 53
-// # define LEFT 123
-// # define RIGHT 124
-// # define L 37 // toggle map
-// # define M 46 // reserve form ouse
+# define W 13
+# define A 0
+# define S 1
+# define D 2
+# define E 14
+# define ESC 53
+# define LEFT 123
+# define RIGHT 124
+# define L 37 // toggle map
+# define M 46 // reserve form ouse
 
 //keycode x11
-# define W 119
-# define A 97
-# define S 115
-# define D 100
-# define E 101
-# define ESC 65307
-# define LEFT 0xff51
-# define RIGHT 0xff53
-# define L 108
-# define M 109
+// # define W 119
+// # define A 97
+// # define S 115
+// # define D 100
+// # define E 101
+// # define ESC 65307
+// # define LEFT 0xff51
+// # define RIGHT 0xff53
+// # define L 108
+// # define M 109
 
 /*
 * px py: player position in xymap
