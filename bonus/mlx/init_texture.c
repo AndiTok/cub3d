@@ -6,7 +6,7 @@
 /*   By: atok <atok@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 15:43:32 by wyap              #+#    #+#             */
-/*   Updated: 2023/11/01 03:19:18 by atok             ###   ########.fr       */
+/*   Updated: 2023/11/02 17:37:48 by atok             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	init_texture(t_game *game, t_map *map, t_element *elem)
 	int	i;
 	int	j;
 
-	// printf("(%s)\n",elem->no);
 	map->north.mlx_img = mlx_xpm_file_to_image(game->mlx, elem->no, &i, &j);
 	if (!map->north.mlx_img)
 		ft_exit_error("north texture not loaded\n");

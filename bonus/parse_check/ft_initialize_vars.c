@@ -29,4 +29,5 @@ void	ft_initialize_vars(t_game *game)
 	game->toggle_m = 0;
 	game->map.d = 0;
 	game->fps = 0;
+	game->mouse = 1;
 }

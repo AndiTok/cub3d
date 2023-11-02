@@ -190,6 +190,7 @@ typedef struct s_game
 	t_img		img;
 	int			toggle_m;
 	int			fps;
+	int			mouse;
 }t_game;
 
 char	*ft_itoa(int n);
@@ -225,6 +226,7 @@ void	img_pix_put(t_img *img, int x, int y, int color); //
 int		ft_render(t_game *game); //
 void	init_texture(t_game *game, t_map *map, t_element *elem);
 int		ft_fps(t_game *game);
+int 	mouse_move(int x, int y, t_game *game);
 
 /*raycast + utils*/
 void	ray_init(t_raycast *ray, t_player *player);

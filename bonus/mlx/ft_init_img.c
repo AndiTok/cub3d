@@ -24,7 +24,7 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	if ((y <= 720 && y >= 0) && (x <= 1280 && x >= 0))
+	if ((y <= WIN_HEIGHT && y >= 0) && (x <= WIN_WIDTH && x >= 0))
 	{
 		dst = img->addr + (y * (img->line_len) + x * (img->bpp / 8));
 		*(unsigned int *)dst = color;

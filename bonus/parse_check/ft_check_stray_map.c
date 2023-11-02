@@ -66,7 +66,7 @@ void	check_stray(t_game *game)
 	j = 0;
 	while (game->map.ffimap[1][j] != 0x00)
 	{
-		if (game->map.ffimap[1][j] == '1' || game->map.ffimap[1][j] == '2')
+		if (game->map.ffimap[1][j] == '1')// || game->map.ffimap[1][j] == '2')
 			break ;
 		j++;
 	}
