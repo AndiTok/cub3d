@@ -43,15 +43,15 @@ MLX_FLAG_WIN = -L minilibx/minilibx-linux -lmlx -lXext -lX11 -lm -lz
 .PHONY = all clean fclean re
 
 $(NAME): $(OBJ)
-	@$(GCC) $(CFLAGS) $(OBJ) $(MLX_FLAG_WIN) -o $(NAME)
 	@echo compiling make...
+	@$(GCC) $(CFLAGS) $(OBJ) $(MLX_FLAG_MAC) -o $(NAME)
 
 all: $(NAME)
-	@echo compiling all...
+# @echo compiling all...
 
 $(BONUS): $(BONUS_OBJ)
 	@echo compiling bonus...
-	$(GCC) $(CFLAGS) $(MLX_FLAG_WIN) $(BONUS_OBJ) -o $(NAME)
+	$(GCC) $(CFLAGS) $(MLX_FLAG_MAC) $(BONUS_OBJ) -o $(NAME)
 
 bonus: $(BONUS)
 
@@ -69,4 +69,4 @@ re: fclean all
 
 debug: $(OBJ)
 	@echo compiling with debug flags...
-	$(GCC) $(CFLAGS) $(MLX_FLAG_WIN) $(FSAN) $(OBJ) -o $(NAME)
+	$(GCC) $(CFLAGS) $(MLX_FLAG_MAC) $(FSAN) $(OBJ) -o $(NAME)

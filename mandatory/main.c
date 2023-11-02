@@ -38,19 +38,3 @@ int	main(int c, char **v)
 	ft_keypress(&game);
 	mlx_loop(game.mlx);
 }
-
-// export DISPALY=[ipv4]:0.0 wihtout[]
-// echo $DISPLAY to check
-// xeyes to check
-// gcc *.c -L minilibx/minilibx-linux -lmlx -lXext -lX11 -lm -lz && ./a.out maps/map.ber
-// gcc -Wall -Werror -Wextra main.c raycaster/*.c utils/*.c parse_check/*c mlx/*.c gnl/*.c -L ../minilibx/minilibx-linux -lmlx -lXext -lX11 -lm -lz -fsanitize=address -g3  && ./a.out ../maps/w2020.cub
-
-// gcc -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit *.c  && ./a.out maps/minimalist.cub
-// gcc -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit *.c  -fsanitize=address -g3 && ./a.out maps/minimalist.cub
-
-// gcc -Wall -Werror -Wextra main.c raycaster/*.c utils/*.c parse_check/*.c mlx/*.c gnl/*.c -L ../minilibx/minilibx-linux -lmlx -lXext -lX11 -lm -lz && ./a.out ../maps/w2020.cub
-// gcc -Wall -Werror -Wextra main.c raycaster/*.c utils/*.c parse_check/*.c mlx/*.c gnl/*.c -L ../minilibx/minilibx-linux -lmlx -lXext -lX11 -lm -lz -fsanitize=address -g3 && ./a.out ../maps/w2020.cub
-
-// note:
-// moved texture out of mandatory to share between mandatory and bonus
-// save the hassel for file pathing ./mandatory/texture/N.xpm & ./bonus/texture/N.xpm

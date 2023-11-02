@@ -12,6 +12,28 @@
 
 #include "../incl/cub3d.h"
 
+int	take_dist_h(t_map *map, t_raycast *ray, int texture)
+{
+	ray->rx = ray->hx;
+	ray->ry = ray->hy;
+	ray->dist_t = ray->dist_h;
+	if (ray->ra > M_PI)
+	{
+		if (map->xymap[(int)ray->ry / SCALE][(int)ray->rx / SCALE] == '1')
+			texture = 'N';
+		if (map->xymap[(int)ray->ry / SCALE][(int)ray->rx / SCALE] == '2')
+			texture = 'n';
+	}
+	if (ray->ra < M_PI)
+	{
+		if (map->xymap[(int)ray->ry / SCALE][(int)ray->rx / SCALE] == '1')
+			texture = 'S';
+		if (map->xymap[(int)ray->ry / SCALE][(int)ray->rx / SCALE] == '2')
+			texture = 's';
+	}
+	return (texture);
+}
+
 /*
 * get correct wall distance and set texture to draw
 *
@@ -32,41 +54,42 @@ int	set_dist_t_texture(t_map *map, t_raycast *ray)
 		ray->dist_t = ray->dist_v;
 		if (ray->ra > M_PI_2 && ray->ra < M_PI_2 * 3)
 		{
-			if (map->xymap[(int)ray->ry/SCALE][(int)ray->rx/SCALE] == '2')
-				texture = 'e';
-			if (map->xymap[(int)ray->ry/SCALE][(int)ray->rx/SCALE] == '1')
+			if (map->xymap[(int)ray->ry / SCALE][(int)ray->rx / SCALE] == '1')
 				texture = 'E';
+			if (map->xymap[(int)ray->ry / SCALE][(int)ray->rx / SCALE] == '2')
+				texture = 'e';
 		}
 		if (ray->ra < M_PI_2 || ray->ra > M_PI_2 * 3)
 		{
-			if (map->xymap[(int)ray->ry/SCALE][(int)ray->rx/SCALE] == '2')
-				texture = 'w';
-			if (map->xymap[(int)ray->ry/SCALE][(int)ray->rx/SCALE] == '1')
+			if (map->xymap[(int)ray->ry / SCALE][(int)ray->rx / SCALE] == '1')
 				texture = 'W';
+			if (map->xymap[(int)ray->ry / SCALE][(int)ray->rx / SCALE] == '2')
+				texture = 'w';
 		}
 	}
 	if (ray->dist_h < ray->dist_v)
-	{
-		ray->rx = ray->hx;
-		ray->ry = ray->hy;
-		ray->dist_t = ray->dist_h;
-		if (ray->ra > M_PI)
-		{
-			if (map->xymap[(int)ray->ry/SCALE][(int)ray->rx/SCALE] == '2')
-				texture = 'n';
-			if (map->xymap[(int)ray->ry/SCALE][(int)ray->rx/SCALE] == '1')
-				texture = 'N';
-		}
-		if (ray->ra < M_PI)
-		{
-			if (map->xymap[(int)ray->ry/SCALE][(int)ray->rx/SCALE] == '2')
-				texture = 's';
-			if (map->xymap[(int)ray->ry/SCALE][(int)ray->rx/SCALE] == '1')
-				texture = 'S';
-		}
-	}
+		texture = take_dist_h(map, ray, texture);
 	return (texture);
 }
+// {
+	// ray->rx = ray->hx;
+	// ray->ry = ray->hy;
+	// ray->dist_t = ray->dist_h;
+	// if (ray->ra > M_PI)
+	// {
+	// 	if (map->xymap[(int)ray->ry / SCALE][(int)ray->rx / SCALE] == '1')
+	// 		texture = 'N';
+	// 	if (map->xymap[(int)ray->ry / SCALE][(int)ray->rx / SCALE] == '2')
+	// 		texture = 'n';
+	// }
+	// if (ray->ra < M_PI)
+	// {
+	// 	if (map->xymap[(int)ray->ry / SCALE][(int)ray->rx / SCALE] == '1')
+	// 		texture = 'S';
+	// 	if (map->xymap[(int)ray->ry / SCALE][(int)ray->rx / SCALE] == '2')
+	// 		texture = 's';
+	// }
+// }
 
 /*prevent mx my exceeding map boundary (pointing to NULL)*/
 void	limit_2dmap_index(t_map *map, t_raycast *ray)
@@ -99,11 +122,4 @@ double	angle_reset(double angle)
 	if (angle > M_PI * 2)
 		angle -= M_PI * 2;
 	return (angle);
-}
-
-void	fix_fisheye(t_raycast *ray)
-{
-	ray->fish = ray->p_angle - ray->ra;
-	ray->fish = angle_reset(ray->fish);
-	ray->dist_t *= cos(ray->fish);
 }

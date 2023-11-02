@@ -48,16 +48,7 @@ char	*get_pix(t_map *map, double ty, int tx, int t)
 	if (t == 'W')
 		dst = map->west.addr + ((int)ty * (map->west.line_len)
 				+ tx * (map->west.bpp / 8));
-	if (t == 'n')
-		dst = map->door[map->d].addr + ((int)ty * (map->door[map->d].line_len)
-				+ tx * (map->door[map->d].bpp / 8));
-	if (t == 's')
-		dst = map->door[map->d].addr + ((int)ty * (map->door[map->d].line_len)
-				+ tx * (map->door[map->d].bpp / 8));
-	if (t == 'e')
-		dst = map->door[map->d].addr + ((int)ty * (map->door[map->d].line_len)
-				+ tx * (map->door[map->d].bpp / 8));
-	if (t == 'w')
+	if (t == 'n' || t == 's' || t == 'e' || t == 'w')
 		dst = map->door[map->d].addr + ((int)ty * (map->door[map->d].line_len)
 				+ tx * (map->door[map->d].bpp / 8));
 	return (dst);
@@ -67,22 +58,14 @@ double	get_tx(t_raycast *ray, int t)
 {
 	int	tx;
 
-	if (t == 'N')
+	if (t == 'N' || t == 'n')
 		tx = (int)ray->rx % 16;
-	if (t == 'S')
+	if (t == 'S' || t == 's')
 		tx = 15 - (int)ray->rx % 16;
-	if (t == 'W')
+	if (t == 'W' || t == 'w')
 		tx = (int)ray->ry % 16;
-	if (t == 'E')
-		tx = 15 -(int)ray->ry % 16;
-	if (t == 'n')
-		tx = (int)ray->rx % 16;
-	if (t == 's')
-		tx = 15 - (int)ray->rx % 16;
-	if (t == 'w')
-		tx = (int)ray->ry % 16;
-	if (t == 'e')
-		tx = 15 -(int)ray->ry % 16;
+	if (t == 'E' || t == 'e')
+		tx = 15 - (int)ray->ry % 16;
 	return (tx);
 }
 
