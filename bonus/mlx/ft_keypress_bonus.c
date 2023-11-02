@@ -12,17 +12,13 @@
 
 #include "../incl/cub3d.h"
 
-/*
-* player up down movement, with wall collision
-* check 4 pixels ahead if encounter wall, reverse 2 pixels
-*/
-void	plyr_up_down(int keycode, t_game *game)
+void	plyr_up(t_game *game)//(int trigger, t_game *game)
 {
 	int	tmpx;
 	int	tmpy;
 
-	if (keycode == W)
-	{
+	// if (trigger == 1)
+	// {
 		game->player.x += cos(game->ray.p_angle) * 2;
 		game->player.y += sin(game->ray.p_angle) * 2;
 		tmpx = game->player.x + cos(game->ray.p_angle) * 4;
@@ -33,30 +29,71 @@ void	plyr_up_down(int keycode, t_game *game)
 			game->player.x -= cos(game->ray.p_angle) * 2;
 			game->player.y -= sin(game->ray.p_angle) * 2;
 		}
-		return ;
-	}
-	game->player.x -= cos(game->ray.p_angle) * 2;
-	game->player.y -= sin(game->ray.p_angle) * 2;
-	tmpx = game->player.x - cos(game->ray.p_angle) * 4;
-	tmpy = game->player.y - sin(game->ray.p_angle) * 4;
-	if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '1'
-	|| game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '2')
-	{
-		game->player.x += cos(game->ray.p_angle) * 2;
-		game->player.y += sin(game->ray.p_angle) * 2;
-	}
+		// ft_render(game);
+	// }
 }
 
-/*
-* player left right movement, with wall collision
-* check 4 pixels ahead if encounter wall, reverse 2 pixels
-*/
-void	plyr_left_right(int keycode, t_game *game)
+void	plyr_down(int trigger, t_game *game)
 {
 	int	tmpx;
 	int	tmpy;
 
-	if (keycode == A)
+	if (trigger == 1)
+	{
+		game->player.x -= cos(game->ray.p_angle) * 2;
+		game->player.y -= sin(game->ray.p_angle) * 2;
+		tmpx = game->player.x - cos(game->ray.p_angle) * 4;
+		tmpy = game->player.y - sin(game->ray.p_angle) * 4;
+		if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '1'
+		|| game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '2')
+		{
+			game->player.x += cos(game->ray.p_angle) * 2;
+			game->player.y += sin(game->ray.p_angle) * 2;
+		}
+	}
+}
+
+/*
+* player up down movement, with wall collision
+* check 4 pixels ahead if encounter wall, reverse 2 pixels
+*/
+// void	plyr_up_down(int keycode, t_game *game)
+// {
+// 	int	tmpx;
+// 	int	tmpy;
+
+// 	if (keycode == W)
+// 	{
+// 		game->player.x += cos(game->ray.p_angle) * 2;
+// 		game->player.y += sin(game->ray.p_angle) * 2;
+// 		tmpx = game->player.x + cos(game->ray.p_angle) * 4;
+// 		tmpy = game->player.y + sin(game->ray.p_angle) * 4;
+// 		if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '1'
+// 		|| game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '2')
+// 		{
+// 			game->player.x -= cos(game->ray.p_angle) * 2;
+// 			game->player.y -= sin(game->ray.p_angle) * 2;
+// 		}
+// 		return ;
+// 	}
+// 	game->player.x -= cos(game->ray.p_angle) * 2;
+// 	game->player.y -= sin(game->ray.p_angle) * 2;
+// 	tmpx = game->player.x - cos(game->ray.p_angle) * 4;
+// 	tmpy = game->player.y - sin(game->ray.p_angle) * 4;
+// 	if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '1'
+// 	|| game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '2')
+// 	{
+// 		game->player.x += cos(game->ray.p_angle) * 2;
+// 		game->player.y += sin(game->ray.p_angle) * 2;
+// 	}
+// }
+
+void	plyr_left(int trigger, t_game *game)
+{
+	int	tmpx;
+	int	tmpy;
+
+	if (trigger == 1)
 	{
 		game->player.x += sin(game->ray.p_angle) * 2;
 		game->player.y -= cos(game->ray.p_angle) * 2;
@@ -68,18 +105,111 @@ void	plyr_left_right(int keycode, t_game *game)
 			game->player.x -= sin(game->ray.p_angle) * 2;
 			game->player.y += cos(game->ray.p_angle) * 2;
 		}
-		return ;
 	}
-	game->player.x -= sin(game->ray.p_angle) * 2;
-	game->player.y += cos(game->ray.p_angle) * 2;
-	tmpx = game->player.x - sin(game->ray.p_angle) * 4;
-	tmpy = game->player.y + cos(game->ray.p_angle) * 4;
-	if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '1'
-	|| game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '2')
+}
+
+void	plyr_right(int trigger, t_game *game)
+{
+	int	tmpx;
+	int	tmpy;
+
+	if (trigger == 1)
 	{
-		game->player.x += sin(game->ray.p_angle) * 2;
-		game->player.y -= cos(game->ray.p_angle) * 2;
+		game->player.x -= sin(game->ray.p_angle) * 2;
+		game->player.y += cos(game->ray.p_angle) * 2;
+		tmpx = game->player.x - sin(game->ray.p_angle) * 4;
+		tmpy = game->player.y + cos(game->ray.p_angle) * 4;
+		if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '1'
+		|| game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '2')
+		{
+			game->player.x += sin(game->ray.p_angle) * 2;
+			game->player.y -= cos(game->ray.p_angle) * 2;
+		}
 	}
+}
+
+/*
+* player left right movement, with wall collision
+* check 4 pixels ahead if encounter wall, reverse 2 pixels
+*/
+// void	plyr_left_right(int keycode, t_game *game)
+// {
+// 	int	tmpx;
+// 	int	tmpy;
+
+// 	if (keycode == A)
+// 	{
+// 		game->player.x += sin(game->ray.p_angle) * 2;
+// 		game->player.y -= cos(game->ray.p_angle) * 2;
+// 		tmpx = game->player.x + sin(game->ray.p_angle) * 4;
+// 		tmpy = game->player.y - cos(game->ray.p_angle) * 4;
+// 		if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '1'
+// 		|| game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '2')
+// 		{
+// 			game->player.x -= sin(game->ray.p_angle) * 2;
+// 			game->player.y += cos(game->ray.p_angle) * 2;
+// 		}
+// 		return ;
+// 	}
+// 	game->player.x -= sin(game->ray.p_angle) * 2;
+// 	game->player.y += cos(game->ray.p_angle) * 2;
+// 	tmpx = game->player.x - sin(game->ray.p_angle) * 4;
+// 	tmpy = game->player.y + cos(game->ray.p_angle) * 4;
+// 	if (game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '1'
+// 	|| game->map.xymap[((int)tmpy / SCALE)][((int)tmpx / SCALE)] == '2')
+// 	{
+// 		game->player.x += sin(game->ray.p_angle) * 2;
+// 		game->player.y -= cos(game->ray.p_angle) * 2;
+// 	}
+// }
+
+void	wasd2(t_game *game)
+{
+	// printf("w? %d\n", game->key.w);
+	if (game->key.w == 1)
+		plyr_up(game);
+}
+
+void	wasd(int keycode, t_game *game)
+{
+	// printf("wasd: ");
+	if (keycode == W)
+	{
+		// printf("W\n");
+		game->key.w = 1;
+		// plyr_up(game->key.w, game);
+	}
+	if (keycode == A)
+	{
+		// printf("A\n");
+		game->key.a = 1;
+		plyr_left(game->key.a, game);
+	}
+	if (keycode == S)
+	{
+		// printf("S\n");
+		game->key.s = 1;
+		plyr_down(game->key.s, game);
+	}
+	if (keycode == D)
+	{
+		// printf("D\n");
+		game->key.d = 1;
+		plyr_right(game->key.d, game);
+	}
+}
+
+int	key_release(int keycode, t_game *game)
+{
+	if (keycode == W)
+		game->key.w = 0;
+	if (keycode == A)
+		game->key.a = 0;
+	if (keycode == S)
+		game->key.s = 0;
+	if (keycode == D)
+		game->key.d = 0;
+	return (0);
 }
 
 /*
@@ -103,10 +233,15 @@ int	keypress(int keycode, t_game *game)
 		// mlx_mouse_move(game->mlx,game->win, 630, 360);
 	if (keycode == L)
 		game->toggle_m = (game->toggle_m + 1) % 2;
-	if (keycode == W || keycode == S)
-		plyr_up_down(keycode, game);
-	if (keycode == A || keycode == D)
-		plyr_left_right(keycode, game);
+	if (keycode == W || keycode == S || keycode == A || keycode == D)
+	{
+		wasd(keycode, game);
+		wasd2(game);
+	}
+	// if (keycode == W || keycode == S)
+	// 	plyr_up_down(keycode, game);
+	// if (keycode == A || keycode == D)
+	// 	plyr_left_right(keycode, game);
 	if (keycode == LEFT)
 		rotation(LEFT, *game, &game->ray);
 	if (keycode == RIGHT)
@@ -163,8 +298,8 @@ int mouse_move(int x, int y, t_game *game)
 void	ft_keypress(t_game *game)
 {
 	mlx_loop_hook(game->mlx, ft_fps, game);
-	mlx_hook(game->win, (06), (1L << 6), mouse_move, game);
+	// mlx_hook(game->win, (06), (1L << 6), mouse_move, game);
 	mlx_hook(game->win, (02), (1L << 0), keypress, game);
-	// mlx_hook(game->win, (03), (1L << 1), key_release, game);
+	mlx_hook(game->win, (03), (1L << 1), key_release, game);
 	mlx_hook(game->win, (17), (1L << 0), ft_end, game);
 }
