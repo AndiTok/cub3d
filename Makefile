@@ -55,7 +55,7 @@ RM = rm -rf
 MLX_FLAG_MAC = -L minilibx/minilibx_opengl_20191021 -lmlx -framework OpenGL -framework AppKit
 MLX_FLAG_WIN = -L minilibx/minilibx-linux -lmlx -lXext -lX11 -lm -lz
 
-.PHONY = all clean fclean re
+.PHONY = all bonus clean fclean re m debug
 
 $(NAME): $(OBJ)
 	@echo " "
@@ -98,7 +98,7 @@ fclean: clean
 re: fclean all
 	@echo "*" recompiled all "*"
 
-debug: $(OBJ)
+debug: $(OBJ) $(BONUS_OBJ)
 	@echo compiling with debug flags...
 	$(GCC) $(CFLAGS) $(MLX_FLAG_MAC) $(FSAN) $(OBJ) -o $(NAME)_debug
 	@echo " "
