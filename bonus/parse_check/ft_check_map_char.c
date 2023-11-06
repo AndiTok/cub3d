@@ -3,58 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map_char.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atok <atok@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: wyap <wyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:23:01 by atok              #+#    #+#             */
-/*   Updated: 2023/11/01 02:22:15 by atok             ###   ########.fr       */
+/*   Updated: 2023/11/06 16:42:05 by wyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/cub3d.h"
-//chekc inside wiht FF
-	// dupe an ffmap
-	// player postition start 
-	// error if ' ' or  '\t'
-	// move trough '0'
-	// wall '1' as limit
-
-	//check ffmap for any 0
-	// all 0 and player pos should be F
-	// done
-
-//can str8 do the above no need check_wall
-/* void ff_wall(t_game *game, char **ffmap, int x, int y)
-{
-	if ((y < 0 || y >= game->map.row) || \
-		(x < 0 || x >= game->map.col))
-	return ;
-	if (ffmap[y][x] == '1')
-	{
-		ffmap[y][x] = 'F';
-		ff_wall(game, ffmap, x + 1, y);
-		ff_wall(game, ffmap, x - 1, y);
-		ff_wall(game, ffmap, x , y + 1);
-		ff_wall(game, ffmap, x , y - 1);
-	}
-	else
-		return;
-}
-
-void validate_wall(t_game *game)
-{
-	int j;
-
-	j = 0;
-	while(game->map.xymap[0][j] != 0x00)
-	{
-		if(game->map.xymap[0][j] == '1' && 
-			(game->map.xymap[1][j] == '1' || 
-				game->map.xymap[0][j + 1] == '1'))
-			break;
-		j++;
-	}
-	ff_wall(game,game->map.ffmap, j, 0);
-} */
 
 void	check_shape(t_game *game)
 {
@@ -109,6 +65,51 @@ void	ft_check_map_char(t_game *game)
 		ft_exit_error("ERROR: Wrong number of players, single player please\n");
 	check_shape(game);
 }
+
+//chekc inside wiht FF
+	// dupe an ffmap
+	// player postition start 
+	// error if ' ' or  '\t'
+	// move trough '0'
+	// wall '1' as limit
+
+	//check ffmap for any 0
+	// all 0 and player pos should be F
+	// done
+
+//can str8 do the above no need check_wall
+/* void ff_wall(t_game *game, char **ffmap, int x, int y)
+{
+	if ((y < 0 || y >= game->map.row) || \
+		(x < 0 || x >= game->map.col))
+	return ;
+	if (ffmap[y][x] == '1')
+	{
+		ffmap[y][x] = 'F';
+		ff_wall(game, ffmap, x + 1, y);
+		ff_wall(game, ffmap, x - 1, y);
+		ff_wall(game, ffmap, x , y + 1);
+		ff_wall(game, ffmap, x , y - 1);
+	}
+	else
+		return;
+}
+
+void validate_wall(t_game *game)
+{
+	int j;
+
+	j = 0;
+	while(game->map.xymap[0][j] != 0x00)
+	{
+		if(game->map.xymap[0][j] == '1' && 
+			(game->map.xymap[1][j] == '1' || 
+				game->map.xymap[0][j + 1] == '1'))
+			break;
+		j++;
+	}
+	ff_wall(game,game->map.ffmap, j, 0);
+} */
 
 /* NOTE
 map do not take in '\t' only ' '

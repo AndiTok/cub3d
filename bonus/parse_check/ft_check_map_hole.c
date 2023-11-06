@@ -12,7 +12,7 @@
 
 #include "../incl/cub3d.h"
 
-void	check_hole(t_game *game)
+void	ft_check_map_hole(t_game *game)
 {
 	int	i;
 	int	j;
@@ -32,11 +32,6 @@ void	check_hole(t_game *game)
 		}
 		i++;
 	}
-}
-
-void	ft_check_map_hole(t_game *game)
-{
-	check_hole(game);
 }
 	/*show map*/
 	//	int	i;

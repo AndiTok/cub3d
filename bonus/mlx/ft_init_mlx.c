@@ -18,5 +18,5 @@ void	ft_init_mlx(t_game *game)
 	game->win_width = WIN_WIDTH;
 	game->win_height = WIN_HEIGHT;
 	game->win = mlx_new_window(game->mlx, game->win_width, game->win_height,
-			"cub3D");
+			"cub3D_bonus");
 }

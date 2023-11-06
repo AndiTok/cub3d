@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   init_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atok <atok@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: wyap <wyap@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 15:43:32 by wyap              #+#    #+#             */
-/*   Updated: 2023/11/02 17:37:48 by atok             ###   ########.fr       */
+/*   Updated: 2023/11/06 17:33:59 by wyap             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/cub3d.h"
+
+void	init_door(t_game *game, t_map *map)
+{
+	int	i;
+	int	j;
+
+	map->door[0].mlx_img = mlx_xpm_file_to_image(game->mlx,
+			"./texture/doora.xpm", &i, &j);
+	if (!map->door[0].mlx_img)
+		ft_exit_error("doora texture not loaded\n");
+	map->door[0].addr = mlx_get_data_addr(map->door[0].mlx_img,
+			&map->door[0].bpp, &map->door[0].line_len, &map->door[0].endian);
+	map->door[1].mlx_img = mlx_xpm_file_to_image(game->mlx,
+			"./texture/doorb.xpm", &i, &j);
+	if (!map->door[1].mlx_img)
+		ft_exit_error("doorb texture not loaded\n");
+	map->door[1].addr = mlx_get_data_addr(map->door[1].mlx_img,
+			&map->door[1].bpp, &map->door[1].line_len, &map->door[1].endian);
+	return ;
+}
 
 void	init_texture(t_game *game, t_map *map, t_element *elem)
 {
@@ -37,15 +57,6 @@ void	init_texture(t_game *game, t_map *map, t_element *elem)
 		ft_exit_error("west texture not loaded\n");
 	map->west.addr = mlx_get_data_addr(map->west.mlx_img,
 			&map->west.bpp, &map->west.line_len, &map->west.endian);
-	map->door[0].mlx_img = mlx_xpm_file_to_image(game->mlx, "./texture/doora.xpm", &i, &j);
-	if (!map->door[0].mlx_img)
-		ft_exit_error("doora texture not loaded\n");
-	map->door[0].addr = mlx_get_data_addr(map->door[0].mlx_img,
-			&map->door[0].bpp, &map->door[0].line_len, &map->door[0].endian);
-	map->door[1].mlx_img = mlx_xpm_file_to_image(game->mlx, "./texture/doorb.xpm", &i, &j);
-	if (!map->door[1].mlx_img)
-		ft_exit_error("doorb texture not loaded\n");
-	map->door[1].addr = mlx_get_data_addr(map->door[1].mlx_img,
-			&map->door[1].bpp, &map->door[1].line_len, &map->door[1].endian);
+	init_door(game, map);
 	return ;
 }

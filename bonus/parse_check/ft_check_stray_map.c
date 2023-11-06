@@ -17,7 +17,7 @@ void	ff_map(t_game *game, char **ffmap, int x, int y)
 	if ((y < 0 || y >= game->map.n_row + 2) || \
 		(x < 0 || x >= game->map.n_col + 2))
 		return ;
-	if (ffmap[y][x] == '0' || 
+	if (ffmap[y][x] == '0' ||
 		ffmap[y][x] == '1' || ffmap[y][x] == '2' ||
 		ffmap[y][x] == 'N' || ffmap[y][x] == 'S' ||
 		ffmap[y][x] == 'E' || ffmap[y][x] == 'W')
@@ -59,25 +59,20 @@ void	verify_ff(t_game *game)
 	// while(game->map.xymap[i] != 0x00)
 	// 	printf("%s\n",game->map.xymap[i++]);
 
-void	check_stray(t_game *game)
+/*check if got 'island' in map*/
+void	ft_check_stray_map(t_game *game)
 {
 	int	j;
 
 	j = 0;
 	while (game->map.ffimap[1][j] != 0x00)
 	{
-		if (game->map.ffimap[1][j] == '1')// || game->map.ffimap[1][j] == '2')
+		if (game->map.ffimap[1][j] == '1')
 			break ;
 		j++;
 	}
 	ff_map(game, game->map.ffimap, j, 1);
 	verify_ff(game);
-}
-
-/*check if got 'island' in map*/
-void	ft_check_stray_map(t_game *game)
-{
-	check_stray(game);
 }
 // /*view flood fill map (before)*/
 	// printf("row -%d\n",game->map.n_row);

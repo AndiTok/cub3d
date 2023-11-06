@@ -58,7 +58,8 @@ void	verify_ff(t_game *game)
 	// while(game->map.xymap[i] != 0x00)
 	// 	printf("%s\n",game->map.xymap[i++]);
 
-void	check_stray(t_game *game)
+/*check if got 'island' in map*/
+void	ft_check_stray_map(t_game *game)
 {
 	int	j;
 
@@ -71,12 +72,6 @@ void	check_stray(t_game *game)
 	}
 	ff_map(game, game->map.ffimap, j, 1);
 	verify_ff(game);
-}
-
-/*check if got 'island' in map*/
-void	ft_check_stray_map(t_game *game)
-{
-	check_stray(game);
 }
 // /*view flood fill map (before)*/
 	// printf("row -%d\n",game->map.n_row);

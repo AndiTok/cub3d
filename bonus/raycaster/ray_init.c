@@ -12,13 +12,6 @@
 
 #include "../incl/cub3d.h"
 
-void	fix_fisheye(t_raycast *ray)
-{
-	ray->fish = ray->p_angle - ray->ra;
-	ray->fish = angle_reset(ray->fish);
-	ray->dist_t *= cos(ray->fish);
-}
-
 void	ray_init(t_raycast *ray, t_player *player)
 {
 	ray->p_angle = 0;
