@@ -31,9 +31,9 @@ int	set_dist_t_texture(t_raycast *ray)
 		ray->ry = ray->vy;
 		ray->dist_t = ray->dist_v;
 		if (ray->ra > M_PI_2 && ray->ra < M_PI_2 * 3)
-			texture = 'E';
-		if (ray->ra < M_PI_2 || ray->ra > M_PI_2 * 3)
 			texture = 'W';
+		if (ray->ra < M_PI_2 || ray->ra > M_PI_2 * 3)
+			texture = 'E';
 	}
 	if (ray->dist_h < ray->dist_v)
 	{

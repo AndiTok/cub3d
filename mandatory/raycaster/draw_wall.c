@@ -60,9 +60,9 @@ double	get_tx(t_raycast *ray, int t)
 	if (t == 'S')
 		tx = 15 - (int)ray->rx % 16;
 	if (t == 'W')
-		tx = (int)ray->ry % 16;
+		tx = 15 - (int)ray->ry % 16;
 	if (t == 'E')
-		tx = 15 -(int)ray->ry % 16;
+		tx = (int)ray->ry % 16;
 	return (tx);
 }
 

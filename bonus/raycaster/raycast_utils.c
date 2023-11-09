@@ -55,16 +55,16 @@ int	set_dist_t_texture(t_map *map, t_raycast *ray)
 		if (ray->ra > M_PI_2 && ray->ra < M_PI_2 * 3)
 		{
 			if (map->xymap[(int)ray->ry / SCALE][(int)ray->rx / SCALE] == '1')
-				texture = 'E';
+				texture = 'W';
 			if (map->xymap[(int)ray->ry / SCALE][(int)ray->rx / SCALE] == '2')
-				texture = 'e';
+				texture = 'w';
 		}
 		if (ray->ra < M_PI_2 || ray->ra > M_PI_2 * 3)
 		{
 			if (map->xymap[(int)ray->ry / SCALE][(int)ray->rx / SCALE] == '1')
-				texture = 'W';
+				texture = 'E';
 			if (map->xymap[(int)ray->ry / SCALE][(int)ray->rx / SCALE] == '2')
-				texture = 'w';
+				texture = 'e';
 		}
 	}
 	if (ray->dist_h < ray->dist_v)
